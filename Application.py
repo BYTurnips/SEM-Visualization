@@ -16,18 +16,27 @@ class Application(QWidget):
         quitb.resize(quitb.sizeHint())
         quitb.move(defw-150, 60)
         scanb = QPushButton('Start Scan', self)
-        scanb.clicked.connect(QApplication.instance().quit)
+        scanb.clicked.connect(Application.saystuff)
         scanb.resize(scanb.sizeHint())
         scanb.move(defw - 150, 120)
 
-        inArea = QPainter()
-        inArea.drawPoint(50, 50)
         self.setFixedWidth(defw)
         self.setFixedHeight(defh)
         self.setWindowTitle('SEM Visualization Demo')
         self.show()
 
-    def initScan(self):
+    def paintEvent(self, event):
+        scanarea = QStylePainter()
+        scanarea.begin(self)
+        scanarea.drawPoint(50, 50)
+        scanarea.end()
+
+    def startScan(self):
+        return
+    def stopScan(self):
+        return
+    def saystuff(self):
+        print("Button was clicked")
         return
 
 
