@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-# from scanArea import *
+from scanArea import scanArea
 from Data import AnalogData as input
 
 defw = 1000
@@ -16,13 +16,25 @@ class Application(QWidget):
     g = 0
     b = 0
     def initUI(self):
+        scanA = QImage(500, 500, 24)
+        scanPaint = QPainter(scanA)
+        scanPixmap = QGraphicsPixmapItem()
+        scanPixmap.setPixmap()
+        scanScene = QGraphicsScene()
+        scanScene.addPixmap(scanPixmap)
+        scanView = QGraphicsView(scanScene)
+        scanView.show()
+
+        scanPaint.drawRect(50, 50, 50, 50)
+
         quitb = QPushButton('Quit', self)
         quitb.clicked.connect(QApplication.instance().quit)
         quitb.resize(quitb.sizeHint())
         quitb.move(defw-150, 60)
+
         scanb = QPushButton('Start Scan', self)
-        scanb.clicked.connect(Application.paintit)
-        # scanb.clicked.connect(Application.saystuff)
+        scanb.clicked.connect(scanArea.paintit)
+
         scanb.resize(scanb.sizeHint())
         scanb.move(defw - 150, 120)
         self.paintit()
@@ -32,23 +44,6 @@ class Application(QWidget):
         self.setFixedHeight(defh)
         self.setWindowTitle('SEM Visualization Demo')
         self.show()
-
-    def paintit(self):
-        print("Hi!")
-        self.update()
-    def paintEvent(self, event):
-        scanarea = QStylePainter()
-        scanarea.begin(self)
-        scanarea.drawPoint(50, 50)
-
-        for i in range(50, 550):
-            for j in range(50, 550):
-                scanarea.drawPoint(i, j)
-        scanarea.setPen(QColor(self.r, self.g, self.b, 255))
-        self.r += 10
-        self.g += 10
-        self.b += 10
-        scanarea.end()
 
     def startScan(self):
         return
