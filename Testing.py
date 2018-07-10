@@ -1,42 +1,81 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from scanArea import scanArea
+from Data import AnalogData as input
+
+defw = 1000
+defh = 600
 
 
-class App(QWidget):
-
+class Application(QWidget):
     def __init__(self):
         super().__init__()
-        self.title = 'PyQt5 image'
-        self.left = 100
-        self.top = 100
-        self.width = 640
-        self.height = 480
+        self.scanA = QImage('Yellow_BG.JPG')
+        self.scanPixmap = QPixmap()
+        self.scanLabel = QLabel('Scan Area', self)
         self.initUI()
 
+    r = 0
+    g = 0
+    b = 0
+
+    def showImage(self):
+        self.scanPixmap.convertFromImage(self.scanA)
+        self.scanLabel.setPixmap(self.scanPixmap)
+        return
+
+    def drawImage(self):
+        p = QPainter()
+        p.begin(self.scanA)
+        p.fillRect(0, 0, 500, 500, QColor(self.r, self.g, self.b, 250))
+        self.r = (self.r + 40) % 255
+        self.g = (self.g + 40) % 255
+        self.b = (self.b + 40) % 255
+        p.end()
+        return
+
+    def updateImage(self):
+        self.drawImage()
+        self.showImage()
+
     def initUI(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.drawImage()
+        self.showImage()
+        self.scanLabel.move(50, 50)
+        self.scanLabel.show()
 
-        # Create widget
-        label = QLabel(self)
-        image = QImage(100, 100, 24)
-        image.load('Yellow_BG.JPG')
+        self.drawImage()
+        self.showImage()
 
-        paint = QPainter()
-        paint.begin(image)
-        paint.drawRect(20, 20, 20, 20)
-        paint.end()
-        # pixmap = QPixmap('Cool Logo.jpg')
-        pixmap = QPixmap()
-        pixmap.convertFromImage(image)
-        label.setPixmap(pixmap)
-        self.resize(pixmap.width(), pixmap.height())
+        quitb = QPushButton('Quit', self)
+        quitb.clicked.connect(QApplication.instance().quit)
+        quitb.resize(quitb.sizeHint())
+        quitb.move(defw - 150, 60)
 
+        scanb = QPushButton('Start Scan', self)
+        scanb.clicked.connect(self.updateImage)
+
+        scanb.resize(scanb.sizeHint())
+        scanb.move(defw - 150, 120)
+
+        self.setFixedWidth(defw)
+        self.setFixedHeight(defh)
+        self.setWindowTitle('SEM Visualization Demo')
         self.show()
+
+    def startScan(self):
+        return
+
+    def stopScan(self):
+        return
+
+    def saystuff(self):
+        print("Button was clicked")
+        return
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = App()
+    ex = Application()
     sys.exit(app.exec_())

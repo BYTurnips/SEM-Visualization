@@ -11,40 +11,42 @@ defh = 600
 class Application(QWidget):
     def __init__(self):
         super().__init__()
+        self.scanA = QImage('Yellow_BG.JPG')
+        self.scanPixmap = QPixmap()
+        self.scanLabel = QLabel('Scan Area', self)
         self.initUI()
 
     r = 0
     g = 0
     b = 0
-    scanA = QImage('Yellow_BG.JPG')
 
     def showImage(self):
+        self.scanPixmap.convertFromImage(self.scanA)
+        self.scanLabel.setPixmap(self.scanPixmap)
         return
 
     def drawImage(self):
-        p = QPainter(self.scanA)
-        for i in range(500):
-            p.setPen(QColor(i / 2, i / 2, i / 2, 255))
-            p.drawLine(i, 0, i, 500)
-        p.drawRect(0, 0, 500, 500)
+        p = QPainter()
+        p.begin(self.scanA)
+        p.fillRect(0, 0, 500, 500, QColor(self.r, self.g, self.b, 250))
+        self.r = (self.r + 40) % 255
+        self.g = (self.g + 40) % 255
+        self.b = (self.b + 40) % 255
+        p.end()
         return
+
+    def updateImage(self):
+        self.drawImage()
+        self.showImage()
+
     def initUI(self):
         self.drawImage()
-        scanPixmap = QPixmap()
-        scanPixmap.convertFromImage(self.scanA)
-        scanLabel = QLabel('Scan Area', self)
-        scanLabel.setPixmap(scanPixmap)
-        scanLabel.resize(scanLabel.sizeHint())
-        scanLabel.move(50, 50)
-        scanLabel.show()
-        # scanLabel.deleteLater()
-        # self.scanPaint.setPen(QColor(50, 50, 50, 50))
-        # self.scanPaint.drawRect(50, 50, 50, 50)
-        # scanPixmap.convertFromImage(self.scanA)
-        # scanLabel2 = QLabel('Scan Area', self)
-        # scanLabel2.setPixmap(scanPixmap)
-        # scanLabel2.move(100, 100)
-        # scanLabel2.show()
+        self.showImage()
+        self.scanLabel.move(50, 50)
+        self.scanLabel.show()
+
+        self.drawImage()
+        self.showImage()
 
         quitb = QPushButton('Quit', self)
         quitb.clicked.connect(QApplication.instance().quit)
@@ -52,11 +54,10 @@ class Application(QWidget):
         quitb.move(defw-150, 60)
 
         scanb = QPushButton('Start Scan', self)
-        # scanb.clicked.connect(self.drawImage())
+        scanb.clicked.connect(self.updateImage)
 
         scanb.resize(scanb.sizeHint())
         scanb.move(defw - 150, 120)
-        print("Ready to go!")
 
         self.setFixedWidth(defw)
         self.setFixedHeight(defh)
