@@ -1,7 +1,6 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from scanArea import scanArea
 from Data import AnalogData as input
 
 defw = 1000
@@ -40,8 +39,9 @@ class Application(QWidget):
         return
 
     def updateImage(self):
-        self.drawImage()
-        self.showImage()
+        for i in range(50):
+            self.drawImage()
+            self.showImage()
 
     def initUI(self):
         self.drawImage()
