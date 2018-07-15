@@ -1,3 +1,5 @@
+# This class takes the input data and stores it
+
 # import RPi.GPIO as gpio
 
 #implement SPI interface with the ADC and set up the call function

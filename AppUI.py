@@ -1,3 +1,6 @@
+# This class generates the responsive UI capabilities of the application
+# and acts as the main starter for all other threads
+
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *

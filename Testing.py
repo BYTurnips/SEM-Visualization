@@ -1,317 +1,78 @@
-# -*- coding: utf-8 -*-
+# This class generates the responsive UI capabilities of the application
+# and acts as the main starter for all other threads
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from Data import AnalogData as input
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1000, 650)
-        MainWindow.setMinimumSize(QtCore.QSize(1000, 650))
-        MainWindow.setMaximumSize(QtCore.QSize(1000, 650))
-        MainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
-        self.centralWidget = QtWidgets.QWidget(MainWindow)
-        self.centralWidget.setObjectName("centralWidget")
-        self.label = QtWidgets.QLabel(self.centralWidget)
-        self.label.setEnabled(True)
-        self.label.setGeometry(QtCore.QRect(50, 50, 500, 500))
-        self.label.setMinimumSize(QtCore.QSize(500, 500))
-        self.label.setMaximumSize(QtCore.QSize(500, 500))
-        self.label.setObjectName("label")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralWidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(820, 50, 141, 31))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton = QtWidgets.QPushButton(self.centralWidget)
-        self.pushButton.setGeometry(QtCore.QRect(640, 50, 131, 31))
-        self.pushButton.setCheckable(True)
-        self.pushButton.setObjectName("pushButton")
-        self.widget = QtWidgets.QWidget(self.centralWidget)
-        self.widget.setGeometry(QtCore.QRect(630, 470, 289, 30))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout.setSpacing(6)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_26 = QtWidgets.QLabel(self.widget)
-        self.label_26.setObjectName("label_26")
-        self.horizontalLayout.addWidget(self.label_26)
-        self.refreshRate = QtWidgets.QSpinBox(self.widget)
-        self.refreshRate.setAccelerated(True)
-        self.refreshRate.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToNearestValue)
-        self.refreshRate.setKeyboardTracking(True)
-        self.refreshRate.setMinimum(10)
-        self.refreshRate.setMaximum(60)
-        self.refreshRate.setObjectName("refreshRate")
-        self.horizontalLayout.addWidget(self.refreshRate)
-        self.label_27 = QtWidgets.QLabel(self.widget)
-        self.label_27.setObjectName("label_27")
-        self.horizontalLayout.addWidget(self.label_27)
-        self.widget1 = QtWidgets.QWidget(self.centralWidget)
-        self.widget1.setGeometry(QtCore.QRect(590, 130, 381, 136))
-        self.widget1.setObjectName("widget1")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.widget1)
-        self.verticalLayout_3.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_3.setSpacing(6)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setSpacing(6)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_25 = QtWidgets.QLabel(self.widget1)
-        self.label_25.setObjectName("label_25")
-        self.verticalLayout_2.addWidget(self.label_25)
-        self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setSpacing(6)
-        self.gridLayout.setObjectName("gridLayout")
-        self.X_Zoom = QtWidgets.QSlider(self.widget1)
-        self.X_Zoom.setMinimum(-12)
-        self.X_Zoom.setMaximum(-2)
-        self.X_Zoom.setSingleStep(1)
-        self.X_Zoom.setPageStep(20)
-        self.X_Zoom.setProperty("value", -7)
-        self.X_Zoom.setSliderPosition(-7)
-        self.X_Zoom.setOrientation(QtCore.Qt.Horizontal)
-        self.X_Zoom.setTickPosition(QtWidgets.QSlider.TicksAbove)
-        self.X_Zoom.setTickInterval(1)
-        self.X_Zoom.setObjectName("X_Zoom")
-        self.gridLayout.addWidget(self.X_Zoom, 1, 1, 1, 11)
-        self.label_5 = QtWidgets.QLabel(self.widget1)
-        self.label_5.setObjectName("label_5")
-        self.gridLayout.addWidget(self.label_5, 0, 11, 1, 2)
-        self.label_3 = QtWidgets.QLabel(self.widget1)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout.addWidget(self.label_3, 1, 12, 1, 2)
-        self.label_9 = QtWidgets.QLabel(self.widget1)
-        self.label_9.setObjectName("label_9")
-        self.gridLayout.addWidget(self.label_9, 0, 3, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.widget1)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout.addWidget(self.label_8, 0, 9, 1, 1)
-        self.label_12 = QtWidgets.QLabel(self.widget1)
-        self.label_12.setText("")
-        self.label_12.setObjectName("label_12")
-        self.gridLayout.addWidget(self.label_12, 0, 6, 1, 1)
-        self.label_14 = QtWidgets.QLabel(self.widget1)
-        self.label_14.setText("")
-        self.label_14.setObjectName("label_14")
-        self.gridLayout.addWidget(self.label_14, 0, 8, 1, 1)
-        self.label_7 = QtWidgets.QLabel(self.widget1)
-        self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 0, 5, 1, 1)
-        self.label_4 = QtWidgets.QLabel(self.widget1)
-        self.label_4.setObjectName("label_4")
-        self.gridLayout.addWidget(self.label_4, 0, 1, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.widget1)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout.addWidget(self.label_6, 0, 7, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.widget1)
-        self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-        self.label_11 = QtWidgets.QLabel(self.widget1)
-        self.label_11.setText("")
-        self.label_11.setObjectName("label_11")
-        self.gridLayout.addWidget(self.label_11, 0, 4, 1, 1)
-        self.verticalLayout_2.addLayout(self.gridLayout)
-        self.verticalLayout_3.addLayout(self.verticalLayout_2)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setSpacing(6)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem)
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget1)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.horizontalLayout_2.addWidget(self.pushButton_3)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem1)
-        self.pushButton_4 = QtWidgets.QPushButton(self.widget1)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout_2.addWidget(self.pushButton_4)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem2)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
-        self.widget2 = QtWidgets.QWidget(self.centralWidget)
-        self.widget2.setGeometry(QtCore.QRect(590, 310, 381, 136))
-        self.widget2.setObjectName("widget2")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.widget2)
-        self.verticalLayout_4.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_4.setSpacing(6)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setSpacing(6)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.label_24 = QtWidgets.QLabel(self.widget2)
-        self.label_24.setObjectName("label_24")
-        self.verticalLayout.addWidget(self.label_24)
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setSpacing(6)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.label_10 = QtWidgets.QLabel(self.widget2)
-        self.label_10.setObjectName("label_10")
-        self.gridLayout_2.addWidget(self.label_10, 0, 11, 1, 2)
-        self.label_15 = QtWidgets.QLabel(self.widget2)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout_2.addWidget(self.label_15, 0, 9, 1, 1)
-        self.label_17 = QtWidgets.QLabel(self.widget2)
-        self.label_17.setText("")
-        self.label_17.setObjectName("label_17")
-        self.gridLayout_2.addWidget(self.label_17, 0, 8, 1, 1)
-        self.label_13 = QtWidgets.QLabel(self.widget2)
-        self.label_13.setObjectName("label_13")
-        self.gridLayout_2.addWidget(self.label_13, 0, 3, 1, 1)
-        self.label_18 = QtWidgets.QLabel(self.widget2)
-        self.label_18.setObjectName("label_18")
-        self.gridLayout_2.addWidget(self.label_18, 0, 5, 1, 1)
-        self.label_20 = QtWidgets.QLabel(self.widget2)
-        self.label_20.setObjectName("label_20")
-        self.gridLayout_2.addWidget(self.label_20, 0, 1, 1, 1)
-        self.label_21 = QtWidgets.QLabel(self.widget2)
-        self.label_21.setObjectName("label_21")
-        self.gridLayout_2.addWidget(self.label_21, 0, 7, 1, 1)
-        self.label_19 = QtWidgets.QLabel(self.widget2)
-        self.label_19.setText("")
-        self.label_19.setObjectName("label_19")
-        self.gridLayout_2.addWidget(self.label_19, 0, 4, 1, 1)
-        self.label_23 = QtWidgets.QLabel(self.widget2)
-        self.label_23.setObjectName("label_23")
-        self.gridLayout_2.addWidget(self.label_23, 1, 12, 1, 2)
-        self.label_22 = QtWidgets.QLabel(self.widget2)
-        self.label_22.setObjectName("label_22")
-        self.gridLayout_2.addWidget(self.label_22, 1, 0, 1, 1)
-        self.X_Zoom_2 = QtWidgets.QSlider(self.widget2)
-        self.X_Zoom_2.setMinimum(-12)
-        self.X_Zoom_2.setMaximum(-2)
-        self.X_Zoom_2.setSingleStep(1)
-        self.X_Zoom_2.setPageStep(20)
-        self.X_Zoom_2.setProperty("value", -7)
-        self.X_Zoom_2.setSliderPosition(-7)
-        self.X_Zoom_2.setOrientation(QtCore.Qt.Horizontal)
-        self.X_Zoom_2.setTickPosition(QtWidgets.QSlider.TicksAbove)
-        self.X_Zoom_2.setTickInterval(1)
-        self.X_Zoom_2.setObjectName("X_Zoom_2")
-        self.gridLayout_2.addWidget(self.X_Zoom_2, 1, 1, 1, 11)
-        self.label_16 = QtWidgets.QLabel(self.widget2)
-        self.label_16.setText("")
-        self.label_16.setObjectName("label_16")
-        self.gridLayout_2.addWidget(self.label_16, 0, 6, 1, 1)
-        self.verticalLayout.addLayout(self.gridLayout_2)
-        self.verticalLayout_4.addLayout(self.verticalLayout)
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_3.setSpacing(6)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem3)
-        self.pushButton_7 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.horizontalLayout_3.addWidget(self.pushButton_7)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem4)
-        self.pushButton_8 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.horizontalLayout_3.addWidget(self.pushButton_8)
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem5)
-        self.verticalLayout_4.addLayout(self.horizontalLayout_3)
-        MainWindow.setCentralWidget(self.centralWidget)
-        self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1000, 26))
-        self.menuBar.setObjectName("menuBar")
-        self.menufwefwef = QtWidgets.QMenu(self.menuBar)
-        self.menufwefwef.setObjectName("menufwefwef")
-        self.menuEdit = QtWidgets.QMenu(self.menuBar)
-        self.menuEdit.setObjectName("menuEdit")
-        self.menuView = QtWidgets.QMenu(self.menuBar)
-        self.menuView.setObjectName("menuView")
-        MainWindow.setMenuBar(self.menuBar)
-        self.mainToolBar = QtWidgets.QToolBar(MainWindow)
-        self.mainToolBar.setObjectName("mainToolBar")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.mainToolBar)
-        self.statusBar = QtWidgets.QStatusBar(MainWindow)
-        self.statusBar.setObjectName("statusBar")
-        MainWindow.setStatusBar(self.statusBar)
-        self.actionNew = QtWidgets.QAction(MainWindow)
-        self.actionNew.setObjectName("actionNew")
-        self.actionOpen = QtWidgets.QAction(MainWindow)
-        self.actionOpen.setObjectName("actionOpen")
-        self.menufwefwef.addAction(self.actionNew)
-        self.menufwefwef.addAction(self.actionOpen)
-        self.menuBar.addAction(self.menufwefwef.menuAction())
-        self.menuBar.addAction(self.menuEdit.menuAction())
-        self.menuBar.addAction(self.menuView.menuAction())
-
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow",
-                                      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                      "p, li { white-space: pre-wrap; }\n"
-                                      "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><img src=\":/Yellow_BG/Yellow_BG.JPG\" /></p></body></html>"))
-        self.pushButton_2.setText(_translate("MainWindow", "Capture Image"))
-        self.pushButton.setText(_translate("MainWindow", "Scan"))
-        self.label_26.setToolTip(_translate("MainWindow",
-                                            "<html><head/><body><p>Change the time it takes for a full image refresh. Longer time ensures higher accuracy and less noise.</p></body></html>"))
-        self.label_26.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; color:#00007f;\">Refresh Rate: </span></p></body></html>"))
-        self.label_27.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">seconds</span></p></body></html>"))
-        self.label_25.setToolTip(_translate("MainWindow",
-                                            "<html><head/><body><p>Change zoom level across horizontal axis.</p></body></html>"))
-        self.label_25.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#00007f;\">X-Scan Zoom Level (m)</span></p></body></html>"))
-        self.label_5.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-2</span></p></body></html>"))
-        self.label_3.setText(_translate("MainWindow",
-                                        "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">1</span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">cm</span></p></body></html>"))
-        self.label_9.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-10</span></p></body></html>"))
-        self.label_8.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-4</span></p></body></html>"))
-        self.label_7.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-8</span></p></body></html>"))
-        self.label_4.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-12</span></p></body></html>"))
-        self.label_6.setText(_translate("MainWindow",
-                                        "<html><head/><body><p>10<span style=\" vertical-align:super;\">-6</span></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow",
-                                        "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">1</span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">pm</span></p></body></html>"))
-        self.pushButton_3.setText(_translate("MainWindow", "Update Scan"))
-        self.pushButton_4.setText(_translate("MainWindow", "Reset"))
-        self.label_24.setToolTip(
-            _translate("MainWindow", "<html><head/><body><p>Change zoom level across vertical axis.</p></body></html>"))
-        self.label_24.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#00007f;\">Y-Scan Zoom Level (m)</span></p></body></html>"))
-        self.label_10.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-2</span></p></body></html>"))
-        self.label_15.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-4</span></p></body></html>"))
-        self.label_13.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-10</span></p></body></html>"))
-        self.label_18.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-8</span></p></body></html>"))
-        self.label_20.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-12</span></p></body></html>"))
-        self.label_21.setText(_translate("MainWindow",
-                                         "<html><head/><body><p>10<span style=\" vertical-align:super;\">-6</span></p></body></html>"))
-        self.label_23.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">1</span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">cm</span></p></body></html>"))
-        self.label_22.setText(_translate("MainWindow",
-                                         "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">1</span><span style=\" font-size:10pt; font-weight:600; font-style:italic;\">pm</span></p></body></html>"))
-        self.pushButton_7.setText(_translate("MainWindow", "Update Scan"))
-        self.pushButton_8.setText(_translate("MainWindow", "Reset"))
-        self.menufwefwef.setTitle(_translate("MainWindow", "File"))
-        self.menuEdit.setTitle(_translate("MainWindow", "Edit"))
-        self.menuView.setTitle(_translate("MainWindow", "View"))
-        self.actionNew.setText(_translate("MainWindow", "New"))
-        self.actionOpen.setText(_translate("MainWindow", "Open"))
+defw = 1000
+defh = 600
 
 
-import Resources_rc
+class Application(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.scanA = QImage('Yellow_BG.JPG')
+        self.scanPixmap = QPixmap()
+        self.scanLabel = QLabel('Scan Area', self)
+        self.initUI()
+
+    r = 0
+    g = 0
+    b = 0
+
+    def showImage(self):
+        self.scanPixmap.convertFromImage(self.scanA)
+        self.scanLabel.setPixmap(self.scanPixmap)
+        return
+
+    def drawImage(self):
+        p = QPainter()
+        p.begin(self.scanA)
+        # p.fillRect(0, 0, 500, 500, QColor(self.r, self.g, self.b, 250))
+        p.setPen(QColor(self.r, self.g, self.b, 250))
+        for i in range(500):
+            for j in range(500):
+                p.drawPoint(i, j)
+        self.r = (self.r + 40) % 255
+        self.g = (self.g + 40) % 255
+        self.b = (self.b + 40) % 255
+        p.end()
+        return
+
+    def updateImage(self):
+        for i in range(50):
+            self.drawImage()
+            self.showImage()
+
+    def initUI(self):
+        self.drawImage()
+        self.showImage()
+        self.scanLabel.move(50, 50)
+        self.scanLabel.show()
+
+        self.drawImage()
+        self.showImage()
+
+        quitb = QPushButton('Quit', self)
+        quitb.clicked.connect(QApplication.instance().quit)
+        quitb.resize(quitb.sizeHint())
+        quitb.move(defw - 150, 60)
+
+        scanb = QPushButton('Start Scan', self)
+        scanb.clicked.connect(self.updateImage)
+
+        scanb.resize(scanb.sizeHint())
+        scanb.move(defw - 150, 120)
+
+        self.setFixedWidth(defw)
+        self.setFixedHeight(defh)
+        self.setWindowTitle('SEM Visualization Demo')
+        self.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Application()
+    sys.exit(app.exec_())
