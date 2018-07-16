@@ -4,7 +4,6 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from Data import AnalogData as input
 
 defw = 1000
 defh = 600
