@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Yellow_BG.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Testing2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QTD_Driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/QTD_Driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QTD_Window.py" beforeDir="false" afterPath="$PROJECT_DIR$/QTD_Window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AppUI.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppUI.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AppUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+            <state relative-caret-position="85">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -49,10 +48,22 @@
       <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+            <state relative-caret-position="493">
+              <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
               <folding>
                 <element signature="e#127#137#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Testing2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Testing2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +72,8 @@
       <file leaf-file-name="QTD_Driver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QTD_Driver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="255">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -73,8 +84,8 @@
       <file leaf-file-name="QTD_Window.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QTD_Window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-214">
-              <caret line="193" column="31" selection-start-line="193" selection-start-column="31" selection-end-line="193" selection-end-column="31" />
+            <state relative-caret-position="459">
+              <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
             </state>
           </provider>
         </entry>
@@ -122,15 +133,15 @@
         <option value="$USER_HOME$/OneDrive/Documents/Science Research/Pease_SEM_App/sem_app.py" />
         <option value="$PROJECT_DIR$/Application.py" />
         <option value="$PROJECT_DIR$/Testing3.py" />
-        <option value="$PROJECT_DIR$/Testing2.py" />
-        <option value="$PROJECT_DIR$/AppUI.py" />
         <option value="$PROJECT_DIR$/Display.py" />
         <option value="$PROJECT_DIR$/Data.py" />
-        <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/QTD-Conv.py" />
         <option value="$PROJECT_DIR$/QTD_Conv.py" />
         <option value="$PROJECT_DIR$/QTD_Driver.py" />
         <option value="$PROJECT_DIR$/QTD_Window.py" />
+        <option value="$PROJECT_DIR$/AppUI.py" />
+        <option value="$PROJECT_DIR$/Testing.py" />
+        <option value="$PROJECT_DIR$/Testing2.py" />
       </list>
     </option>
   </component>
@@ -163,7 +174,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Testing.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Testing2.py" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -183,7 +194,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Backend App">
+  <component name="RunManager" selected="Python.Beta Testing">
     <configuration name="Backend App" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -202,6 +213,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="Beta Testing" type="PythonConfigurationType" factoryName="Python">
+      <module name="Pease SEM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\brion\AppData\Local\Programs\Python\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="QTD App" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,24 +244,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/QTD_Driver.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="Testing" type="PythonConfigurationType" factoryName="Python">
-      <module name="Pease SEM" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\brion\AppData\Local\Programs\Python\Python36-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -259,7 +270,7 @@
     <list>
       <item itemvalue="Python.Backend App" />
       <item itemvalue="Python.QTD App" />
-      <item itemvalue="Python.Testing" />
+      <item itemvalue="Python.Beta Testing" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -322,11 +333,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531630370462</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Modified some QTD files and changed the layouts.">
+      <created>1531705982187</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1531705982187</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1796875" />
@@ -360,8 +378,14 @@
     <MESSAGE value="Working Test Code for determining drawing/update speed of a QImage pixel by pixel" />
     <MESSAGE value="Successfully managed to run the Qt Designer-made file (UI in Testing.py, driver function in Testing2.py) in Python." />
     <MESSAGE value="Renamed some files. Now there are two projects: backend (threading and I/O) and frontend (QTD results)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed some files. Now there are two projects: backend (threading and I/O) and frontend (QTD results)" />
+    <MESSAGE value="Modified some QTD files and changed the layouts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified some QTD files and changed the layouts." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AppUI.py">
@@ -573,43 +597,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding>
-            <element signature="e#127#137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources_rc.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/QTD_Window.py">
+    <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-214">
-          <caret line="193" column="31" selection-start-line="193" selection-start-column="31" selection-end-line="193" selection-end-column="31" />
+        <state>
+          <caret column="47" selection-start-column="47" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QTD_Driver.py">
+    <entry file="file://$PROJECT_DIR$/AppUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data.py">
+    <entry file="file://$PROJECT_DIR$/QTD_Window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="47" selection-start-column="47" selection-end-column="47" />
+        <state relative-caret-position="459">
+          <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QTD_Driver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -620,12 +644,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AppUI.py">
+    <entry file="file://$PROJECT_DIR$/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        <state relative-caret-position="493">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#127#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Testing2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
