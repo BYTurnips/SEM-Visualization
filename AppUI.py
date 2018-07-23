@@ -29,7 +29,6 @@ class Application(QWidget):
     def drawImage(self):
         p = QPainter()
         p.begin(self.scanA)
-        # p.fillRect(0, 0, 500, 500, QColor(self.r, self.g, self.b, 250))
         p.setPen(QColor(self.r, self.g, self.b, 250))
         for i in range(500):
             for j in range(500):
