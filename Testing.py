@@ -40,6 +40,7 @@ class data(QThread):
 
 
 class display(QThread):
+    notCancelling = True
     loadedImage = pyqtSignal(QImage)
 
     def __init__(self):
@@ -47,20 +48,22 @@ class display(QThread):
         self.lock = QMutex()
 
     def run(self):
-        # q = QMutexLocker(self.lock)
-        scanA = QImage('Yellow_BG.JPG')
-        p = QPainter()
-        p.begin(scanA)
-        for i in range(500):
-            for j in range(500):
-                t = displayData[i][j]
-                p.setPen(QColor(t, t, t, 255))
-                p.drawPoint(i, j)
-        p.end()
-        for i in range(500):
-            print("HIIII")
-        self.loadedImage.emit(scanA)
-        return
+        self.notCancelling = True
+        q = QMutexLocker(self.lock)
+        t = 0
+        while self.notCancelling:
+            scanA = QImage('Yellow_BG.JPG')
+            p = QPainter()
+            p.begin(scanA)
+            t = (t + 40) % 255
+            for i in range(500):
+                for j in range(500):
+                    # t = displayData[i][j]
+                    p.setPen(QColor(t, t, t, 255))
+                    p.drawPoint(i, j)
+            p.end()
+            print("Finished Image...")
+            self.loadedImage.emit(scanA)
 
 
 class setUI(object):
@@ -80,6 +83,7 @@ class setUI(object):
 
 class GUI(QMainWindow):
     startScanning = pyqtSignal()
+    endScanning = pyqtSignal()
     defw = 1000
     defh = 600
     r = 0
@@ -135,9 +139,13 @@ class GUI(QMainWindow):
 
         scanb = QPushButton('Start Scan', self)
         scanb.clicked.connect(self.startScanning.emit)
-
         scanb.resize(scanb.sizeHint())
         scanb.move(self.defw - 150, 120)
+
+        escanb = QPushButton('End Scan', self)
+        escanb.clicked.connect(self.endScanning.emit)
+        escanb.resize(escanb.sizeHint())
+        escanb.move(self.defw - 150, 180)
 
         self.setFixedWidth(self.defw)
         self.setFixedHeight(self.defh)
@@ -163,6 +171,7 @@ class master(QObject):
         self.displayTh = display()
 
         self.window.startScanning.connect(self.displayTh.start)
+        self.window.endScanning.connect(self.stopScan)
         self.displayTh.loadedImage.connect(self.relayImage)
         self.sendImage.connect(self.window.showGivenImage)
         self.dataTh = data()
@@ -174,6 +183,9 @@ class master(QObject):
         print("Relaying Image")
         self.sendImage.emit(image)
         return
+
+    def stopScan(self):
+        self.displayTh.notCancelling = False
 
 
 
