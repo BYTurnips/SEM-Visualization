@@ -29,7 +29,7 @@ class display(QThread):
         p.begin(scanA)
         for i in range(500):
             for j in range(500):
-                # t = displayData[i][j]
+                t = data.displayData[i][j]
                 p.setPen(QColor(t, t, t, 255))
                 p.drawPoint(i, j)
         p.end()
@@ -111,6 +111,7 @@ class master(QObject):
         self.app = QApplication(sys.argv)
         self.window = GUI()
         self.displayTh = display()
+        self.dataTh = data.AnalogData()
 
         self.timer = QTimer()
         self.timer.setInterval(1000)
@@ -120,7 +121,7 @@ class master(QObject):
         self.window.endScanning.connect(self.timer.stop)
         self.displayTh.loadedImage.connect(self.relayImage)
         self.sendImage.connect(self.window.showGivenImage)
-        self.dataTh = data.AnalogData()
+
         self.window.show()
         sys.exit(self.app.exec_())
 
