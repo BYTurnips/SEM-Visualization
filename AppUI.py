@@ -40,7 +40,7 @@ class Application(QWidget):
         return
 
     def updateImage(self):
-        for i in range(50):
+        for i in range(10):
             self.drawImage()
             self.showImage()
 

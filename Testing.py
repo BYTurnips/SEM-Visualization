@@ -3,41 +3,16 @@
 
 import sys
 import numpy as np
+import random
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from QTD_Window import Ui_MainWindow
+import Data as data
 
 # I might be misunderstanding how mutex works...do the mutex objects have to be the same
 # each time they're called?
 # Can change image to grayscale
-scanData = np.zeros((500, 500, 5))
-displayData = np.zeros((500, 500))
-
-class data(QThread):
-    x = 0
-    y = 0
-    z = 0
-
-    def __init__(self):
-        super().__init__()
-        self.lock = QMutex()
-
-    def run(self):
-        q = QMutexLocker(self.lock)
-        for i in range(2500):
-            scanData[self.x][self.y][self.z] = np.randint(0, 256)
-            displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / 5
-            self.x += 1
-            if self.x == 500:
-                self.x = 0
-                self.y += 1
-            if self.y == 500:
-                self.y = 0
-                self.z += 1
-            if self.z == 5:
-                self.z = 0
-        return
-
 
 class display(QThread):
     notCancelling = True
@@ -45,50 +20,30 @@ class display(QThread):
 
     def __init__(self):
         super().__init__()
-        self.lock = QMutex()
 
     def run(self):
-        self.notCancelling = True
-        q = QMutexLocker(self.lock)
-        t = 0
-        while self.notCancelling:
-            scanA = QImage('Yellow_BG.JPG')
-            p = QPainter()
-            p.begin(scanA)
-            t = (t + 40) % 255
-            for i in range(500):
-                for j in range(500):
-                    # t = displayData[i][j]
-                    p.setPen(QColor(t, t, t, 255))
-                    p.drawPoint(i, j)
-            p.end()
-            print("Finished Image...")
-            self.loadedImage.emit(scanA)
+        q = QMutexLocker(data.lock)
+        t = random.randint(0, 256)
+        scanA = QImage('Yellow_BG.JPG')
+        p = QPainter()
+        p.begin(scanA)
+        for i in range(500):
+            for j in range(500):
+                # t = displayData[i][j]
+                p.setPen(QColor(t, t, t, 255))
+                p.drawPoint(i, j)
+        p.end()
+        print("Finished Image...")
+        self.loadedImage.emit(scanA)
 
-
-class setUI(object):
-    def setupUI(self, MainWindow):
-        MainWindow.setObjectName("Testing Window")
-        MainWindow.resize(1000, 650)
-        MainWindow.setMinimumSize(QSize(1000, 600))
-        MainWindow.setMaximumSize(QSize(1000, 600))
-        MainWindow.setTabShape(QTabWidget.Rounded)
-        self.centralWidget = QWidget(MainWindow)
-        self.centralWidget.setObjectName("centralWidget")
-        self.ScanB = QPushButton(self.centralWidget)
-        self.ScanB.setGeometry(QRect(630, 50, 131, 31))
-        self.ScanB.setCheckable(True)
-        self.ScanB.setObjectName("ScanB")
-
+    def saystuff(self):
+        print("HI")
 
 class GUI(QMainWindow):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
     defw = 1000
     defh = 600
-    r = 0
-    g = 0
-    b = 0
 
     def __init__(self):
         super().__init__()
@@ -96,7 +51,14 @@ class GUI(QMainWindow):
         self.scanPixmap = QPixmap()
         self.scanLabel = QLabel('Scan Area', self)
         self.scanLabel.setFixedSize(500, 500)
-        self.initUI()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.drawImage()
+        self.showImage()
+        self.scanLabel.move(50, 90)
+        self.scanLabel.show()
+        self.connectUI()
+
 
     def showImage(self):
         self.scanPixmap.convertFromImage(self.scanA)
@@ -111,13 +73,10 @@ class GUI(QMainWindow):
     def drawImage(self):
         p = QPainter()
         p.begin(self.scanA)
-        p.setPen(QColor(self.r, self.g, self.b, 250))
+        p.setPen(QColor(0, 0, 0, 250))
         for i in range(500):
             for j in range(500):
                 p.drawPoint(i, j)
-        self.r = (self.r + 40) % 255
-        self.g = (self.g + 40) % 255
-        self.b = (self.b + 40) % 255
         p.end()
         return
 
@@ -126,32 +85,17 @@ class GUI(QMainWindow):
             self.drawImage()
             self.showImage()
 
-    def initUI(self):
-        self.drawImage()
-        self.showImage()
-        self.scanLabel.move(50, 50)
-        self.scanLabel.show()
+    def connectUI(self):
+        self.ui.ScanB.clicked.connect(self.toggleScanning)
 
-        quitb = QPushButton('Quit', self)
-        quitb.clicked.connect(QApplication.instance().quit)
-        quitb.resize(quitb.sizeHint())
-        quitb.move(self.defw - 150, 60)
+    def toggleScanning(self, active):
+        if active:
+            self.startScanning.emit()
+        else:
+            self.endScanning.emit()
 
-        scanb = QPushButton('Start Scan', self)
-        scanb.clicked.connect(self.startScanning.emit)
-        scanb.resize(scanb.sizeHint())
-        scanb.move(self.defw - 150, 120)
-
-        escanb = QPushButton('End Scan', self)
-        escanb.clicked.connect(self.endScanning.emit)
-        escanb.resize(escanb.sizeHint())
-        escanb.move(self.defw - 150, 180)
-
-        self.setFixedWidth(self.defw)
-        self.setFixedHeight(self.defh)
-        self.setWindowTitle('SEM Visualization Demo')
-        self.show()
-
+    def saystuff(self, val):
+        print("HI")
 
 # all you have to do now is connect the mainwindow "start work" sig to the master slot
 # which then starts a display thread. the display thread will periodically emit
@@ -166,16 +110,17 @@ class master(QObject):
         super().__init__()
         self.app = QApplication(sys.argv)
         self.window = GUI()
-        self.setu = setUI()
-        self.setu.setupUI(self.window)
         self.displayTh = display()
 
-        self.window.startScanning.connect(self.displayTh.start)
-        self.window.endScanning.connect(self.stopScan)
+        self.timer = QTimer()
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.displayTh.start)
+
+        self.window.startScanning.connect(self.timer.start)
+        self.window.endScanning.connect(self.timer.stop)
         self.displayTh.loadedImage.connect(self.relayImage)
         self.sendImage.connect(self.window.showGivenImage)
-        self.dataTh = data()
-
+        self.dataTh = data.AnalogData()
         self.window.show()
         sys.exit(self.app.exec_())
 
@@ -184,9 +129,8 @@ class master(QObject):
         self.sendImage.emit(image)
         return
 
-    def stopScan(self):
-        self.displayTh.notCancelling = False
-
+    def saystuff(self):
+        print("HI")
 
 
 if __name__ == "__main__":
