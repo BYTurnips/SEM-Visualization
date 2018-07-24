@@ -1,6 +1,7 @@
 # This class takes the input data and stores it
 
 import numpy as np
+import random
 from PyQt5.QtCore import *
 # import RPi.GPIO as gpio
 
@@ -20,9 +21,9 @@ class AnalogData(QThread):
         super().__init__()
 
     def run(self):
-        q = QMutexLocker(self.lock)
+        q = QMutexLocker(lock)
         for i in range(2500):
-            scanData[self.x][self.y][self.z] = np.randint(0, 256)
+            scanData[self.x][self.y][self.z] = np.random.randint(0, 256)
             displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / 5
             self.x += 1
             if self.x == 500:

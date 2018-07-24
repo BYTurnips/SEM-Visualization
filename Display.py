@@ -16,13 +16,14 @@ class display(QThread):
 
     def run(self):
         q = QMutexLocker(data.lock)
-        t = random.randint(0, 256)
+        # t = random.randint(0, 256)
+        t = 0
         scanA = QImage('Yellow_BG.JPG')
         p = QPainter()
         p.begin(scanA)
         for i in range(500):
             for j in range(500):
-                # t = displayData[i][j]
+                t = data.displayData[i][j]
                 p.setPen(QColor(t, t, t, 255))
                 p.drawPoint(i, j)
         p.end()
