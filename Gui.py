@@ -6,11 +6,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from QTD_Window import Ui_MainWindow
 
-
-# I might be misunderstanding how mutex works...do the mutex objects have to be the same
-# each time they're called?
-# Can change image to grayscale
-
 class GUI(QMainWindow):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
