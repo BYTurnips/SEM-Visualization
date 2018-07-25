@@ -1,0 +1,2 @@
+cd Documents/Extracurricular/'Science Research'/Pease_AWESem/SEM-Visualization
+pyuic5 -x mainwindow.ui -o QTD_Conv.py

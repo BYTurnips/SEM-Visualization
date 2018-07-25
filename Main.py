@@ -26,7 +26,7 @@ class master(QObject):
         self.datatimer.timeout.connect(self.dataTh.start)
 
         self.disptimer = QTimer()
-        self.disptimer.setInterval(1000)
+        self.disptimer.setInterval(2000)
         self.disptimer.timeout.connect(self.displayTh.start)
 
         self.window.startScanning.connect(self.startScans)
