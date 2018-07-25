@@ -13,14 +13,15 @@ class display(QThread):
 
     def __init__(self):
         super().__init__()
+        self.scanA = QImage('Yellow_BG.JPG')
+
 
     def run(self):
         q = QMutexLocker(data.lock)
         # t = random.randint(0, 256)
         t = 0
-        scanA = QImage('Yellow_BG.JPG')
         p = QPainter()
-        p.begin(scanA)
+        p.begin(self.scanA)
         for i in range(500):
             for j in range(500):
                 t = data.displayData[i][j]
@@ -28,7 +29,7 @@ class display(QThread):
                 p.drawPoint(i, j)
         p.end()
         print("Finished Image...")
-        self.loadedImage.emit(scanA)
+        self.loadedImage.emit(self.scanA)
 
     def saystuff(self):
         print("HI")
