@@ -8,8 +8,8 @@ from PyQt5.QtCore import *
 
 #implement SPI interface with the ADC and set up the call function
 
-defw = 400
-defh = 400
+defw = 300
+defh = 300
 SAMP_PER_PIX = 1
 lock = QMutex()
 scanData = np.zeros((defw, defh, SAMP_PER_PIX))
