@@ -22,7 +22,7 @@ class AnalogData(QThread):
 
     def run(self):
         q = QMutexLocker(lock)
-        for i in range(2500):
+        for i in range(12500):
             scanData[self.x][self.y][self.z] = np.random.randint(0, 256)
             displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / 5
             self.x += 1
