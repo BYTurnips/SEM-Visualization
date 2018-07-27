@@ -13,8 +13,13 @@ lock = QMutex()
 scanData = np.zeros((500, 500, SAMP_PER_PIX))
 displayData = np.zeros((500, 500))
 
-sx = 0
-sy = 0
+
+class UZPData(QThread):
+    def __init__(self):
+        super().__init__()
+        self.scanA = QImage('Static_BG.JPG')
+
+
 
 class AnalogData(QThread):
     loadedImage = pyqtSignal(QImage)
