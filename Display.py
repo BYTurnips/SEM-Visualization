@@ -4,6 +4,7 @@
 import random
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import ProjectConstants as c
 import Data as data
 
 
@@ -13,17 +14,15 @@ class display(QThread):
 
     def __init__(self):
         super().__init__()
-        self.scanA = QImage('Yellow_BG.JPG')
+        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
 
 
     def run(self):
         q = QMutexLocker(data.lock)
-        # t = random.randint(0, 256)
-        t = 0
         p = QPainter()
         p.begin(self.scanA)
-        for i in range(data.defw):
-            for j in range(data.defh):
+        for i in range(c.defw):
+            for j in range(c.defh):
                 t = data.displayData[i][j]
                 p.setPen(QColor(t, t, t, 255))
                 p.drawPoint(i, j)

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from QTD_Window import Ui_MainWindow
+import ProjectConstants as c
 import Data as data
 
 class GUI(QMainWindow):
@@ -15,10 +16,12 @@ class GUI(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.scanA = QImage('Static_BG.JPG')
+        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
         self.scanPixmap = QPixmap()
         self.scanLabel = QLabel('Scan Area', self)
-        self.scanLabel.setFixedSize(data.defw, data.defh)
+        self.scanLabel.setFixedWidth(c.defw)
+        self.scanLabel.setFixedHeight(250)
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.drawImage()
@@ -36,16 +39,11 @@ class GUI(QMainWindow):
         p = QPainter()
         p.begin(self.scanA)
         p.setPen(QColor(0, 0, 0, 250))
-        for i in range(data.defw):
-            for j in range(data.defh):
+        for i in range(c.defw):
+            for j in range(c.defh):
                 p.drawPoint(i, j)
         p.end()
         return
-
-    def updateImage(self):
-        for i in range(10):
-            self.drawImage()
-            self.showImage()
 
     def connectUI(self):
         self.ui.ScanB.clicked.connect(self.toggleScanning)
