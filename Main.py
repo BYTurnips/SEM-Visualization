@@ -22,7 +22,7 @@ class master(QObject):
         self.dataTh = data.AnalogData()
 
         self.datatimer = QTimer()
-        self.datatimer.setInterval(100)
+        self.datatimer.setInterval(20)
         self.datatimer.timeout.connect(self.dataTh.start)
 
 

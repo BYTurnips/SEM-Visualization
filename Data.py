@@ -8,10 +8,12 @@ from PyQt5.QtCore import *
 
 #implement SPI interface with the ADC and set up the call function
 
+defw = 400
+defh = 400
 SAMP_PER_PIX = 1
 lock = QMutex()
-scanData = np.zeros((500, 500, SAMP_PER_PIX))
-displayData = np.zeros((500, 500))
+scanData = np.zeros((defw, defh, SAMP_PER_PIX))
+displayData = np.zeros((defw, defh))
 
 
 class UZPData(QThread):
@@ -34,14 +36,14 @@ class AnalogData(QThread):
 
     def __init__(self):
         super().__init__()
-        self.scanA = QImage('Static_BG.JPG')
+        self.scanA = QImage('Yellow_BG.JPG')
 
     def increment(self):
         self.x += 1
-        if self.x == 500:
+        if self.x == defw:
             self.x = 0
             self.y += 1
-        if self.y == 500:
+        if self.y == defh:
             self.y = 0
             self.z += 1
         if self.z == SAMP_PER_PIX:
@@ -59,8 +61,8 @@ class AnalogData(QThread):
             displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / SAMP_PER_PIX
             self.increment()
 
-        if self.round == 10:
-            for i in range(2500 * 10):
+        if self.round == 20:
+            for i in range(2500 * 20):
                 p = QPainter()
                 p.begin(self.scanA)
                 t = displayData[self.sx][self.sy]
@@ -68,10 +70,10 @@ class AnalogData(QThread):
                 p.drawPoint(self.sx, self.sy)
                 p.end()
                 self.sx += 1
-                if self.sx == 500:
+                if self.sx == defw:
                     self.sx = 0
                     self.sy += 1
-                if self.sy == 500:
+                if self.sy == defh:
                     self.sy = 0
             print("Finished Image...")
             self.loadedImage.emit(self.scanA)

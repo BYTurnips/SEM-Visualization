@@ -22,8 +22,8 @@ class display(QThread):
         t = 0
         p = QPainter()
         p.begin(self.scanA)
-        for i in range(500):
-            for j in range(500):
+        for i in range(data.defw):
+            for j in range(data.defh):
                 t = data.displayData[i][j]
                 p.setPen(QColor(t, t, t, 255))
                 p.drawPoint(i, j)
