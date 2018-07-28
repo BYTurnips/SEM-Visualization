@@ -25,14 +25,14 @@ class master(QObject):
         self.datatimer.setInterval(10)
         self.datatimer.timeout.connect(self.dataTh.start)
 
-
-        # self.disptimer = QTimer()
-        # self.disptimer.setInterval(2000)
-        # self.disptimer.timeout.connect(self.displayTh.start)
+        self.disptimer = QTimer()
+        self.disptimer.setInterval(2800)
+        self.disptimer.timeout.connect(self.displayTh.start)
 
         self.window.startScanning.connect(self.startScans)
         self.window.endScanning.connect(self.endScans)
-        self.dataTh.loadedImage.connect(self.relayImage)
+        self.displayTh.loadedImage.connect(self.relayImage)
+        # self.dataTh.loadedImage.connect(self.relayImage)
         self.sendImage.connect(self.window.showGivenImage)
 
         self.window.show()
@@ -44,11 +44,11 @@ class master(QObject):
         return
 
     def startScans(self):
-        # self.disptimer.start()
+        self.disptimer.start()
         self.datatimer.start()
 
     def endScans(self):
-        # self.disptimer.stop()
+        self.disptimer.stop()
         self.datatimer.stop()
 
     def saystuff(self):

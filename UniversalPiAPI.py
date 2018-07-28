@@ -918,10 +918,12 @@ class UZP:
                     6 2835.9ns
                     7 9398.4ns
                     0xff (dflt) 117.2ns
-            nsmaples - number of samples to be read in one period (1/frequency). The actual time between reads is period / nsamples
+            nsmaples - number of samples to be read in one period (1/frequency).
+            The actual time between reads is period / nsamples
             frequency - frequency in Hz
             period - period in ns
-            returns list of lists of the list. List 0 - list of lists of results, list[port][0] - raw values (0-4095), list[port][0] - voltage in mV
+            returns list of lists of the list. List 0 - list of lists of results,
+            list[port][0] - raw values (0-4095), list[port][0] - voltage in mV
         """
         self.counter += 1
         divider = (1 << self.ADCResolution) - 1.0

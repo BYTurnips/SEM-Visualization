@@ -11,10 +11,10 @@ import ProjectConstants as c
 
 # implement SPI interface with the Universal Pi Board and do I/O
 
+values = Queue(250500)
 lock = QMutex()
 scanData = np.zeros((c.defw, c.defh, c.SAMP_PER_PIX))
 displayData = np.zeros((c.defw, c.defh))
-
 
 # uzp = UZP()
 
@@ -24,8 +24,6 @@ displayData = np.zeros((c.defw, c.defh))
 # class UZPOut:
 #     def __init__(self):
 #         # super().__init__(self)
-#         uzp.DACInit(c.XDAC)
-#         uzp.DACInit(c.YDAC)
 #         uzp.DACInit(c.XDAC)
 #         uzp.DACInit(c.YDAC)
 #         uzp.DACGenerate(c.XDAC, c.waveRes, self.mSine(c.waveRes, 4096), c.XHz)
@@ -54,6 +52,30 @@ displayData = np.zeros((c.defw, c.defh))
 #     def stopGen(self):
 #         uzp.DACStop(c.XDAC)
 #         uzp.DACStop(c.YDAC)
+
+# class UZPIn:
+#     # exitFlag = False
+#     sec = 0
+#
+#     def __init__(self):
+#         # super().__init__()
+#         uzp.ADCInit(c.VADC)
+#         self.t = pyth.Timer(1.0, self.sample)
+#
+#     def sample(self):
+#         databuff = uzp.ADCReadData([c.VADC], 1, c.SAMP_PER_CALL, 100)
+#         for i in range(c.SAMP_PER_CALL):
+#             # Stores time in nanoseconds
+#             values.put((databuff[c.VADC][0][i], 39.1+i*c.CALL_PERIOD/c.SAMP_PER_CALL))
+#         self.sec = (self.sec + 1) % 10
+#
+#     def start(self):
+#         self.t.start()
+#
+#     def stop(self):
+#         self.t.cancel()
+
+
 
 
 class TestData(QThread):
@@ -94,22 +116,22 @@ class TestData(QThread):
             displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / c.SAMP_PER_PIX
             self.increment()
 
-        self.round += 1
-        if self.round == 25:
-            for i in range(2500 * 25):
-                p = QPainter()
-                p.begin(self.scanA)
-                t = displayData[self.sx][self.sy]
-                p.setPen(QColor(t, t, t, 255))
-                p.drawPoint(self.sx, self.sy)
-                p.end()
-                self.sx += 1
-                if self.sx == c.defw:
-                    self.sx = 0
-                    self.sy += 1
-                if self.sy == c.defh:
-                    self.sy = 0
-            print("Finished Image...")
-            self.loadedImage.emit(self.scanA)
-            self.round = 0
+        # self.round += 1
+        # if self.round == 25:
+        #     for i in range(2500 * 25):
+        #         p = QPainter()
+        #         p.begin(self.scanA)
+        #         t = displayData[self.sx][self.sy]
+        #         p.setPen(QColor(t, t, t, 255))
+        #         p.drawPoint(self.sx, self.sy)
+        #         p.end()
+        #         self.sx += 1
+        #         if self.sx == c.defw:
+        #             self.sx = 0
+        #             self.sy += 1
+        #         if self.sy == c.defh:
+        #             self.sy = 0
+        #     print("Finished Image...")
+        #     self.loadedImage.emit(self.scanA)
+        #     self.round = 0
         return
