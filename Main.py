@@ -7,6 +7,7 @@ from PyQt5.QtCore import *
 import Data as data
 import Display as display
 import Gui as gui
+import ProjectConstants as c
 
 
 class master(QObject):
@@ -26,7 +27,7 @@ class master(QObject):
         # self.datatimer.timeout.connect(self.dataTh.start)
 
         self.disptimer = QTimer()
-        self.disptimer.setInterval(1000)
+        self.disptimer.setInterval(c.PERIOD_OF_DISP)
         self.disptimer.timeout.connect(self.displayTh.start)
 
         self.window.startScanning.connect(self.startScans)

@@ -46,13 +46,14 @@ class display(QThread):
         p = QPainter()
         p.begin(self.scanA)
         print("Displaying")
+        print(data.sampleData.qsize())
         for i in range(c.PIX_PER_UPDATE):
             # t = data.displayData[i][j]
             tsvalue = data.sampleData.get()
             t = 100
             t = tsvalue[1]
             v = 200
-            v = tsvalue[0] * 255 / c.SAMP_PER_CALL
+            v = tsvalue[0]  # * 255 / c.SAMP_PER_CALL
             # print(v)
             p.setPen(QColor(v, v, v, 255))
             p.drawPoint(self.x, self.y)

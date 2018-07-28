@@ -8,19 +8,20 @@ from PyQt5.QtGui import *
 defw = 500
 defh = 500
 
+# Background Image
+IMG = QImage('grid.png')
+
 # Display Thread stats
 SAMP_PER_PIX = 1
 PIX_PER_UPDATE = 25000
+PERIOD_OF_DISP = 1000
 
 # Data Thread Stats
 FREQ_OF_SAMPLE = 0.01  # in seconds
-SAMP_PER_CALL = 500
+SAMP_PER_CALL = 2500
 
 CALL_PERIOD = 10000000
 BETWEEN_TIME = CALL_PERIOD / SAMP_PER_CALL
-
-# Background Image
-IMG = QImage('grid.png')
 
 # Pinouts for Pi
 XDAC = 1
