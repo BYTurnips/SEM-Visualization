@@ -7,14 +7,14 @@ import threading as pyth
 from queue import Queue
 from UniversalPiAPI import UZP
 import ProjectConstants as c
-# import RPi.GPIO as gpio
 
 # implement SPI interface with the Universal Pi Board and do I/O
 
-values = Queue(250500)
-lock = QMutex()
+sampleData = Queue(250500)
 scanData = np.zeros((c.defw, c.defh, c.SAMP_PER_PIX))
 displayData = np.zeros((c.defw, c.defh))
+LUT = []
+
 
 # uzp = UZP()
 
@@ -63,10 +63,10 @@ displayData = np.zeros((c.defw, c.defh))
 #         self.t = pyth.Timer(1.0, self.sample)
 #
 #     def sample(self):
-#         databuff = uzp.ADCReadData([c.VADC], 1, c.SAMP_PER_CALL, 100)
+#         databuff = uzp.ADCReadData([c.VADC], 1, c.SAMP_PER_CALL, c.bill/c.CALL_PERIOD)
 #         for i in range(c.SAMP_PER_CALL):
 #             # Stores time in nanoseconds
-#             values.put((databuff[c.VADC][0][i], 39.1+i*c.CALL_PERIOD/c.SAMP_PER_CALL))
+#             values.put((databuff[c.VADC][0][i], 39.1+i*c.BETWEEN_TIME))
 #         self.sec = (self.sec + 1) % 10
 #
 #     def start(self):
@@ -76,62 +76,31 @@ displayData = np.zeros((c.defw, c.defh))
 #         self.t.cancel()
 
 
-
-
-class TestData(QThread):
-    loadedImage = pyqtSignal(QImage)
-    x = 0
-    y = 0
-    z = 0
-
-    sx = 0
-    sy = 0
-
-    round = 0
+class TestData:
+    # exitFlag = False
+    sec = 0
 
     def __init__(self):
-        super().__init__()
-        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
+        pass
 
-    def increment(self):
-        self.x += 1
-        if self.x == c.defw:
-            self.x = 0
-            self.y += 1
-        if self.y == c.defh:
-            self.y = 0
-            self.z += 1
-        if self.z == c.SAMP_PER_PIX:
-            self.z = 0
+    def activate(self):
+        self.sample()
+        self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
+        self.t.start()
 
-    def run(self):
-        # Incomplete; breaks when scanning multiple times between displays
-        q = QMutexLocker(lock)
-        if self.round == 0:
-            self.sx = self.x
-            self.sy = self.y
+    def sample(self):
+        databuff = []
+        for i in range(c.SAMP_PER_CALL):
+            databuff.append(i)
 
-        for i in range(2500):
-            scanData[self.x][self.y][self.z] = np.random.randint(0, 256)
-            displayData[self.x][self.y] = np.sum(scanData[self.x][self.y]) / c.SAMP_PER_PIX
-            self.increment()
+        for i in range(c.SAMP_PER_CALL):
+            # Stores time in nanoseconds
+            sampleData.put((databuff[i], 39.1 + i * c.BETWEEN_TIME))
+        self.sec = (self.sec + 1) % 10
 
-        # self.round += 1
-        # if self.round == 25:
-        #     for i in range(2500 * 25):
-        #         p = QPainter()
-        #         p.begin(self.scanA)
-        #         t = displayData[self.sx][self.sy]
-        #         p.setPen(QColor(t, t, t, 255))
-        #         p.drawPoint(self.sx, self.sy)
-        #         p.end()
-        #         self.sx += 1
-        #         if self.sx == c.defw:
-        #             self.sx = 0
-        #             self.sy += 1
-        #         if self.sy == c.defh:
-        #             self.sy = 0
-        #     print("Finished Image...")
-        #     self.loadedImage.emit(self.scanA)
-        #     self.round = 0
-        return
+    def start(self):
+        self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
+        self.t.start()
+
+    def stop(self):
+        self.t.cancel()

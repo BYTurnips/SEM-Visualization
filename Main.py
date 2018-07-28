@@ -21,12 +21,12 @@ class master(QObject):
         self.displayTh = display.display()
         self.dataTh = data.TestData()
 
-        self.datatimer = QTimer()
-        self.datatimer.setInterval(10)
-        self.datatimer.timeout.connect(self.dataTh.start)
+        # self.datatimer = QTimer()
+        # self.datatimer.setInterval(10)
+        # self.datatimer.timeout.connect(self.dataTh.start)
 
         self.disptimer = QTimer()
-        self.disptimer.setInterval(2800)
+        self.disptimer.setInterval(1000)
         self.disptimer.timeout.connect(self.displayTh.start)
 
         self.window.startScanning.connect(self.startScans)
@@ -45,11 +45,11 @@ class master(QObject):
 
     def startScans(self):
         self.disptimer.start()
-        self.datatimer.start()
+        self.dataTh.start()
 
     def endScans(self):
         self.disptimer.stop()
-        self.datatimer.stop()
+        self.dataTh.stop()
 
     def saystuff(self):
         print("HI")

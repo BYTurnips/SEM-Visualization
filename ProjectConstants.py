@@ -1,26 +1,39 @@
+# To successfully run this application
+# download the following: PyQt5, numpy, scipy,
+# UniversalPiAPI, spidev (comes with Linux OS)
+
 from PyQt5.QtGui import *
 
+# Size of scan area
 defw = 500
 defh = 500
 
+# Display Thread stats
 SAMP_PER_PIX = 1
+PIX_PER_UPDATE = 25000
 
-SAMP_PER_CALL = 25000
-FREQ_OF_CALL = 100
+# Data Thread Stats
+FREQ_OF_SAMPLE = 0.01  # in seconds
+SAMP_PER_CALL = 500
+
 CALL_PERIOD = 10000000
+BETWEEN_TIME = CALL_PERIOD / SAMP_PER_CALL
 
+# Background Image
 IMG = QImage('grid.png')
 
+# Pinouts for Pi
 XDAC = 1
 YDAC = 2
 VADC = 4
 
+# Waveform Frequencies
 XHz = 10
 YHz = 0.1
 
+# Resolution of generated waveform
 waveRes = 1000
 
+# Math Constants
 pi = 3.1415926535
-
-# def initConstants():
-#     globals().IMG = globals().IMG.copy(0, 0, defw, defh)
+bill = 1000000000
