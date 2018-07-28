@@ -19,10 +19,10 @@ class master(QObject):
         self.app = QApplication(sys.argv)
         self.window = gui.GUI()
         self.displayTh = display.display()
-        self.dataTh = data.AnalogData()
+        self.dataTh = data.TestData()
 
         self.datatimer = QTimer()
-        self.datatimer.setInterval(20)
+        self.datatimer.setInterval(10)
         self.datatimer.timeout.connect(self.dataTh.start)
 
 

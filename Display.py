@@ -1,7 +1,6 @@
 # This class processes the data present in the data storage
 # and displays the result in the scanArea
 
-import random
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ProjectConstants as c

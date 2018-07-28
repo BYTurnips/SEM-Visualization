@@ -1,27 +1,62 @@
 # This class takes the input data and stores it
 
 import numpy as np
-import random
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import threading as pyth
+from queue import Queue
+from UniversalPiAPI import UZP
 import ProjectConstants as c
 # import RPi.GPIO as gpio
 
-#implement SPI interface with the ADC and set up the call function
+# implement SPI interface with the Universal Pi Board and do I/O
 
 lock = QMutex()
 scanData = np.zeros((c.defw, c.defh, c.SAMP_PER_PIX))
 displayData = np.zeros((c.defw, c.defh))
 
 
-class UZPData(QThread):
-    def __init__(self):
-        super().__init__()
-        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
+# uzp = UZP()
+
+# This class will be controlling the continuous
+# sine/sawtooth waves for the coil generators
+
+# class UZPOut:
+#     def __init__(self):
+#         # super().__init__(self)
+#         uzp.DACInit(c.XDAC)
+#         uzp.DACInit(c.YDAC)
+#         uzp.DACInit(c.XDAC)
+#         uzp.DACInit(c.YDAC)
+#         uzp.DACGenerate(c.XDAC, c.waveRes, self.mSine(c.waveRes, 4096), c.XHz)
+#         uzp.DACGenerate(c.YDAC, c.waveRes, self.mSawt(c.waveRes, 4096), c.YHz)
+#
+#     # Returns a list of size numS that
+#     # traces a sine wave from 0 to amp
+#     def mSine(self, numS, amp):
+#         samples = []
+#         for i in range(numS):
+#             samples.append((amp/2 * np.sin((i * 2 * c.pi)/numS) + amp/2))
+#         return samples
+#
+#     # Returns a list of size numS that
+#     # traces a sawtooth wave from 0 to amp
+#     def mSawt(self, numS, amp):
+#         samples = []
+#         for i in range(numS):
+#             samples.append(amp * i/numS)
+#         return samples
+#
+#     def startGen(self):
+#         uzp.DACStart(c.XDAC)
+#         uzp.DACStart(c.YDAC)
+#
+#     def stopGen(self):
+#         uzp.DACStop(c.XDAC)
+#         uzp.DACStop(c.YDAC)
 
 
-
-class AnalogData(QThread):
+class TestData(QThread):
     loadedImage = pyqtSignal(QImage)
     x = 0
     y = 0
@@ -60,8 +95,8 @@ class AnalogData(QThread):
             self.increment()
 
         self.round += 1
-        if self.round == 20:
-            for i in range(2500 * 20):
+        if self.round == 25:
+            for i in range(2500 * 25):
                 p = QPainter()
                 p.begin(self.scanA)
                 t = displayData[self.sx][self.sy]

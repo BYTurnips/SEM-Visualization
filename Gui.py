@@ -11,8 +11,6 @@ import Data as data
 class GUI(QMainWindow):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
-    defw = 1000
-    defh = 600
 
     def __init__(self):
         super().__init__()
@@ -20,7 +18,7 @@ class GUI(QMainWindow):
         self.scanPixmap = QPixmap()
         self.scanLabel = QLabel('Scan Area', self)
         self.scanLabel.setFixedWidth(c.defw)
-        self.scanLabel.setFixedHeight(250)
+        self.scanLabel.setFixedHeight(c.defh)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
