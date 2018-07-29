@@ -68,14 +68,11 @@ class display(QThread):
             tsvalue = data.sampleData.get()
             t = 100
             t = tsvalue[1]
-            v = 200
+            # v = 0
             v = tsvalue[0]  # * 255 / c.SAMP_PER_CALL
             # print(v)
             p.setPen(QColor(v, v, v, 255))
-            print("HI")
-            print(data.LUTX(t) + " " + data.LUTY(t))
-            print("HI")
-            p.drawPoint(data.LUTX(t), data.LUTY(t))
+            p.drawPoint(data.LUTX(t % (c.bill * c.YHz)), data.LUTY(t) * 10)
 
             # p.drawPoint(self.x, self.y)
             self.x += 1

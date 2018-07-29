@@ -60,11 +60,13 @@ class UZPOut:
         xcors = UZPOut.mSine(c.waveRes, c.defw)
         xtval = UZPOut.mSawt(c.waveRes, c.bill / c.XHz)
         global LUTX
-        LUTX = UVS(xtval, xcors)
+        # the lookup table is giving out a couple negative numbers...
+        LUTX = UVS(xtval, xcors, None, [None, None], 1)
+
         ycors = UZPOut.mSawt(c.waveRes, c.defh)
-        ytval = UZPOut.mSawt(c.waveRes, c.bill / c.XHz)
+        ytval = UZPOut.mSawt(c.waveRes, c.bill / c.YHz)
         global LUTY
-        LUTY = UVS(ytval, ycors)
+        LUTY = UVS(ytval, ycors, None, [None, None], 1)
 
     # Returns a list of size numS that traces one period of a sine wave
     # (lowest pt at 0, highest pt at amp)
@@ -72,7 +74,9 @@ class UZPOut:
     def mSine(numS, amp):
         samples = []
         for i in range(numS):
-            samples.append((amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2))
+            j = (amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2)
+            samples.append(j)
+
         return samples
 
     # Returns a list of size numS that
@@ -133,11 +137,13 @@ class TestData:
         databuff = []
         for i in range(c.SAMP_PER_CALL):
             databuff.append(i * 255 / c.SAMP_PER_CALL)
+            # databuff.append(np.random.randint(255))
 
         for i in range(c.SAMP_PER_CALL):
+            t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
             # Stores time in nanoseconds
-            sampleData.put((databuff[i], 39.1 + i * c.BETWEEN_TIME))
-        self.sec = (self.sec + 1) % 10
+            sampleData.put((databuff[i], t))
+        self.sec = (self.sec + 1) % 100
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
