@@ -136,14 +136,15 @@ class TestData:
     def sample(self):
         databuff = []
         for i in range(c.SAMP_PER_CALL):
-            databuff.append(i * 255 / c.SAMP_PER_CALL)
-            # databuff.append(np.random.randint(255))
+            # databuff.append(i * 255 / c.SAMP_PER_CALL)
+            databuff.append(np.random.randint(255))
+            # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
             t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
             # Stores time in nanoseconds
             sampleData.put((databuff[i], t))
-        self.sec = (self.sec + 1) % 100
+        self.sec = (self.sec + 1) % 250
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)

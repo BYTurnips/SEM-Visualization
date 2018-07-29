@@ -5,6 +5,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ProjectConstants as c
 import Data as data
+import numpy as np
+from math import floor
 
 
 class UZPdisplay(QThread):
@@ -50,10 +52,6 @@ class UZPdisplay(QThread):
 class display(QThread):
     notCancelling = True
     loadedImage = pyqtSignal(QImage)
-
-    x = 0
-    y = 0
-
     def __init__(self):
         super().__init__()
         self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
@@ -72,15 +70,8 @@ class display(QThread):
             v = tsvalue[0]  # * 255 / c.SAMP_PER_CALL
             # print(v)
             p.setPen(QColor(v, v, v, 255))
-            p.drawPoint(data.LUTX(t % (c.bill * c.YHz)), data.LUTY(t) * 10)
-
-            # p.drawPoint(self.x, self.y)
-            self.x += 1
-            if (self.x == 500):
-                self.x = 0
-                self.y += 1
-            if (self.y == 500):
-                self.y = 0
+            print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4)
+            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
         p.end()
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
