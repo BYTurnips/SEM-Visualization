@@ -1,33 +1,37 @@
-from threading import Timer, Thread, Event
-from datetime import datetime
+import numpy as np
+from scipy.interpolate import UnivariateSpline as UVS
+import ProjectConstants as c
+
+LUTX = None
+LUTY = None
 
 
-class perpetualTimer():
-
-    def __init__(self, t, hFunction):
-        self.t = t
-        self.hFunction = hFunction
-        self.thread = Timer(self.t, self.handle_function)
-
-    def handle_function(self):
-        self.hFunction()
-        self.thread = Timer(self.t, self.handle_function)
-        self.thread.start()
-
-    def start(self):
-        self.thread = Timer(self.t, self.handle_function)
-        self.thread.start()
-
-    def cancel(self):
-        self.thread.cancel()
+def generateLUT():
+    xcors = mSine(c.waveRes, c.defw)
+    xtval = mSawt(c.waveRes, c.bill / c.XHz)
+    global LUTX
+    LUTX = UVS(xtval, xcors)
+    ycors = mSawt(c.waveRes, c.defh)
+    ytval = mSawt(c.waveRes, c.bill / c.XHz)
+    global LUTY
+    LUTY = UVS(ytval, ycors)
 
 
-def printer():
-    tempo = datetime.today()
-    print("{}:{}:{}".format(tempo.hour, tempo.minute, tempo.second))
+def mSine(numS, amp):
+    samples = []
+    for i in range(numS):
+        samples.append((amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2))
+    return samples
 
 
-t = perpetualTimer(1, printer)
-t.start()
-t.cancel()
-t.start()
+def mSawt(numS, amp):
+    samples = []
+    for i in range(numS):
+        samples.append(amp * i / numS)
+    return samples
+
+
+if __name__ == '__main__':
+    # uvs = UVS([0, 1, 2, 3],[1, 2, 3, 4], None, [None, None], 1)
+    uvs = generateLUT()
+    print(LUTX(1.5))

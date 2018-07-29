@@ -17,7 +17,31 @@ inittime = 0
 LUTX = None
 LUTY = None
 
-uzp = UZP()
+
+class filler:
+    def DACInit(self, a):
+        pass
+
+    def DACGenerate(self, a, b, c, d):
+        pass
+
+    def DACStart(self, a):
+        pass
+
+    def DACStop(self, a):
+        pass
+
+    def ADCInit(self, a):
+        pass
+
+    def ADCReadData(self, a, b, c, d):
+        pass
+
+
+uzp = filler()
+
+
+# uzp = UZP()
 
 # This class will be controlling the continuous
 # sine/sawtooth waves for the coil generators
@@ -29,18 +53,36 @@ class UZPOut:
         uzp.DACInit(c.YDAC)
         uzp.DACGenerate(c.XDAC, c.waveRes, self.mSine(c.waveRes, 4096), c.XHz)
         uzp.DACGenerate(c.YDAC, c.waveRes, self.mSawt(c.waveRes, 4096), c.YHz)
+        self.generateLUT()
 
-    # Returns a list of size numS that
-    # traces a sine wave from 0 to amp
-    def mSine(self, numS, amp):
+    @staticmethod
+    def generateLUT():
+        xcors = UZPOut.mSine(c.waveRes, c.defw)
+        xtval = UZPOut.mSawt(c.waveRes, c.bill / c.XHz)
+        global LUTX
+        # the lookup table is giving out a couple negative numbers...
+        LUTX = UVS(xtval, xcors, None, [None, None], 1)
+
+        ycors = UZPOut.mSawt(c.waveRes, c.defh)
+        ytval = UZPOut.mSawt(c.waveRes, c.bill / c.YHz)
+        global LUTY
+        LUTY = UVS(ytval, ycors, None, [None, None], 1)
+
+    # Returns a list of size numS that traces one period of a sine wave
+    # (lowest pt at 0, highest pt at amp)
+    @staticmethod
+    def mSine(numS, amp):
         samples = []
         for i in range(numS):
-            samples.append((amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2))
+            j = (amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2)
+            samples.append(j)
+
         return samples
 
     # Returns a list of size numS that
     # traces a sawtooth wave from 0 to amp
-    def mSawt(self, numS, amp):
+    @staticmethod
+    def mSawt(numS, amp):
         samples = []
         for i in range(numS):
             samples.append(amp * i / numS)
@@ -57,7 +99,6 @@ class UZPOut:
 
 
 class UZPIn:
-    # exitFlag = False
     sec = 0
 
     def __init__(self):
@@ -95,12 +136,15 @@ class TestData:
     def sample(self):
         databuff = []
         for i in range(c.SAMP_PER_CALL):
+            # databuff.append(i * 255 / c.SAMP_PER_CALL)
             databuff.append(np.random.randint(255))
+            # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
+            t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
             # Stores time in nanoseconds
-            sampleData.put((databuff[i], 39.1 + i * c.BETWEEN_TIME))
-        self.sec = (self.sec + 1) % 10
+            sampleData.put((databuff[i], t))
+        self.sec = (self.sec + 1) % 250
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)

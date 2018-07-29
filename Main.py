@@ -22,6 +22,8 @@ class master(QObject):
         self.displayTh = display.display()
         self.dataTh = data.TestData()
 
+        data.UZPOut.generateLUT()
+
         # self.datatimer = QTimer()
         # self.datatimer.setInterval(10)
         # self.datatimer.timeout.connect(self.dataTh.start)
