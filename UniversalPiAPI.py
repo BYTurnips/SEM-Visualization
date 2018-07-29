@@ -193,7 +193,7 @@ class UZP:
         self.spiport = port
         self.speed = SPIspeed
         self.mode = SPImode
-        # self.spi = spidev.SpiDev()
+        self.spi = spidev.SpiDev()
         self.ConversionResults = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0]]
