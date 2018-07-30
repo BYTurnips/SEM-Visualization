@@ -90,7 +90,7 @@ class TestData:
             t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
             # Stores time in nanoseconds
             # sampleData.put((databuff[i], t))
-            sampleData.append((databuff[i], t))
+            sampleData.append((int(databuff[i]), t))
         self.sec = (self.sec + 1) % 250
 
     def start(self):

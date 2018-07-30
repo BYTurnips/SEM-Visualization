@@ -7,27 +7,24 @@ from time import perf_counter
 if __name__ == '__main__':
     scanA = QImage("grid.png")
     p = QPainter(scanA)
+    ColorsLUT = []
+    for i in range(256):
+        ColorsLUT.append(QColor(i, i, i, 255))
     time = perf_counter()
     for i in range(500):
         for j in range(500):
-            p.drawPoint(i, j)
-    print(perf_counter() - time)
-    time = perf_counter()
-    for i in range(500):
-        for j in range(500):
-            color = QColor(0, 10, 20, 255)
-            # p.setPen(QColor(0, 10, 20, 255))
-            # p.drawPoint(i, j)
-    print(perf_counter() - time)
+            # color = QColor(0, 10, 20, 255)
+            color = ColorsLUT[8]
+    print("Make Color:", perf_counter() - time)
     time = perf_counter()
     fix = QColor(0, 0, 0)
     for i in range(500):
         for j in range(500):
             p.setPen(fix)
-    print(perf_counter() - time)
+    print("Change Pen:", perf_counter() - time)
     time = perf_counter()
     for i in range(500):
         for j in range(500):
             p.drawPoint(i, j)
-    print(perf_counter() - time)
+    print("Draw Pixel:", perf_counter() - time)
     time = perf_counter()
