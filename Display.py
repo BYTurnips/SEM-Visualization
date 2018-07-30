@@ -63,11 +63,11 @@ class display(QThread):
         p = QPainter()
         p.begin(self.scanA)
         print("Displaying")
-        print(data.sampleData.qsize())
-        off = 0
+        # print(data.sampleData.__sizeof__())
         # a = timeit.timeit()
         for i in range(c.PIX_PER_UPDATE):
-            tsvalue = data.sampleData.get()
+            # tsvalue = data.sampleData.get()
+            tsvalue = data.sampleData.popleft()
             t = 100
             t = tsvalue[1]
             v = 0

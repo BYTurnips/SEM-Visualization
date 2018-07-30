@@ -25,10 +25,8 @@ if __name__ == "__main__":
     time = perf_counter()
     print("Displaying")
     for i in range(c.PIX_PER_UPDATE):
-        tsvalue = data.sampleData.get()
-        t = 100
+        tsvalue = data.sampleData.popleft()
         t = tsvalue[1]
-        v = 0
         v = tsvalue[0]
         p.setPen(QColor(v, v, v, 255))
         # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
@@ -41,7 +39,7 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        tsvalue = data.sampleData.get()
+        tsvalue = data.sampleData.popleft()
         t = tsvalue[1]
         v = tsvalue[0]
 

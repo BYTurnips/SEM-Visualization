@@ -1,19 +1,18 @@
 # This class takes the input data and stores it
 
 import numpy as np
-from scipy.interpolate import UnivariateSpline as UVS
+from scipy.interpolate import InterpolatedUnivariateSpline as UVS
 import time as time
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 import threading as pyth
 from queue import Queue
+from collections import deque
 from UniversalPiAPI import UZP
-from math import floor
 import ProjectConstants as c
 
 # implement SPI interface with the Universal Pi Board and do I/O
 
-sampleData = Queue(250500)
+# sampleData = Queue(250500)
+sampleData = deque()
 inittime = 0
 LUTX = None
 LUTY = None
@@ -56,7 +55,8 @@ class UZPIn:
         databuff = uzp.ADCReadData([c.VADC], 1, c.SAMP_PER_CALL, c.bill / c.CALL_PERIOD)
         for i in range(c.SAMP_PER_CALL):
             # Stores time in nanoseconds
-            sampleData.put((databuff[c.VADC][0][i], 0 + i * c.BETWEEN_TIME))  # 39.1
+            # sampleData.put((databuff[c.VADC][0][i], 0 + i * c.BETWEEN_TIME))
+            pass
         self.sec = (self.sec + 1) % 10
 
     def start(self):
@@ -87,9 +87,10 @@ class TestData:
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
-            t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 0 + i * c.BETWEEN_TIME
+            t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
             # Stores time in nanoseconds
-            sampleData.put((databuff[i], t))
+            # sampleData.put((databuff[i], t))
+            sampleData.append((databuff[i], t))
         self.sec = (self.sec + 1) % 250
 
     def start(self):

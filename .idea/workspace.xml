@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Display.py" beforeDir="false" afterPath="$PROJECT_DIR$/Display.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaveGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/WaveGen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,8 +49,8 @@
       <file leaf-file-name="Display.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Display.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+            <state relative-caret-position="255">
+              <caret line="66" column="15" lean-forward="true" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="15" />
               <folding>
                 <element signature="e#103#128#0" expanded="true" />
               </folding>
@@ -61,8 +61,8 @@
       <file leaf-file-name="Data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="86" column="32" lean-forward="true" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+            <state relative-caret-position="1258">
+              <caret line="91" column="31" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="31" />
               <folding>
                 <element signature="e#49#67#0" expanded="true" />
                 <element signature="e#454#697#0" />
@@ -74,11 +74,10 @@
       <file leaf-file-name="WaveGen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WaveGen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="100" column="57" selection-start-line="100" selection-start-column="57" selection-end-line="100" selection-end-column="57" />
+            <state relative-caret-position="747">
+              <caret line="102" column="55" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#1047#1211#0" />
               </folding>
             </state>
           </provider>
@@ -87,8 +86,8 @@
       <file leaf-file-name="Testing2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Testing2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+            <state relative-caret-position="459">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -149,11 +148,11 @@
         <option value="$PROJECT_DIR$/UniversalPiAPI.py" />
         <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/Main.py" />
-        <option value="$PROJECT_DIR$/Data.py" />
         <option value="$PROJECT_DIR$/Gui.py" />
-        <option value="$PROJECT_DIR$/Testing2.py" />
         <option value="$PROJECT_DIR$/WaveGen.py" />
         <option value="$PROJECT_DIR$/ProjectConstants.py" />
+        <option value="$PROJECT_DIR$/Data.py" />
+        <option value="$PROJECT_DIR$/Testing2.py" />
         <option value="$PROJECT_DIR$/Display.py" />
       </list>
     </option>
@@ -210,6 +209,8 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Testing2.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/Data.cpython-35.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/Display.cpython-35.pyc</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/WaveGen.cpython-35.pyc</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -318,7 +319,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Refined App">
+  <component name="RunManager" selected="Python.Beta Testing">
     <configuration name="Beta Testing" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -651,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532928481807</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="created inverse function to replace LUT">
+      <created>1532929200464</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1532929200464</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -692,7 +700,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renamed some files. Now there are two projects: backend (threading and I/O) and frontend (QTD results)" />
     <MESSAGE value="Modified some QTD files and changed the layouts." />
     <MESSAGE value="Testing2.py shows some working code for initializing a thread, having the thread send a signal to its parent that is caught (and displayed on STDOUT), and safely destroying the thread and ending the program afterwards." />
     <MESSAGE value="More misc progress on the application. I drafted a procedure for the signal slot thing" />
@@ -717,7 +724,8 @@
     <MESSAGE value="Added a performance breakdown on Testing2.py" />
     <MESSAGE value="more detailed breakdown" />
     <MESSAGE value="added a function instead of LUT to test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a function instead of LUT to test" />
+    <MESSAGE value="created inverse function to replace LUT" />
+    <option name="LAST_COMMIT_MESSAGE" value="created inverse function to replace LUT" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -968,16 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-85">
@@ -1002,10 +1000,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WaveGen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="102" column="55" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Testing2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="86" column="32" lean-forward="true" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+        <state relative-caret-position="1258">
+          <caret line="91" column="31" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="31" />
           <folding>
             <element signature="e#49#67#0" expanded="true" />
             <element signature="e#454#697#0" />
@@ -1013,31 +1041,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WaveGen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="100" column="57" selection-start-line="100" selection-start-column="57" selection-end-line="100" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#1047#1211#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Testing2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Display.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+        <state relative-caret-position="255">
+          <caret line="66" column="15" lean-forward="true" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="15" />
           <folding>
             <element signature="e#103#128#0" expanded="true" />
           </folding>
