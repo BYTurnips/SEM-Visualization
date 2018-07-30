@@ -50,10 +50,12 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        a = data.LUTX(0 % (c.bill / c.XHz))
-        b = data.LUTY(0) * 4
+        # a = data.LUTX(0 % (c.bill / c.XHz))
+        # b = data.LUTY(0) * 4
+        a = WaveGen.UZPOut.TriaLUT(0, 500, c.bill / c.XHz)
+        b = WaveGen.UZPOut.SawtLUT(0, 500, c.bill / c.YHz)
 
-    print("Use LUT:", perf_counter() - time)
+    print("Use LUT or conversion:", perf_counter() - time)
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):

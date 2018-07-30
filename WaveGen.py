@@ -92,6 +92,20 @@ class UZPOut:
             # print(2 * amp * i / numS, i+int(numS*3/4))
         return samples
 
+    @staticmethod
+    def TriaLUT(inp, amp, domain):
+        if inp < domain / 4:
+            return amp / 2 + 2 * amp * inp / domain
+        else:
+            if inp < 3 * domain / 4:
+                return amp - 2 * amp * inp / domain
+            else:
+                return 2 * amp * inp / domain
+
+    @staticmethod
+    def SawtLUT(inp, amp, domain):
+        return amp * inp / domain
+
     def startGen(self):
         uzp.DACStart(c.XDAC)
         uzp.DACStart(c.YDAC)

@@ -4,6 +4,7 @@
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaveGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/WaveGen.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,7 +36,7 @@
       <file leaf-file-name="Gui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="561">
               <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
               <folding>
                 <element signature="e#127#156#0" expanded="true" />
@@ -47,8 +48,8 @@
       <file leaf-file-name="Testing2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Testing2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="52" column="30" lean-forward="true" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+            <state relative-caret-position="425">
+              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -59,8 +60,8 @@
       <file leaf-file-name="Display.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Display.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="76" column="86" selection-start-line="76" selection-start-column="86" selection-end-line="76" selection-end-column="86" />
+            <state relative-caret-position="391">
+              <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
               <folding>
                 <element signature="e#103#128#0" expanded="true" />
               </folding>
@@ -84,12 +85,11 @@
       <file leaf-file-name="WaveGen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WaveGen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
+            <state relative-caret-position="817">
+              <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#1047#1211#0" />
-                <element signature="e#1347#1455#0" />
               </folding>
             </state>
           </provider>
@@ -150,9 +150,9 @@
         <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/Data.py" />
         <option value="$PROJECT_DIR$/Gui.py" />
-        <option value="$PROJECT_DIR$/WaveGen.py" />
         <option value="$PROJECT_DIR$/Display.py" />
         <option value="$PROJECT_DIR$/ProjectConstants.py" />
+        <option value="$PROJECT_DIR$/WaveGen.py" />
         <option value="$PROJECT_DIR$/Testing2.py" />
       </list>
     </option>
@@ -208,9 +208,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gui.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/ProjectConstants.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/UniversalPiAPI.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Testing2.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/WaveGen.cpython-35.pyc</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -218,13 +217,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/Data.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/Display.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/Gui.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/ProjectConstants.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/QTD_Window.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/UniversalPiAPI.cpython-35.pyc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/__pycache__/WaveGen.cpython-35.pyc</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -644,7 +636,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532919542823</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="more detailed breakdown">
+      <created>1532920581143</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1532920581143</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -685,7 +684,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working Test Code for determining drawing/update speed of a QImage pixel by pixel" />
     <MESSAGE value="Successfully managed to run the Qt Designer-made file (UI in Testing.py, driver function in Testing2.py) in Python." />
     <MESSAGE value="Renamed some files. Now there are two projects: backend (threading and I/O) and frontend (QTD results)" />
     <MESSAGE value="Modified some QTD files and changed the layouts." />
@@ -710,7 +708,8 @@
     <MESSAGE value="Complete picture using the LUT and FIFO and everything else (only thing left is to adapt it to the system clock and optimize...) The biggest issue here is speed; this application when running a completely solid scan already takes 20+ seconds on a high-end computer; it will take several minutes on a Pi in the state it is right now. Optimizations are absolutely necessary." />
     <MESSAGE value="Got the triangular scan to work" />
     <MESSAGE value="Added a performance breakdown on Testing2.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a performance breakdown on Testing2.py" />
+    <MESSAGE value="more detailed breakdown" />
+    <option name="LAST_COMMIT_MESSAGE" value="more detailed breakdown" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -978,42 +977,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding>
-            <element signature="e#127#156#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Display.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="76" column="86" selection-start-line="76" selection-start-column="86" selection-end-line="76" selection-end-column="86" />
-          <folding>
-            <element signature="e#103#128#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProjectConstants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WaveGen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#1047#1211#0" />
-            <element signature="e#1347#1455#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1028,10 +995,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Display.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <folding>
+            <element signature="e#103#128#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+          <folding>
+            <element signature="e#127#156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WaveGen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#1047#1211#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Testing2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="52" column="30" lean-forward="true" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+        <state relative-caret-position="425">
+          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
