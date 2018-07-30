@@ -15,8 +15,8 @@ IMG = QImage('grid.png')
 # (defw*defh*SAMP_PER_CALL)/(PIX_PER_UPDATE/PERIOD_OF_DISP*1000*FREQ_OF_SAMPLE)<=10
 
 # Display Thread stats
-PIX_PER_UPDATE = 250000
-PERIOD_OF_DISP = 10000
+PIX_PER_UPDATE = 25000
+PERIOD_OF_DISP = 900
 
 # Data Thread Stats
 FREQ_OF_SAMPLE = 0.01  # in seconds

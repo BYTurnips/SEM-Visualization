@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 import ProjectConstants as c
 import Data as data
 import numpy as np
+import timeit
 from math import floor
 
 
@@ -63,17 +64,19 @@ class display(QThread):
         print("Displaying")
         print(data.sampleData.qsize())
         off = 0
+        # a = timeit.timeit()
         for i in range(c.PIX_PER_UPDATE):
             tsvalue = data.sampleData.get()
             t = 100
             t = tsvalue[1]
-            # v = 0
-            v = tsvalue[0]  # * 255 / c.SAMP_PER_CALL
+            v = 0
+            v = tsvalue[0]
             # print(v)
             p.setPen(QColor(v, v, v, 255))
-            # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t-off) * 4, t)
-            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t - off) * 4)))
+            # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
+            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
         p.end()
+        # print(timeit.timeit()-a)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
 

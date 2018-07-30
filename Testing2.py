@@ -1,12 +1,65 @@
+import sys
+from PyQt5.QtWidgets import *
 import numpy as np
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import Data as data
+import Display as display
+import Gui as gui
+import WaveGen
+import ProjectConstants as c
+from time import perf_counter
 
-ndarray = np.zeros((500, 500, 5))
-lock = QMutex()
+
 if __name__ == "__main__":
-    locker = QMutexLocker(lock)
-    for i in range(500):
-        for j in range(500):
-            for k in range(5):
-                ndarray[i][j][k] = np.random.randint(0, 256)
-    print(ndarray[0][0][0])
+    print("BEGIN")
+    WaveGen.UZPOut.generateLUT()
+    scanA = QImage()
+    p = QPainter()
+    p.begin(scanA)
+    cl = data.TestData()
+    t = perf_counter()
+    for i in range(100):
+        cl.sample()
+    print(perf_counter() - t)
+    time = perf_counter()
+    print("Displaying")
+    # for i in range(c.PIX_PER_UPDATE):
+    #     tsvalue = data.sampleData.get()
+    #     t = 100
+    #     t = tsvalue[1]
+    #     v = 0
+    #     v = tsvalue[0]
+    #     p.setPen(QColor(v, v, v, 255))
+    #     # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
+    #     p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
+    #     # print(perf_counter()-time)
+
+    for i in range(c.PIX_PER_UPDATE):
+        tsvalue = data.sampleData.get()
+        t = tsvalue[1]
+        v = tsvalue[0]
+
+    print("Pop from buffer:", perf_counter() - time)
+    time = perf_counter()
+
+    for i in range(c.PIX_PER_UPDATE):
+        p.setPen(QColor(0, 0, 0, 255))
+
+    print("Set Pen:", perf_counter() - time)
+    time = perf_counter()
+
+    for i in range(c.PIX_PER_UPDATE):
+        a = np.rint(data.LUTX(0 % (c.bill / c.XHz)))
+        b = np.rint(data.LUTY(0) * 4)
+
+    print("Find coordinate:", perf_counter() - time)
+    time = perf_counter()
+
+    for i in range(c.PIX_PER_UPDATE):
+        p.drawPoint(0, 0)
+    print("Draw Point:", perf_counter() - time)
+
+    p.end()
+    # print(timeit.timeit()-a)
+    print("Finished Image...")
