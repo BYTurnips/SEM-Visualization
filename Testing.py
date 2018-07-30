@@ -7,7 +7,7 @@ LUTY = None
 
 
 def generateLUT():
-    xcors = mSine(c.waveRes, c.defw)
+    xcors = mTria(c.waveRes, c.defw)
     xtval = mSawt(c.waveRes, c.bill / c.XHz)
     global LUTX
     LUTX = UVS(xtval, xcors)
@@ -21,6 +21,17 @@ def mSine(numS, amp):
     samples = []
     for i in range(numS):
         samples.append((amp / 2 * np.sin((i * 2 * c.pi) / numS) + amp / 2))
+    return samples
+
+
+def mTria(numS, amp):
+    samples = []
+    for i in range(numS / 4):
+        samples.append(amp / 2 + amp * i / (numS * 2))
+    for i in range(numS / 2):
+        samples.append(amp - amp * i / numS)
+    for i in range(numS / 4):
+        samples.append(amp * i / (numS * 2))
     return samples
 
 

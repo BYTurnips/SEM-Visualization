@@ -62,6 +62,7 @@ class display(QThread):
         p.begin(self.scanA)
         print("Displaying")
         print(data.sampleData.qsize())
+        off = 0
         for i in range(c.PIX_PER_UPDATE):
             tsvalue = data.sampleData.get()
             t = 100
@@ -70,8 +71,8 @@ class display(QThread):
             v = tsvalue[0]  # * 255 / c.SAMP_PER_CALL
             # print(v)
             p.setPen(QColor(v, v, v, 255))
-            print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4)
-            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
+            # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t-off) * 4, t)
+            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t - off) * 4)))
         p.end()
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)

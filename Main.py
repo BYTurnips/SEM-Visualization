@@ -7,6 +7,7 @@ from PyQt5.QtCore import *
 import Data as data
 import Display as display
 import Gui as gui
+import WaveGen
 import ProjectConstants as c
 
 
@@ -22,7 +23,7 @@ class master(QObject):
         self.displayTh = display.display()
         self.dataTh = data.TestData()
 
-        data.UZPOut.generateLUT()
+        WaveGen.UZPOut.generateLUT()
 
         # self.datatimer = QTimer()
         # self.datatimer.setInterval(10)
