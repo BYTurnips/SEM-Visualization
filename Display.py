@@ -63,24 +63,23 @@ class display(QThread):
 
 
     def run(self):
-        p = QPainter()
-        p.begin(self.scanA)
+        # p = QPainter()
+        # p.begin(self.scanA)
         print("Displaying")
         testing = perf_counter()
         for i in range(c.PIX_PER_UPDATE):
             # tsvalue = data.sampleData.get()
             tsvalue = data.sampleData.popleft()
-            t = 100
             t = tsvalue[1]
-            v = 0
             v = tsvalue[0]
-            p.setPen(QColor(v, v, v, 255))
+            # p.setPen(QColor(v, v, v, 255))
 ##            p.setPen(self.ColorsLUT[v])
             plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
             ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
             # print(plotx, ploty, t)
-            p.drawPoint(np.rint(plotx), np.rint(ploty))
-        p.end()
+            # p.drawPoint(np.rint(plotx), np.rint(ploty))
+            self.scanA.setPixelColor(np.rint(plotx), np.rint(ploty), self.ColorsLUT[v])
+        # p.end()
         print(perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
