@@ -57,6 +57,13 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
+        a = np.sin(78)
+        b = np.sin(24.9)
+
+    print("Use sine:", perf_counter() - time)
+    time = perf_counter()
+
+    for i in range(c.PIX_PER_UPDATE):
         a = np.rint(0.2780)
         b = np.rint(0.5798)
 
