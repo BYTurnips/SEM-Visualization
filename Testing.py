@@ -13,8 +13,8 @@ if __name__ == '__main__':
     time = perf_counter()
     for i in range(500):
         for j in range(500):
-            # color = QColor(0, 10, 20, 255)
-            color = ColorsLUT[8]
+            color = QColor(0, 10, 20, 255)
+##            color = ColorsLUT[8]
     print("Make Color:", perf_counter() - time)
     time = perf_counter()
     fix = QColor(0, 0, 0)

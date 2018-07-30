@@ -75,9 +75,8 @@ class display(QThread):
             t = tsvalue[1]
             v = 0
             v = tsvalue[0]
-            # p.setPen(QColor(v, v, v, 255))
-            p.setPen(self.ColorsLUT[v])
-            # p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
+            p.setPen(QColor(v, v, v, 255))
+##            p.setPen(self.ColorsLUT[v])
             plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
             ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
             # print(plotx, ploty, t)

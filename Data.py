@@ -82,8 +82,8 @@ class TestData:
     def sample(self):
         databuff = []
         for i in range(c.SAMP_PER_CALL):
-            databuff.append(i * 255 / c.SAMP_PER_CALL)
-            # databuff.append(np.random.randint(255))
+            # .append(i * 255 / c.SAMP_PER_CALL)
+            databuff.append(np.random.randint(255))
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):

@@ -12,6 +12,9 @@ from time import perf_counter
 
 
 if __name__ == "__main__":
+    ColorsLUT = []
+    for i in range(256):
+        ColorsLUT.append(QColor(i, i, i, 255))
     print("BEGIN")
 ##    WaveGen.UZPOut.generateLUT()
     scanA = QImage()
@@ -47,7 +50,9 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        p.setPen(QColor(0, 0, 0, 255))
+##        p.setPen(QColor(0, 0, 0, 255)
+        color = ColorsLUT[8]
+        p.setPen(color)
 
     print("Set Pen:", perf_counter() - time)
     time = perf_counter()
