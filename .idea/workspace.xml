@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Display.py" beforeDir="false" afterPath="$PROJECT_DIR$/Display.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +38,8 @@
       <file leaf-file-name="Display.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Display.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+            <state relative-caret-position="68">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
               <folding>
                 <element signature="e#103#128#0" expanded="true" />
               </folding>
@@ -710,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532976055840</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="new approach with setpixel instead of drawpoint">
+      <created>1532976540552</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1532976540552</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -751,7 +759,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Split up the application in separate files (main, scan display thread, gui thread, and data thread)" />
     <MESSAGE value="Successfully implemented the application with random noise as the input (might be a bit slow, but I have a few ideas for optimization)" />
     <MESSAGE value="minor aesthetics changes" />
     <MESSAGE value="minor misc changes" />
@@ -776,7 +783,8 @@
     <MESSAGE value="more diagnostic" />
     <MESSAGE value="changed color creation to LUT" />
     <MESSAGE value="diagnostic with setPixelColor and performance in the actual app" />
-    <option name="LAST_COMMIT_MESSAGE" value="diagnostic with setPixelColor and performance in the actual app" />
+    <MESSAGE value="new approach with setpixel instead of drawpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="new approach with setpixel instead of drawpoint" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1097,8 +1105,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Display.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+        <state relative-caret-position="68">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
           <folding>
             <element signature="e#103#128#0" expanded="true" />
           </folding>

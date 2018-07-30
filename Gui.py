@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from QTD_Window import Ui_MainWindow
 import ProjectConstants as c
-import timeit
+from time import perf_counter
 import Data as data
 
 class GUI(QMainWindow):
@@ -30,8 +30,10 @@ class GUI(QMainWindow):
         self.connectUI()
 
     def showGivenImage(self, image):
+        b = perf_counter()
         self.scanPixmap.convertFromImage(image)
         self.scanLabel.setPixmap(self.scanPixmap)
+        print("Update Pixmap:", perf_counter() - b)
         return
 
     def drawImage(self):
