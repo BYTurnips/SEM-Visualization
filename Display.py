@@ -54,6 +54,7 @@ class UZPdisplay(QThread):
 class display(QThread):
     notCancelling = True
     loadedImage = pyqtSignal(QImage)
+    cur = 0
     def __init__(self):
         super().__init__()
         self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
@@ -72,6 +73,7 @@ class display(QThread):
             tsvalue = data.sampleData.popleft()
             t = tsvalue[1]
             v = tsvalue[0]
+            v = self.cur
             # p.setPen(QColor(v, v, v, 255))
 ##            p.setPen(self.ColorsLUT[v])
             plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
@@ -83,6 +85,7 @@ class display(QThread):
         print(perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
+        self.cur = (self.cur + 40) % 255
 
     def saystuff(self):
         print("HI")
