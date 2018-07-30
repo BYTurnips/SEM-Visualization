@@ -55,8 +55,8 @@ class UZPOut:
         ycors = UZPOut.mSawt(c.waveRes, c.defh)
         ytval = UZPOut.mSawt(c.waveRes, c.bill / c.YHz)
         data.LUTY = UVS(ytval, ycors, None, [None, None], 1)
-        for i in range(c.waveRes):
-            print(ycors[i], ytval[i])
+##        for i in range(c.waveRes):
+##            print(ycors[i], ytval[i])
 
     # Returns a list of size numS that traces one period of a sine wave
     # (lowest pt at 0, highest pt at amp)

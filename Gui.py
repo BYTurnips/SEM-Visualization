@@ -29,8 +29,10 @@ class GUI(QMainWindow):
         self.connectUI()
 
     def showGivenImage(self, image):
+        print("HIHI")
         self.scanPixmap.convertFromImage(image)
         self.scanLabel.setPixmap(self.scanPixmap)
+        print("BYEBYE")
         return
 
     def drawImage(self):
