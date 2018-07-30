@@ -69,6 +69,7 @@ class UZPIn:
 class TestData:
     # exitFlag = False
     sec = 0
+    cur = 0
 
     def __init__(self):
         self.stTime = 0
@@ -82,9 +83,10 @@ class TestData:
     def sample(self):
         databuff = []
         for i in range(c.SAMP_PER_CALL):
-            # .append(i * 255 / c.SAMP_PER_CALL)
+            # databuff.append(i * 255 / c.SAMP_PER_CALL)
             databuff.append(np.random.randint(255))
             # databuff.append(0)
+            # databuff.append(self.cur)
 
         for i in range(c.SAMP_PER_CALL):
             t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
@@ -92,6 +94,7 @@ class TestData:
             # sampleData.put((databuff[i], t))
             sampleData.append((int(databuff[i]), t))
         self.sec = (self.sec + 1) % 250
+        self.cur = (self.cur + 40) % 225
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
