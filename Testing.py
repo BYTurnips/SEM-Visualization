@@ -26,3 +26,8 @@ if __name__ == '__main__':
             p.setPen(fix)
     print(perf_counter() - time)
     time = perf_counter()
+    for i in range(500):
+        for j in range(500):
+            p.drawPoint(i, j)
+    print(perf_counter() - time)
+    time = perf_counter()
