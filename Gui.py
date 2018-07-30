@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from QTD_Window import Ui_MainWindow
 import ProjectConstants as c
+import timeit
 import Data as data
 
 class GUI(QMainWindow):
@@ -29,10 +30,8 @@ class GUI(QMainWindow):
         self.connectUI()
 
     def showGivenImage(self, image):
-        print("HIHI")
         self.scanPixmap.convertFromImage(image)
         self.scanLabel.setPixmap(self.scanPixmap)
-        print("BYEBYE")
         return
 
     def drawImage(self):
