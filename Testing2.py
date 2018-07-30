@@ -50,10 +50,17 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        a = np.rint(data.LUTX(0 % (c.bill / c.XHz)))
-        b = np.rint(data.LUTY(0) * 4)
+        a = data.LUTX(0 % (c.bill / c.XHz))
+        b = data.LUTY(0) * 4
 
-    print("Find coordinate:", perf_counter() - time)
+    print("Use LUT:", perf_counter() - time)
+    time = perf_counter()
+
+    for i in range(c.PIX_PER_UPDATE):
+        a = np.rint(0.2780)
+        b = np.rint(0.5798)
+
+    print("Round Coordinate:", perf_counter() - time)
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
