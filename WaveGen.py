@@ -98,9 +98,9 @@ class UZPOut:
             return amp / 2 + 2 * amp * inp / domain
         else:
             if inp < 3 * domain / 4:
-                return amp - 2 * amp * inp / domain
+                return amp - 2 * amp * (inp - domain / 4) / domain
             else:
-                return 2 * amp * inp / domain
+                return 2 * amp * (inp - 3 * domain / 4) / domain
 
     @staticmethod
     def SawtLUT(inp, amp, domain):

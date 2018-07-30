@@ -8,6 +8,7 @@ import Data as data
 import numpy as np
 import timeit
 from math import floor
+from WaveGen import UZPOut as gen
 
 
 class UZPdisplay(QThread):
@@ -71,10 +72,12 @@ class display(QThread):
             t = tsvalue[1]
             v = 0
             v = tsvalue[0]
-            # print(v)
             p.setPen(QColor(v, v, v, 255))
-            # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
-            p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
+            # p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
+            plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
+            ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
+            # print(plotx, ploty, t)
+            p.drawPoint(np.rint(plotx), np.rint(ploty))
         p.end()
         # print(timeit.timeit()-a)
         print("Finished Image...")
