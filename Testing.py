@@ -15,6 +15,6 @@ if __name__ == '__main__':
     time = perf_counter()
     for i in range(500):
         for j in range(500):
-            p.setPen(0, 10, 20, 255)
+            p.setPen(QColor(0, 10, 20, 255))
             p.drawPoint(i, j)
     print(perf_counter() - time)
