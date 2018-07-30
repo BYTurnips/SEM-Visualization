@@ -6,34 +6,39 @@ from PyQt5.QtCore import *
 import Data as data
 import Display as display
 import Gui as gui
-import WaveGen
+from WaveGen import UZPOut as gen
 import ProjectConstants as c
 from time import perf_counter
 
 
 if __name__ == "__main__":
     print("BEGIN")
-    WaveGen.UZPOut.generateLUT()
+##    WaveGen.UZPOut.generateLUT()
     scanA = QImage()
     p = QPainter()
     p.begin(scanA)
     cl = data.TestData()
-    t = perf_counter()
+    time = perf_counter()
     for i in range(100):
         cl.sample()
-    print(perf_counter() - t)
+    print("Sampling:", perf_counter() - time)
     time = perf_counter()
     print("Displaying")
-    # for i in range(c.PIX_PER_UPDATE):
-    #     tsvalue = data.sampleData.get()
-    #     t = 100
-    #     t = tsvalue[1]
-    #     v = 0
-    #     v = tsvalue[0]
-    #     p.setPen(QColor(v, v, v, 255))
-    #     # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
-    #     p.drawPoint(np.rint(data.LUTX(t % (c.bill / c.XHz))), (np.rint(data.LUTY(t) * 4)))
-    #     # print(perf_counter()-time)
+    for i in range(c.PIX_PER_UPDATE):
+        tsvalue = data.sampleData.get()
+        t = 100
+        t = tsvalue[1]
+        v = 0
+        v = tsvalue[0]
+        p.setPen(QColor(v, v, v, 255))
+        # print(data.LUTX(t % (c.bill / c.XHz)), " ", data.LUTY(t) * 4, t)
+        plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
+        ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
+        # print(plotx, ploty, t)
+        p.drawPoint(np.rint(plotx), np.rint(ploty))
+
+    print("Full:", perf_counter() - time)
+    time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
         tsvalue = data.sampleData.get()
@@ -52,18 +57,19 @@ if __name__ == "__main__":
     for i in range(c.PIX_PER_UPDATE):
         # a = data.LUTX(0 % (c.bill / c.XHz))
         # b = data.LUTY(0) * 4
-        a = WaveGen.UZPOut.TriaLUT(0, 500, c.bill / c.XHz)
-        b = WaveGen.UZPOut.SawtLUT(0, 500, c.bill / c.YHz)
+        plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
+        ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
+
 
     print("Use LUT or conversion:", perf_counter() - time)
     time = perf_counter()
 
-    for i in range(c.PIX_PER_UPDATE):
-        a = np.sin(78)
-        b = np.sin(24.9)
-
-    print("Use sine:", perf_counter() - time)
-    time = perf_counter()
+##    for i in range(c.PIX_PER_UPDATE):
+##        a = np.sin(78)
+##        b = np.sin(24.9)
+##
+##    print("Use sine:", perf_counter() - time)
+##    time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
         a = np.rint(0.2780)
