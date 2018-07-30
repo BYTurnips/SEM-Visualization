@@ -25,10 +25,6 @@ class master(QObject):
 
         WaveGen.UZPOut.generateLUT()
 
-        # self.datatimer = QTimer()
-        # self.datatimer.setInterval(10)
-        # self.datatimer.timeout.connect(self.dataTh.start)
-
         self.disptimer = QTimer()
         self.disptimer.setInterval(c.PERIOD_OF_DISP)
         self.disptimer.timeout.connect(self.displayTh.start)
@@ -36,7 +32,6 @@ class master(QObject):
         self.window.startScanning.connect(self.startScans)
         self.window.endScanning.connect(self.endScans)
         self.displayTh.loadedImage.connect(self.relayImage)
-        # self.dataTh.loadedImage.connect(self.relayImage)
         self.sendImage.connect(self.window.showGivenImage)
 
         self.window.show()

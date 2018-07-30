@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 import ProjectConstants as c
 import Data as data
 import numpy as np
-import timeit
+from time import perf_counter
 from math import floor
 from WaveGen import UZPOut as gen
 
@@ -66,8 +66,7 @@ class display(QThread):
         p = QPainter()
         p.begin(self.scanA)
         print("Displaying")
-        # print(data.sampleData.__sizeof__())
-        # a = timeit.timeit()
+        testing = perf_counter()
         for i in range(c.PIX_PER_UPDATE):
             # tsvalue = data.sampleData.get()
             tsvalue = data.sampleData.popleft()
@@ -82,7 +81,7 @@ class display(QThread):
             # print(plotx, ploty, t)
             p.drawPoint(np.rint(plotx), np.rint(ploty))
         p.end()
-        # print(timeit.timeit()-a)
+        print(perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
 

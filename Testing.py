@@ -28,3 +28,8 @@ if __name__ == '__main__':
             p.drawPoint(i, j)
     print("Draw Pixel:", perf_counter() - time)
     time = perf_counter()
+    for i in range(500):
+        for j in range(500):
+            scanA.setPixelColor(i, j, color)
+    print("Set Pixel:", perf_counter() - time)
+    time = perf_counter()
