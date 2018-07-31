@@ -81,26 +81,18 @@ class UZPOut:
     @staticmethod
     def mTria(numS, amp):
         samples = []
-        for i in range(int(numS / 4)):
-            samples.append(amp / 2 + 2 * amp * i / numS)
-            # print(amp / 2 + 2 * amp * i / numS, i)
+        for i in range(int(numS / 2)):
+            samples.append(2 * amp * i / numS)
         for i in range(int(numS / 2)):
             samples.append(amp - 2 * amp * i / numS)
-            # print(amp - 2 * amp * i / numS, i+int(numS/4))
-        for i in range(int(numS / 4)):
-            samples.append(2 * amp * i / numS)
-            # print(2 * amp * i / numS, i+int(numS*3/4))
         return samples
 
     @staticmethod
     def TriaLUT(inp, amp, domain):
-        if inp < domain / 4:
-            return amp / 2 + 2 * amp * inp / domain
+        if inp < domain / 2:
+            return 2 * amp * inp / domain
         else:
-            if inp < 3 * domain / 4:
-                return amp - 2 * amp * (inp - domain / 4) / domain
-            else:
-                return 2 * amp * (inp - 3 * domain / 4) / domain
+            return amp - 2 * amp * (inp - domain / 2) / domain
 
     @staticmethod
     def SawtLUT(inp, amp, domain):

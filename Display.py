@@ -84,7 +84,7 @@ class display(QThread):
             ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz)
             # print(plotx, ploty, t)
             # p.drawPoint(np.rint(plotx), np.rint(ploty))
-            self.scanA.setPixelColor(np.rint(plotx), np.rint(ploty), self.ColorsLUT[v])
+            self.scanA.setPixelColor(plotx, ploty, self.ColorsLUT[v])
         # p.end()
         print("Generating Image:", perf_counter() - testing)
         print("Finished Image...")

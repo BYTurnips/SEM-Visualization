@@ -85,7 +85,7 @@ class TestData:
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
-            t = c.bill * self.sec + c.bill * self.subsection / c.XHz + 39.1 + i * c.BETWEEN_TIME
+            t = c.bill * self.sec + c.bill * self.subsection / c.XHz + 0 + i * c.BETWEEN_TIME
             sampleData.append((int(databuff[i]), t))
 
         if len(sampleData) > 250000:
