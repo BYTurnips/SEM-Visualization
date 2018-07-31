@@ -73,7 +73,7 @@ class TestData:
 
     def activate(self):
         self.sample()
-        self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
+        self.t = pyth.Timer(1 / c.FREQ_OF_SAMPLE, self.activate)
         self.t.start()
         self.stTime = time.perf_counter()
 
@@ -92,12 +92,12 @@ class TestData:
             sampleData.clear()
 
         self.subsection += 1
-        if self.subsection == c.XHz:
+        if self.subsection == c.FREQ_OF_SAMPLE:
             self.sec = (self.sec + 1) % (1 / c.YHz)
             self.subsection = 0
 
     def start(self):
-        self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
+        self.t = pyth.Timer(1 / c.FREQ_OF_SAMPLE, self.activate)
         self.t.start()
 
     def stop(self):
