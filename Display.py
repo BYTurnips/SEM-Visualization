@@ -67,13 +67,17 @@ class display(QThread):
         # p = QPainter()
         # p.begin(self.scanA)
         print("Displaying")
+        print(len(data.sampleData))
         testing = perf_counter()
         for i in range(c.PIX_PER_UPDATE):
             # tsvalue = data.sampleData.get()
-            tsvalue = data.sampleData.popleft()
+            try:
+                tsvalue = data.sampleData.popleft()
+            except:
+                break
             t = tsvalue[1]
             v = tsvalue[0]
-            v = self.cur
+            # v = self.cur
             # p.setPen(QColor(v, v, v, 255))
             # p.setPen(self.ColorsLUT[v])
             plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)

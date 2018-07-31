@@ -1,18 +1,15 @@
 # This class takes the input data and stores it
 
 import numpy as np
-from scipy.interpolate import InterpolatedUnivariateSpline as UVS
 import time as time
 import threading as pyth
-from queue import Queue
 from collections import deque
 from UniversalPiAPI import UZP
 import ProjectConstants as c
 
 # implement SPI interface with the Universal Pi Board and do I/O
 
-# sampleData = Queue(250500)
-sampleData = deque()
+sampleData = deque(maxlen=250500)
 inittime = 0
 LUTX = None
 LUTY = None
@@ -69,7 +66,6 @@ class UZPIn:
 class TestData:
     # exitFlag = False
     sec = 0
-    cur = 0
 
     def __init__(self):
         self.stTime = 0
@@ -86,15 +82,15 @@ class TestData:
             # databuff.append(i * 255 / c.SAMP_PER_CALL)
             databuff.append(np.random.randint(255))
             # databuff.append(0)
-            # databuff.append(self.cur)
 
         for i in range(c.SAMP_PER_CALL):
             t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
-            # Stores time in nanoseconds
-            # sampleData.put((databuff[i], t))
             sampleData.append((int(databuff[i]), t))
+
+        if len(sampleData) > 250000:
+            sampleData.clear()
+
         self.sec = (self.sec + 1) % 250
-        self.cur = (self.cur + 40) % 225
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)
