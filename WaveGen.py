@@ -82,7 +82,7 @@ class UZPOut:
     def mTria(numS, amp):
         samples = []
         for i in range(int(numS / 4)):
-            samples.append(amp / 2 + 2 * amp * i / (numS))
+            samples.append(amp / 2 + 2 * amp * i / numS)
             # print(amp / 2 + 2 * amp * i / numS, i)
         for i in range(int(numS / 2)):
             samples.append(amp - 2 * amp * i / numS)

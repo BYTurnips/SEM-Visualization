@@ -66,6 +66,7 @@ class UZPIn:
 class TestData:
     # exitFlag = False
     sec = 0
+    subsection = 0
 
     def __init__(self):
         self.stTime = 0
@@ -84,13 +85,16 @@ class TestData:
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
-            t = c.bill * self.sec * c.FREQ_OF_SAMPLE + 39.1 + i * c.BETWEEN_TIME
+            t = c.bill * self.sec + c.bill * self.subsection / c.XHz + 39.1 + i * c.BETWEEN_TIME
             sampleData.append((int(databuff[i]), t))
 
         if len(sampleData) > 250000:
             sampleData.clear()
 
-        self.sec = (self.sec + 1) % 250
+        self.subsection += 1
+        if self.subsection == c.XHz:
+            self.sec = (self.sec + 1) % (1 / c.YHz)
+            self.subsection = 0
 
     def start(self):
         self.t = pyth.Timer(c.FREQ_OF_SAMPLE, self.activate)

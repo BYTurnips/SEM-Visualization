@@ -81,7 +81,7 @@ class display(QThread):
             # p.setPen(QColor(v, v, v, 255))
             # p.setPen(self.ColorsLUT[v])
             plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
-            ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
+            ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz)
             # print(plotx, ploty, t)
             # p.drawPoint(np.rint(plotx), np.rint(ploty))
             self.scanA.setPixelColor(np.rint(plotx), np.rint(ploty), self.ColorsLUT[v])
