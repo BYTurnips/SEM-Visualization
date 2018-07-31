@@ -15,7 +15,7 @@ IMG = QImage('grid.png')
 
 # Display Thread stats
 PIX_PER_UPDATE = 25000
-PERIOD_OF_DISP = 300
+PERIOD_OF_DISP = 2000
 
 # Data Thread Stats
 FREQ_OF_SAMPLE = 0.01  # in seconds
