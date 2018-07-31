@@ -7,6 +7,7 @@ import Data as data
 import Display as display
 import Gui as gui
 from WaveGen import UZPOut as gen
+from scipy.interpolate import InterpolatedUnivariateSpline as uvs
 import ProjectConstants as c
 from time import perf_counter
 
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     for i in range(256):
         ColorsLUT.append(QColor(i, i, i, 255))
     print("BEGIN")
-##    WaveGen.UZPOut.generateLUT()
+    gen.generateLUT()
     scanA = QImage()
     p = QPainter()
     p.begin(scanA)
@@ -57,11 +58,16 @@ if __name__ == "__main__":
     print("Set Pen:", perf_counter() - time)
     time = perf_counter()
 
+    fakelutx = uvs([0, 1],[0, 1], k=1)
+    fakeluty = uvs([0, 1],[0, 1], k=1)
+
     for i in range(c.PIX_PER_UPDATE):
-        # a = data.LUTX(0 % (c.bill / c.XHz))
-        # b = data.LUTY(0) * 4
-        plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
-        ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
+##        a = data.LUTX(0 % (c.bill / c.XHz))
+##        b = data.LUTY(0) * 4
+        a = fakelutx(0)
+        b = fakeluty(0)
+##        plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
+##        ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz) * 4
 
 
     print("Use LUT or conversion:", perf_counter() - time)
@@ -75,10 +81,10 @@ if __name__ == "__main__":
 ##    time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        a = np.rint(0.2780)
-        b = np.rint(0.5798)
+        a = int(0.2780)
+        b = int(0.5798)
 
-    print("Round Coordinate:", perf_counter() - time)
+    print("Floor Coordinate:", perf_counter() - time)
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
