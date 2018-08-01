@@ -1,3 +1,8 @@
+# This file holds all the project constant variables
+# and should be used mainly for debugging purposes.
+# All user-approved variables are handled through
+# the GUI instead.
+
 # To successfully run this application
 # download the following: PyQt5, numpy, scipy,
 # UniversalPiAPI, spidev (comes with Linux OS)
@@ -28,9 +33,7 @@ PIX_PER_UPDATE = 25000
 PERIOD_OF_DISP = 1000
 
 # Data Thread Stats
-FREQ_OF_SAMPLE = 25  # in seconds
-# in 500x500 sine, 2K
-# in 500x500 triangle, 1000
+FREQ_OF_SAMPLE = XHz
 SAMP_PER_CALL = 1000
 
 CALL_PERIOD = bill / FREQ_OF_SAMPLE

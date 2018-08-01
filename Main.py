@@ -11,7 +11,13 @@ import WaveGen
 import ProjectConstants as c
 
 
-class master(QObject):
+# Master Class:
+# This class starts the event loop for all the QThreads
+# and acts as the medium for all the threads to talk to
+# each other.
+# ...
+
+class Master(QObject):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
     sendImage = pyqtSignal(QImage)
@@ -20,7 +26,7 @@ class master(QObject):
         super().__init__()
         self.app = QApplication(sys.argv)
         self.window = gui.GUI()
-        self.displayTh = display.display()
+        self.displayTh = display.Display()
         self.dataTh = data.TestData()
 
         WaveGen.UZPOut.generateLUT()
@@ -37,22 +43,23 @@ class master(QObject):
         self.window.show()
         sys.exit(self.app.exec_())
 
+    # Sends Display's image to GUI
     def relayImage(self, image):
         print("Relaying Image")
         self.sendImage.emit(image)
         return
 
+    # Connects GUI's startScanning to running of display and data
     def startScans(self):
         self.disptimer.start()
         self.dataTh.start()
 
+    # Connects GUI's endScanning to stopping of display and data
     def endScans(self):
         self.disptimer.stop()
         self.dataTh.stop()
 
-    def saystuff(self):
-        print("HI")
 
-
+# The all important main function OwO
 if __name__ == "__main__":
-    c = master()
+    c = Master()

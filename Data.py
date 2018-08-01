@@ -1,7 +1,5 @@
-# This class takes the input data and stores it
+# This class takes the input data and stores it in a queue
 
-import numpy as np
-import time as time
 import threading as pyth
 from collections import deque
 from UniversalPiAPI import UZP
@@ -15,6 +13,9 @@ LUTX = None
 LUTY = None
 
 
+# filler Class:
+# Basic irrelevant class to allow the code to compile
+# on a Windows OS where spidev and thus UZP don't work
 class filler:
     def DACInit(self, a):
         pass
@@ -34,11 +35,16 @@ class filler:
     def ADCReadData(self, a, b, c, d):
         pass
 
-
 uzp = filler()
-
-
 # uzp = UZP()
+
+# UZPIn Class [INCOMPLETE]:
+# This class houses a python timer thread (NOT QThread).
+# When called periodically it "polls" data points with
+# timestamps and adds them to the data queue to be
+# processed by the display thread. This is the data class
+# intended for use with the Universal Pi Zero Board's ADCs.
+# ...
 
 class UZPIn:
     sec = 0
@@ -63,20 +69,30 @@ class UZPIn:
         self.t.cancel()
 
 
+# TestData Class:
+# This class houses a python timer thread (NOT QThread).
+# When called periodically it "polls" data points with
+# timestamps and adds them to the data queue to be
+# processed by the display thread. This is the testing
+# version of the class as it generates its own input
+# instead of reading from an ADC.
+# ...
+
 class TestData:
-    # exitFlag = False
     sec = 0
     subsection = 0
 
-    def __init__(self):
-        self.stTime = 0
-
+    # Sort of like a recursive function, calls itself
+    # repeatedly using the threading.Timer, with each call
+    # activating the sample() function.
     def activate(self):
         self.sample()
         self.t = pyth.Timer(1 / c.FREQ_OF_SAMPLE, self.activate)
         self.t.start()
-        self.stTime = time.perf_counter()
 
+    # "Polls" a bunch of data points and puts them into the queue
+    # along with timestamps for each data point.
+    # [In this test class the sample function also creates the data].
     def sample(self):
         databuff = []
         for i in range(c.SAMP_PER_CALL):
@@ -96,9 +112,11 @@ class TestData:
             self.sec = (self.sec + 1) % (1 / c.YHz)
             self.subsection = 0
 
+    # Starts the activate function
     def start(self):
         self.t = pyth.Timer(1 / c.FREQ_OF_SAMPLE, self.activate)
         self.t.start()
 
+    # Stops the activate function and the data taking
     def stop(self):
         self.t.cancel()
