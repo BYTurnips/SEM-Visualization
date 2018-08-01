@@ -23,7 +23,7 @@ class Display(QThread):
 
     ColorsLUT = []
     xdco = c.bill / c.XHz / c.bres * c.defw
-    ydco = c.bill / c.YHz / c.bres * c.defh
+    ydco = c.bill / c.YHz
 
     # Prepares the color LUT (for efficiency)
     # and creates the base image.
@@ -51,7 +51,7 @@ class Display(QThread):
             v = tsvalue[0]
             # Convert timestamp to x and y coordinate
             plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
-            ploty = gen.SawtLUT(t, c.bres / c.defw * c.defh, self.ydco)  # c.defh
+            ploty = gen.SawtLUT(t, (c.bres / c.defw) * (c.bres / c.defw) * c.defh, self.ydco)  # c.defh
             # Plot the pixel at x and y with input intensity v
             print(plotx, ploty, t)
             self.scanA.setPixelColor(plotx, ploty, self.ColorsLUT[v])

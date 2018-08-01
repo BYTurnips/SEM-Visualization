@@ -14,8 +14,8 @@ bill = 1000000000
 bres = 500
 
 # Size of scan area
-defw = 500
-defh = 250
+defw = 300
+defh = 300
 
 # Background Image
 IMG = QImage('grid.png')
@@ -30,7 +30,7 @@ YHz = bres / defh / 10
 waveRes = 1000
 
 # Display Thread stats
-PIX_PER_UPDATE = 5000
+PIX_PER_UPDATE = 25000
 PERIOD_OF_DISP = 1000
 
 # Data Thread Stats
