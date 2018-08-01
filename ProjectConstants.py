@@ -11,10 +11,11 @@ from PyQt5.QtGui import *
 # Math Constants
 pi = 3.1415926535
 bill = 1000000000
+bres = 500
 
 # Size of scan area
 defw = 500
-defh = 500
+defh = 250
 
 # Background Image
 IMG = QImage('grid.png')
@@ -22,8 +23,8 @@ IMG = QImage('grid.png')
 # To fill the screen in 10 seconds:
 
 # Waveform Frequencies
-XHz = 25
-YHz = 0.1
+XHz = bres / defw * 25
+YHz = bres / defh / 10
 
 # Resolution of generated waveform
 waveRes = 1000

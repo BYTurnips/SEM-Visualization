@@ -20,6 +20,9 @@ import ProjectConstants as c
 class Master(QObject):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
+    changeXZoom = pyqtSignal(int)
+    changeYZoom = pyqtSignal(int)
+    changeScreenSize = pyqtSignal(int, int)
     sendImage = pyqtSignal(QImage)
 
     def __init__(self):

@@ -20,7 +20,10 @@ from WaveGen import UZPOut as gen
 
 class Display(QThread):
     loadedImage = pyqtSignal(QImage)
+
     ColorsLUT = []
+    xdco = c.bill / c.XHz / c.bres * c.defw
+    ydco = c.bill / c.YHz / c.bres * c.defh
 
     # Prepares the color LUT (for efficiency)
     # and creates the base image.
@@ -47,10 +50,11 @@ class Display(QThread):
             t = tsvalue[1]
             v = tsvalue[0]
             # Convert timestamp to x and y coordinate
-            plotx = gen.TriaLUT(t % (c.bill / c.XHz), c.defw, c.bill / c.XHz)
-            ploty = gen.SawtLUT(t, c.defh, c.bill / c.YHz)
+            plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
+            ploty = gen.SawtLUT(t, c.bres / c.defw, self.ydco)
             # Plot the pixel at x and y with input intensity v
-            self.scanA.setPixelColor(plotx, ploty, self.ColorsLUT[v])
+            print(plotx, ploty, t)
+            self.scanA.setPixelColor(plotx, int(ploty) * 10, self.ColorsLUT[v])
         print("Generating Image:", perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)
