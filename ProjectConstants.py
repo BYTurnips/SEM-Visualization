@@ -30,7 +30,7 @@ YHz = bres / defh / 10
 waveRes = 1000
 
 # Display Thread stats
-PIX_PER_UPDATE = 25000
+PIX_PER_UPDATE = 5000
 PERIOD_OF_DISP = 1000
 
 # Data Thread Stats

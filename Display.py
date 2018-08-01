@@ -51,10 +51,10 @@ class Display(QThread):
             v = tsvalue[0]
             # Convert timestamp to x and y coordinate
             plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
-            ploty = gen.SawtLUT(t, c.bres / c.defw, self.ydco)
+            ploty = gen.SawtLUT(t, c.bres / c.defw * c.defh, self.ydco)  # c.defh
             # Plot the pixel at x and y with input intensity v
             print(plotx, ploty, t)
-            self.scanA.setPixelColor(plotx, int(ploty) * 10, self.ColorsLUT[v])
+            self.scanA.setPixelColor(plotx, ploty, self.ColorsLUT[v])
         print("Generating Image:", perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)

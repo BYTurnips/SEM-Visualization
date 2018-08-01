@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Pease SEM.iml" filepath="$PROJECT_DIR$/.idea/Pease SEM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../simulator/.idea/simulator.iml" filepath="$PROJECT_DIR$/../simulator/.idea/simulator.iml" />
     </modules>
   </component>
 </project>
