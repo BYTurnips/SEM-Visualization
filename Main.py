@@ -7,7 +7,7 @@ from PyQt5.QtCore import *
 import Data as data
 import Display as display
 import Gui as gui
-import WaveGen
+from WaveGen import UZPOut as Gen
 import ProjectConstants as c
 
 
@@ -18,11 +18,11 @@ import ProjectConstants as c
 # ...
 
 class Master(QObject):
-    startScanning = pyqtSignal()
-    endScanning = pyqtSignal()
+    # startScanning = pyqtSignal()
+    # endScanning = pyqtSignal()
     changeXZoom = pyqtSignal(int)
     changeYZoom = pyqtSignal(int)
-    changeScreenSize = pyqtSignal(int, int)
+    changeRes = pyqtSignal(int, int)
     sendImage = pyqtSignal(QImage)
 
     def __init__(self):
@@ -32,19 +32,25 @@ class Master(QObject):
         self.displayTh = display.Display()
         self.dataTh = data.TestData()
 
-        WaveGen.UZPOut.generateLUT()
+        self.gen = Gen()
 
         self.disptimer = QTimer()
         self.disptimer.setInterval(c.PERIOD_OF_DISP)
         self.disptimer.timeout.connect(self.displayTh.start)
 
-        self.window.startScanning.connect(self.startScans)
-        self.window.endScanning.connect(self.endScans)
-        self.displayTh.loadedImage.connect(self.relayImage)
-        self.sendImage.connect(self.window.showGivenImage)
+        self.connectThreads()
 
         self.window.show()
         sys.exit(self.app.exec_())
+
+    def connectThreads(self):
+        self.window.startScanning.connect(self.startScans)
+        self.window.endScanning.connect(self.endScans)
+        self.window.newRes.connect(self.changeResC)
+
+        self.displayTh.loadedImage.connect(self.relayImage)
+
+        self.sendImage.connect(self.window.showGivenImage)
 
     # Sends Display's image to GUI
     def relayImage(self, image):
@@ -61,6 +67,20 @@ class Master(QObject):
     def endScans(self):
         self.disptimer.stop()
         self.dataTh.stop()
+
+    def changeResC(self, neww, newh):
+        c.defw = neww
+        c.defh = newh
+        c.XHz = c.bres / c.defw * 25
+        c.YHz = c.bres / c.defh / 10
+
+        self.displayTh.prepIMG()
+
+        self.gen.updateWaves()
+        self.gen.generateLUT()
+        data.sampleData.clear()
+
+        self.displayTh.start()
 
 
 # The all important main function OwO

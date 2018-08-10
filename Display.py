@@ -21,17 +21,27 @@ from WaveGen import UZPOut as gen
 class Display(QThread):
     loadedImage = pyqtSignal(QImage)
 
+    scanA = None
+
     ColorsLUT = []
-    xdco = c.bill / c.XHz / c.bres * c.defw
+    ratsq = c.bres / c.defw
+    xdco = c.bill / c.XHz / ratsq
     ydco = c.bill / c.YHz
 
     # Prepares the color LUT (for efficiency)
     # and creates the base image.
     def __init__(self):
         super().__init__()
-        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
+        self.prepIMG()
         for i in range(256):
             self.ColorsLUT.append(QColor(i, i, i, 255))
+
+    def prepIMG(self):
+        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
+        self.ratsq = c.bres / c.defw
+        self.xdco = c.bill / c.XHz / self.ratsq
+        self.ydco = c.bill / c.YHz
+
 
     # Each time the thread is run, it takes some number of
     # data points from the queue and plots them on the
@@ -50,11 +60,14 @@ class Display(QThread):
             t = tsvalue[1]
             v = tsvalue[0]
             # Convert timestamp to x and y coordinate
-            plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
-            ploty = gen.SawtLUT(t, (c.bres / c.defw) * (c.bres / c.defw) * c.defh, self.ydco)  # c.defh
+            # upon res change plotx value doesn't change properly (it goes by half steps)
+            # plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
+            plotx = gen.TriaLUT((t) % self.xdco, c.defw, self.xdco)
+            ploty = gen.SawtLUT((t), self.ratsq * self.ratsq * c.defh, self.ydco)
             # Plot the pixel at x and y with input intensity v
-            print(plotx, ploty, t)
-            self.scanA.setPixelColor(plotx, ploty, self.ColorsLUT[v])
+            if i % 1 == 0:
+                print(plotx, ploty, t)
+            self.scanA.setPixelColor(plotx, ploty % c.defh, self.ColorsLUT[v])
         print("Generating Image:", perf_counter() - testing)
         print("Finished Image...")
         self.loadedImage.emit(self.scanA)

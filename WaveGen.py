@@ -47,15 +47,17 @@ class UZPOut:
     # Performs necessary setup operations to prepare
     # the waveform generators.
     def __init__(self):
+        self.updateWaves()
+        self.generateLUT()
+
+    def updateWaves(self):
         uzp.DACInit(c.XDAC)
         uzp.DACInit(c.YDAC)
         uzp.DACGenerate(c.XDAC, c.waveRes, self.mSine(c.waveRes, 4096), c.XHz)
         uzp.DACGenerate(c.YDAC, c.waveRes, self.mSawt(c.waveRes, 4096), c.YHz)
-        self.generateLUT()
 
     # Generates the lookup tables for possible usage in the display thread
-    @staticmethod
-    def generateLUT():
+    def generateLUT(self):
         xcors = UZPOut.mTria(c.waveRes, c.defw)
         xtval = UZPOut.mSawt(c.waveRes, c.bill / c.XHz)
         data.LUTX = UVS(xtval, xcors, None, [None, None], 1)

@@ -9,6 +9,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
+    sres = 250
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -154,7 +156,7 @@ class Ui_MainWindow(object):
         self.XRes.setMinimum(200)
         self.XRes.setMaximum(500)
         self.XRes.setSingleStep(5)
-        self.XRes.setProperty("value", 500)
+        self.XRes.setProperty("value", self.sres)
         self.XRes.setObjectName("XRes")
         self.label = QtWidgets.QLabel(self.XZoomGroup_3)
         self.label.setGeometry(QtCore.QRect(70, 50, 21, 41))
@@ -169,7 +171,7 @@ class Ui_MainWindow(object):
         self.YRes.setMinimum(200)
         self.YRes.setMaximum(500)
         self.YRes.setSingleStep(5)
-        self.YRes.setProperty("value", 500)
+        self.YRes.setProperty("value", self.sres)
         self.YRes.setObjectName("YRes")
         MainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)

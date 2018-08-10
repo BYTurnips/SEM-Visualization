@@ -35,7 +35,10 @@ class filler:
     def ADCReadData(self, a, b, c, d):
         pass
 
+
 uzp = filler()
+
+
 # uzp = UZP()
 
 # UZPIn Class [INCOMPLETE]:
@@ -101,8 +104,8 @@ class TestData:
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
-            t = c.bill * self.sec + c.bill * self.subsection / c.XHz + 0 + i * c.BETWEEN_TIME
-            sampleData.append((int(databuff[i]), t))
+            base = c.bill * (self.sec + self.subsection / c.XHz)
+            sampleData.append((int(databuff[i]), base + i * c.BETWEEN_TIME / (c.bres / c.defw)))
 
         if len(sampleData) > 250000:
             sampleData.clear()

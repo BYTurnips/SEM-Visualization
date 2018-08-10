@@ -18,33 +18,43 @@ from time import perf_counter
 class GUI(QMainWindow):
     startScanning = pyqtSignal()
     endScanning = pyqtSignal()
+    changeXZoom = pyqtSignal(int)
+    changeYZoom = pyqtSignal(int)
+    newRes = pyqtSignal(int, int)
+    sendImage = pyqtSignal(QImage)
+
+    scanPixmap = None
+    scanLabel = None
+
 
     # Nothing much to say, this creates the UI.
     def __init__(self):
         super().__init__()
-        self.scanA = c.IMG.copy(0, 0, c.defw, c.defh)
         self.scanPixmap = QPixmap()
         self.scanLabel = QLabel('Scan Area', self)
-        self.scanLabel.setFixedWidth(c.defw)
-        self.scanLabel.setFixedHeight(c.defh)
+
+        self.scanLabel.setFixedSize(c.defw, c.defh)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.showGivenImage(self.scanA)
-        self.scanLabel.move(50, 90)
+
+        scanA = c.IMG.copy(0, 0, c.defw, c.defh)
+        self.showGivenImage(scanA)
+        self.scanLabel.move(300 - c.defw / 2, 320 - c.defh / 2)
         self.scanLabel.show()
         self.connectUI()
 
     # Connect all the signals and slots
     def connectUI(self):
         self.ui.ScanB.clicked.connect(self.toggleScanning)
+        self.ui.RUpdateB.clicked.connect(self.sendRes)
+        # self.changeRes()
 
     # Slot to show the image given by display thread
     def showGivenImage(self, image):
-        b = perf_counter()
+        self.scanLabel.setFixedSize(c.defw, c.defh)
         self.scanPixmap.convertFromImage(image)
         self.scanLabel.setPixmap(self.scanPixmap)
-        print("Update Pixmap:", perf_counter() - b)
         return
 
     # Connects Scan button to Main.py's startScanning and endScanning
@@ -53,3 +63,8 @@ class GUI(QMainWindow):
             self.startScanning.emit()
         else:
             self.endScanning.emit()
+
+    def sendRes(self):
+        neww = self.ui.XRes.value()
+        newh = self.ui.YRes.value()
+        self.newRes.emit(neww, newh)

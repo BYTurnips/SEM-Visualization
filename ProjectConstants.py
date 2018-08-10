@@ -1,24 +1,36 @@
 # This file holds all the project constant variables
 # and should be used mainly for debugging purposes.
-# All user-approved variables are handled through
-# the GUI instead.
+# A list of user-changeable variables is included
+# and can be accessed through the app GUI
 
 # To successfully run this application
 # download the following: PyQt5, numpy, scipy,
 # UniversalPiAPI, spidev (comes with Linux OS)
 from PyQt5.QtGui import *
 
+# [USER ACCESSIBLE]
+
+
+debug = 500
+# Resolution of scan area
+defw = debug
+defh = debug
+
+# Coil Voltage
+voltx = 3
+volty = 3
+
+# [NOT USER ACCESSIBLE]
+
+
 # Math Constants
 pi = 3.1415926535
 bill = 1000000000
 bres = 500
 
-# Size of scan area
-defw = 300
-defh = 300
-
 # Background Image
 IMG = QImage('grid.png')
+BG = QImage('yellow.png')
 
 # To fill the screen in 10 seconds:
 
