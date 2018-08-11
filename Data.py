@@ -35,7 +35,6 @@ class filler:
     def ADCReadData(self, a, b, c, d):
         pass
 
-
 uzp = filler()
 
 
@@ -104,8 +103,8 @@ class TestData:
             # databuff.append(0)
 
         for i in range(c.SAMP_PER_CALL):
-            base = c.bill * (self.sec + self.subsection / c.XHz)
-            sampleData.append((int(databuff[i]), base + i * c.BETWEEN_TIME / (c.bres / c.defw)))
+            base = c.bill * (self.sec + self.subsection / 25)
+            sampleData.append((int(databuff[i]), base + i * c.BETWEEN_TIME))
 
         if len(sampleData) > 250000:
             sampleData.clear()
@@ -123,3 +122,8 @@ class TestData:
     # Stops the activate function and the data taking
     def stop(self):
         self.t.cancel()
+
+    def updateRes(self):
+        sampleData.clear()
+        self.sec = 0
+        self.subsection = 0

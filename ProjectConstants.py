@@ -11,10 +11,9 @@ from PyQt5.QtGui import *
 # [USER ACCESSIBLE]
 
 
-debug = 500
 # Resolution of scan area
-defw = debug
-defh = debug
+defw = 500
+defh = 500
 
 # Coil Voltage
 voltx = 3

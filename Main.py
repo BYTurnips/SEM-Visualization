@@ -78,7 +78,7 @@ class Master(QObject):
 
         self.gen.updateWaves()
         self.gen.generateLUT()
-        data.sampleData.clear()
+        self.dataTh.updateRes()
 
         self.displayTh.start()
 

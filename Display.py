@@ -62,11 +62,10 @@ class Display(QThread):
             # Convert timestamp to x and y coordinate
             # upon res change plotx value doesn't change properly (it goes by half steps)
             # plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
-            plotx = gen.TriaLUT((t) % self.xdco, c.defw, self.xdco)
-            ploty = gen.SawtLUT((t), self.ratsq * self.ratsq * c.defh, self.ydco)
+            plotx = gen.TriaLUT((t / self.ratsq) % self.xdco, c.defw, self.xdco)
+            ploty = gen.SawtLUT((t * self.ratsq), c.defh, self.ydco)
+            print(plotx, ploty, t)
             # Plot the pixel at x and y with input intensity v
-            if i % 1 == 0:
-                print(plotx, ploty, t)
             self.scanA.setPixelColor(plotx, ploty % c.defh, self.ColorsLUT[v])
         print("Generating Image:", perf_counter() - testing)
         print("Finished Image...")

@@ -40,7 +40,8 @@ class GUI(QMainWindow):
 
         scanA = c.IMG.copy(0, 0, c.defw, c.defh)
         self.showGivenImage(scanA)
-        self.scanLabel.move(300 - c.defw / 2, 320 - c.defh / 2)
+        # self.scanLabel.move(300 - c.defw / 2, 320 - c.defh / 2)
+        self.scanLabel.move(50, 70)
         self.scanLabel.show()
         self.connectUI()
 
