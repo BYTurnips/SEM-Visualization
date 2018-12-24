@@ -7,9 +7,23 @@
 
 import numpy as np
 import scipy as sp
-import skimage as scikit
+import skimage as ski
+from PyQt5.QtGui import *
 
-LUT = [[1, 2],
-       [2, 1]]
+LUT = []
+
+
+class GridFinder:
+    def __init__(self):
+        self.initImage = ski.io.imread('Init_250.bmp', as_gray=True)
+        # self.diagnoseLine(self.initImage)
+        self.out, self.angles, self.dists = ski.transform.hough_line(self.initImage)
+        print(self.angles)
+        print(self.dists)
+
+    def diagnoseLine(self, img):
+        self.out, self.angles, self.dists = ski.transform.hough_line(img)
+
 
 if __name__ == "__main__":
+    g = GridFinder()
