@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
-    </list>
+    <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,23 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Image Process Black.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Image Process Black.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
               <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot_coins_segmentation.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
-              <folding>
-                <element signature="e#348#366#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -328,20 +313,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Working code for updating the scan area with a solid color upon push of a button">
-      <created>1531201382608</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1531201382608</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Working Test Code for determining drawing/update speed of a QImage pixel by pixel">
-      <created>1531201651265</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1531201651265</updated>
     </task>
     <task id="LOCAL-00006" summary="Successfully managed to run the Qt Designer-made file (UI in Testing.py, driver function in Testing2.py) in Python.">
       <created>1531457854958</created>
@@ -672,20 +643,34 @@
       <option name="project" value="LOCAL" />
       <updated>1545621672349</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="sobel -&gt; elevation -&gt; watershed -&gt; ID starter code looks pretty effective">
+      <created>1545628195657</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1545628195657</updated>
+    </task>
+    <task id="LOCAL-00054" summary="sobel -&gt; elevation -&gt; watershed -&gt; ID starter code looks pretty effective">
+      <created>1545628212217</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1545628212217</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32845744" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.30273438" />
+      <window_info anchor="right" id="Run" order="4" visible="true" weight="0.30273438" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -734,7 +719,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got the code to properly follow the LUT, now I have to calibrate the frequencies to get a complete picture." />
     <MESSAGE value="Complete picture using the LUT and FIFO and everything else (only thing left is to adapt it to the system clock and optimize...) The biggest issue here is speed; this application when running a completely solid scan already takes 20+ seconds on a high-end computer; it will take several minutes on a Pi in the state it is right now. Optimizations are absolutely necessary." />
     <MESSAGE value="Got the triangular scan to work" />
     <MESSAGE value="Added a performance breakdown on Testing2.py" />
@@ -759,7 +743,8 @@
     <MESSAGE value="allows for variable resolutions now (with scan speed changes)" />
     <MESSAGE value="added some files in prep for img processing" />
     <MESSAGE value="added a bunch of images and some starter code" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a bunch of images and some starter code" />
+    <MESSAGE value="sobel -&gt; elevation -&gt; watershed -&gt; ID starter code looks pretty effective" />
+    <option name="LAST_COMMIT_MESSAGE" value="sobel -&gt; elevation -&gt; watershed -&gt; ID starter code looks pretty effective" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1005,20 +990,20 @@
     <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+          <folding>
+            <element signature="e#348#366#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
-          <folding>
-            <element signature="e#348#366#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
