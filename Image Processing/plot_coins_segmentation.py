@@ -1,8 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+from skimage.color import label2rgb
 from skimage.exposure import histogram
 from skimage.io import imread
+from skimage import morphology
+from skimage.filters import sobel
+from scipy import ndimage as ndi
+
 
 coins = imread('Init_250.bmp', as_gray=True)
 hist, hist_centers = histogram(coins)
@@ -12,11 +16,6 @@ axes[0].imshow(coins, cmap=plt.cm.gray, interpolation='nearest')
 axes[0].axis('off')
 axes[1].plot(hist_centers, hist, lw=2)
 axes[1].set_title('histogram of gray values')
-
-from scipy import ndimage as ndi
-from skimage import morphology
-from skimage.filters import sobel
-
 # Region-based segmentation
 # =========================
 #
@@ -58,10 +57,16 @@ ax.axis('off')
 # This last method works even better, and the coins can be segmented and
 # labeled individually.
 
-from skimage.color import label2rgb
-
 segmentation = ndi.binary_fill_holes(segmentation - 1)
 labeled_coins, _ = ndi.label(segmentation)
+
+n = 0
+for k in labeled_coins:
+    if n % 10 == 0:
+        q = k[0::25]
+        print(*q, sep="\t")
+    n += 1
+
 image_label_overlay = label2rgb(labeled_coins, image=coins)
 
 fig, axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
