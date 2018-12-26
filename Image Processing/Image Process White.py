@@ -2,16 +2,10 @@
 # It will locate every white region and grab the upper-right most point of that region.
 # This yields a "grid" of points that is slightly warped.
 #
-# A square near the center is chosen, and its 4 nearest neighbors form the basis for the new grid.
-# A primitive line tracking algorithm is used to trace each row and column, and the resulting
-# lists of IDs corresponding to each row and column gets averaged (LSRL) to find the slope
-# these average slopes are averaged across all the lines to yield an orientation.
-# With the orientation and the given distances b/w squares and width of squares,
-# the new grid lines are repositioned to minimize error.
-#
-# Alternatively...create a hypothetical grid and do a binary search or gradient descent
-# on orientation and offset with the function testing the sum of the least square error
-# between the hypothetical grid and the real grid.
+# Alternatively...create a hypothetical grid and do a gradient descent
+# on orientation and offset with the cost function testing the sum of the potential energy
+# between every warped point and every theoretical point. Potential = -Ae^(-d/t), d is distance
+# (might have to change the function though)
 #
 # This whole transform generates an LUT of each region's centroid, and
 # linear interpolation is used to transform the image for all future samples.
@@ -22,18 +16,19 @@ from scipy import ndimage as ndi
 import skimage as ski
 from skimage import morphology
 import matplotlib.pyplot as plt
-import matplotlib.patches as pat
-import cv2 as cv
 
-squarewidth = 50
-squaredist = 20
+squarewidth = 20
+squaredist = 10
+img_size = 250
+
 
 class RegionFinder:
     def __init__(self):
+        fig, self.axes = plt.subplots(1, 3, figsize=(8, 3), sharey=True)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
         self.warpcenters = self.findWarpedCenters()
         print(self.warpcenters)
-
+        self.findGrid()
 
     def findWarpedCenters(self):
         init = self.init
@@ -52,48 +47,76 @@ class RegionFinder:
             avg_area += k.area
         avg_area /= len(properties)
 
-
         image_label_overlay = ski.color.label2rgb(labeled_init, image=init)
 
-        fig, axes = plt.subplots(1, 3, figsize=(8, 3), sharey=True)
-        axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
-        axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
-        axes[1].imshow(image_label_overlay, interpolation='nearest')
+        self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
+        self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
+        self.axes[1].imshow(image_label_overlay, interpolation='nearest')
+        self.axes[2].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
 
-        for a in axes:
+        for a in self.axes:
             a.axis('off')
 
         for k in properties:
             if 0.5 < k.area / avg_area < 1.5:
                 centers.append(k.centroid)
-                # t = k.coords[1]
-                # k.coords[1] = k.coords[0]
-                # k.coords[0] = t
                 newcoords = k.coords
                 for q in range(len(k.coords)):
                     newcoords[q][1] = k.coords[q][0]
                     newcoords[q][0] = k.coords[q][1]
-                axes[0].add_patch(pat.Polygon(self.minimum_bounding_rectangle(newcoords)))
+                # axes[2].add_patch(pat.Polygon(self.minimum_bounding_rectangle(newcoords)))
 
         centers = [(round(x), round(y)) for x, y in centers]
 
         xs = [x[1] for x in centers]
         ys = [x[0] for x in centers]
-        axes[1].scatter(xs, ys)
+        self.axes[1].scatter(xs, ys)
 
-        # for k in properties:
-        #     axes[2].add_patch(pat.Polygon(self.minimum_bounding_rectangle(k.coords)))
+        return centers
+
+    def findGrid(self):
+        width = squarewidth + squaredist
+        grid_size = 4
+        curmin = 1000000000
+        mina = 0
+        for a in range(90):
+            sumofPE = self.testGridLoss(width, grid_size, a, 0, 0)
+            if sumofPE < curmin:
+                curmin = sumofPE
+                mina = a
+                print(curmin)
+        # for a in range(4):
+        finalideal = self.getIdealGrid(width, grid_size, mina, 0, 0)
+        xs = [x[1] for x in finalideal]
+        ys = [x[0] for x in finalideal]
+        self.axes[0].scatter(xs, ys)
 
         plt.tight_layout()
         plt.show()
 
-        return centers
+    def testGridLoss(self, sqsize, numsquare, angle, tranX, tranY):
+        A = 1
+        t = sqsize / 3
+        idealgrid = self.getIdealGrid(sqsize, numsquare, angle, tranX, tranY)
+        sumofPE = 0
+        for i in self.warpcenters:
+            for j in idealgrid:
+                d = np.sqrt(pow(i[0] - j[0], 2) + pow(i[1] - j[1], 2))
+                sumofPE += A * np.exp(-d / t)
+                # sumofPE += 1
+        return sumofPE
 
-    def findLines(self):
-        cstart = self.warpcenters[1]
-        cv.min
-        # for k in self.warpcenters:
-        #     if (abs(k[1]-125)+abs(k[0]-125)) <
+    def getIdealGrid(self, sqsize, numsquare, angle, tranX, tranY):
+        cors = []
+        for i in range(numsquare):
+            for j in range(numsquare):
+                # currently rotates about corner point, might change to center of grid
+                ang = np.deg2rad(angle)
+                cors.append([(i - float(numsquare - 1) / 2) * sqsize * np.cos(ang) + tranX -
+                             (j - float(numsquare - 1) / 2) * sqsize * np.sin(ang) + img_size / 2,
+                             (i - float(numsquare - 1) / 2) * sqsize * np.sin(ang) + tranY +
+                             (j - float(numsquare - 1) / 2) * sqsize * np.cos(ang) + img_size / 2])
+        return cors
 
     def minimum_bounding_rectangle(self, points):
         """
@@ -126,11 +149,6 @@ class RegionFinder:
             np.cos(angles - pi2),
             np.cos(angles + pi2),
             np.cos(angles)]).T
-        #     rotations = np.vstack([
-        #         np.cos(angles),
-        #         -np.sin(angles),
-        #         np.sin(angles),
-        #         np.cos(angles)]).T
         rotations = rotations.reshape((-1, 2, 2))
 
         # apply rotations to the hull
@@ -158,13 +176,8 @@ class RegionFinder:
         rval[1] = np.dot([x2, y2], r)
         rval[2] = np.dot([x2, y1], r)
         rval[3] = np.dot([x1, y1], r)
-        # rval[0] = np.dot([y2, x1], r)
-        # rval[1] = np.dot([y2, x2], r)
-        # rval[2] = np.dot([y1, x2], r)
-        # rval[3] = np.dot([y1, x1], r)
 
         return rval
-
 
 
 if __name__ == "__main__":
