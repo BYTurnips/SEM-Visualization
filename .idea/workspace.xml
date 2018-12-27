@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Image Processing/grid.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,12 +24,14 @@
       <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+            <state relative-caret-position="224">
+              <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
               <folding>
-                <element signature="e#1132#1150#0" expanded="true" />
+                <element signature="e#702#720#0" expanded="true" />
                 <element signature="e#1622#3054#0" />
-                <element signature="e#2872#3787#0" />
+                <element signature="e#3289#4123#0" />
+                <element signature="e#4211#4596#0" />
+                <element signature="e#6029#7217#0" />
               </folding>
             </state>
           </provider>
@@ -38,8 +40,8 @@
       <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+            <state relative-caret-position="187">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -93,11 +95,16 @@
       <find>coins</find>
       <find>morpho</find>
       <find>scatter</find>
+      <find>width</find>
+      <find>grid_size</find>
+      <find>&gt;&gt;&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>quitb</replace>
       <replace>scanb</replace>
       <replace>init</replace>
+      <replace>w</replace>
+      <replace>size</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -131,8 +138,8 @@
         <option value="$USER_HOME$/Downloads/hough_tf.py" />
         <option value="$PROJECT_DIR$/Image Processing/hough_tf.py" />
         <option value="$USER_HOME$/Downloads/plot_coins_segmentation.py" />
-        <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py" />
+        <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/Image Processing/Image Process White.py" />
       </list>
     </option>
@@ -173,6 +180,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
       <recent name="C:\Users\Brion\Documents\Extracurricular\Science Research" />
@@ -342,13 +352,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
-    </task>
-    <task id="LOCAL-00010" summary="More misc progress on the application. I drafted a procedure for the signal slot thing">
-      <created>1531980560990</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1531980560990</updated>
     </task>
     <task id="LOCAL-00011" summary="Got threading and signals to work with the thing">
       <created>1532390167659</created>
@@ -686,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545853504895</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next">
+      <created>1545875977695</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1545875977695</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -699,7 +709,7 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.40429688" />
+      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.30208334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -748,7 +758,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more detailed breakdown" />
     <MESSAGE value="added a function instead of LUT to test" />
     <MESSAGE value="created inverse function to replace LUT" />
     <MESSAGE value="Experimental setup with a deque instead of a queue" />
@@ -773,12 +782,13 @@
     <MESSAGE value="found centers" />
     <MESSAGE value="even more starter code for findng rotated bounding rectangle or possibly doing a gradient descent algorithm, idk which route to take yet" />
     <MESSAGE value="starting off with a brute force search to maek sure this potential function actually works" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting off with a brute force search to maek sure this potential function actually works" />
+    <MESSAGE value="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next" />
+    <option name="LAST_COMMIT_MESSAGE" value="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="11" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1009,16 +1019,6 @@
     <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1029,14 +1029,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+        <state relative-caret-position="224">
+          <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
           <folding>
-            <element signature="e#1132#1150#0" expanded="true" />
+            <element signature="e#702#720#0" expanded="true" />
             <element signature="e#1622#3054#0" />
-            <element signature="e#2872#3787#0" />
+            <element signature="e#3289#4123#0" />
+            <element signature="e#4211#4596#0" />
+            <element signature="e#6029#7217#0" />
           </folding>
         </state>
       </provider>
