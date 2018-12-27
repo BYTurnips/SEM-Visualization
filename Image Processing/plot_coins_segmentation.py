@@ -13,7 +13,7 @@ hist, hist_centers = histogram(coins)
 
 fig, axes = plt.subplots(1, 2, figsize=(8, 3))
 axes[0].imshow(coins, cmap=plt.cm.gray, interpolation='nearest')
-axes[0].axis('off')
+# axes[0].axis('off')
 axes[1].plot(hist_centers, hist, lw=2)
 axes[1].set_title('histogram of gray values')
 # Region-based segmentation

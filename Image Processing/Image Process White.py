@@ -24,11 +24,11 @@ img_size = 250
 
 class RegionFinder:
     def __init__(self):
-        fig, self.axes = plt.subplots(1, 3, figsize=(8, 3), sharey=True)
+        fig, self.axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
+        fig, self.ergraph = plt.subplots(1, 1, figsize=(8, 3), sharey=True)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
         self.warpcenters = self.findWarpedCenters()
-        print(self.warpcenters)
-        self.findGrid()
+        self.gridGradDesc()
 
     def findWarpedCenters(self):
         init = self.init
@@ -52,10 +52,10 @@ class RegionFinder:
         self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
         self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
         self.axes[1].imshow(image_label_overlay, interpolation='nearest')
-        self.axes[2].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
+        # self.axes[2].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
 
-        for a in self.axes:
-            a.axis('off')
+        # for a in self.axes:
+        #     a.axis('off')
 
         for k in properties:
             if 0.5 < k.area / avg_area < 1.5:
@@ -76,108 +76,92 @@ class RegionFinder:
 
     def findGrid(self):
         width = squarewidth + squaredist
-        grid_size = 4
+        grid_size = 12
         curmin = 1000000000
+        ares = 90
+        tres = 5
         mina = 0
-        for a in range(90):
-            sumofPE = self.testGridLoss(width, grid_size, a, 0, 0)
+        minx = 0
+        miny = 0
+        for a in range(ares):
+            sumofPE = self.testGridLoss(width, grid_size, 90 * a / ares, 0, 0)
             if sumofPE < curmin:
                 curmin = sumofPE
                 mina = a
-                print(curmin)
-        # for a in range(4):
-        finalideal = self.getIdealGrid(width, grid_size, mina, 0, 0)
+                # print(curmin)
+
+        for x in range(tres):
+            for y in range(tres):
+                sumofPE = self.testGridLoss(width, grid_size, mina, width * x / tres, width * y / tres)
+                if sumofPE < curmin:
+                    curmin = sumofPE
+                    minx = x
+                    miny = y
+                    print(curmin, minx, miny)
+        minx = 0
+        miny = 0
+        finalideal = self.getIdealGrid(width, grid_size, mina, width * minx / tres, width * miny / tres)
         xs = [x[1] for x in finalideal]
         ys = [x[0] for x in finalideal]
-        self.axes[0].scatter(xs, ys)
+        self.axes[0].scatter(xs, ys, s=10)
+
+        plt.tight_layout()
+        plt.show()
+
+    def gridGradDesc(self):
+        width = squarewidth + squaredist
+        grid_size = 10
+        mina = 0
+        A = 0
+        X = 0
+        Y = 0
+        learn = 0.5
+
+        for cycle in range(40):
+            # Finding the initial loss
+            init_loss = self.testGridLoss(width, grid_size, A, X, Y)
+            self.ergraph.scatter(cycle, init_loss, s=10)
+            # Finding the partial derivatives aka the gradient
+            dA = (self.testGridLoss(width, grid_size, A + 0.0001, X, Y) - init_loss) / 0.0001
+            dX = (self.testGridLoss(width, grid_size, A, X + 0.0001, Y) - init_loss) / 0.0001
+            dY = (self.testGridLoss(width, grid_size, A, X, Y + 0.0001) - init_loss) / 0.0001
+
+            print(round(A, 3), round(X, 3), round(Y, 3), round(init_loss, 3), "D/DL",
+                  round(dA, 3), round(dX, 3), round(dY, 3))
+
+            A -= learn * dA
+            X -= learn * dX
+            Y -= learn * dY
+
+        finalideal = self.getIdealGrid(width, grid_size, A, X, Y)
+        xs = [x[1] for x in finalideal]
+        ys = [x[0] for x in finalideal]
+        self.axes[0].scatter(xs, ys, s=10)
 
         plt.tight_layout()
         plt.show()
 
     def testGridLoss(self, sqsize, numsquare, angle, tranX, tranY):
-        A = 1
         t = sqsize / 3
         idealgrid = self.getIdealGrid(sqsize, numsquare, angle, tranX, tranY)
         sumofPE = 0
         for i in self.warpcenters:
             for j in idealgrid:
                 d = np.sqrt(pow(i[0] - j[0], 2) + pow(i[1] - j[1], 2))
-                sumofPE += A * np.exp(-d / t)
-                # sumofPE += 1
+                sumofPE += 10 * np.exp(-d / t)
+                # sumofPE += pow(d, 2)/5000
         return sumofPE
 
     def getIdealGrid(self, sqsize, numsquare, angle, tranX, tranY):
         cors = []
         for i in range(numsquare):
             for j in range(numsquare):
-                # currently rotates about corner point, might change to center of grid
                 ang = np.deg2rad(angle)
                 cors.append([(i - float(numsquare - 1) / 2) * sqsize * np.cos(ang) + tranX -
                              (j - float(numsquare - 1) / 2) * sqsize * np.sin(ang) + img_size / 2,
                              (i - float(numsquare - 1) / 2) * sqsize * np.sin(ang) + tranY +
                              (j - float(numsquare - 1) / 2) * sqsize * np.cos(ang) + img_size / 2])
         return cors
-
-    def minimum_bounding_rectangle(self, points):
-        """
-        Find the smallest bounding rectangle for a set of points.
-        Returns a set of points representing the corners of the bounding box.
-
-        :param points: an nx2 matrix of coordinates
-        :rval: an nx2 matrix of coordinates
-        """
-        from scipy.ndimage.interpolation import rotate
-        pi2 = np.pi / 2.
-
-        # get the convex hull for the points
-        hull_points = points[spa.ConvexHull(points).vertices]
-
-        # calculate edge angles
-        edges = np.zeros((len(hull_points) - 1, 2))
-        edges = hull_points[1:] - hull_points[:-1]
-
-        angles = np.zeros((len(edges)))
-        angles = np.arctan2(edges[:, 1], edges[:, 0])
-
-        angles = np.abs(np.mod(angles, pi2))
-        angles = np.unique(angles)
-
-        # find rotation matrices
-        # XXX both work
-        rotations = np.vstack([
-            np.cos(angles),
-            np.cos(angles - pi2),
-            np.cos(angles + pi2),
-            np.cos(angles)]).T
-        rotations = rotations.reshape((-1, 2, 2))
-
-        # apply rotations to the hull
-        rot_points = np.dot(rotations, hull_points.T)
-
-        # find the bounding points
-        min_x = np.nanmin(rot_points[:, 0], axis=1)
-        max_x = np.nanmax(rot_points[:, 0], axis=1)
-        min_y = np.nanmin(rot_points[:, 1], axis=1)
-        max_y = np.nanmax(rot_points[:, 1], axis=1)
-
-        # find the box with the best area
-        areas = (max_x - min_x) * (max_y - min_y)
-        best_idx = np.argmin(areas)
-
-        # return the best box
-        x1 = max_x[best_idx]
-        x2 = min_x[best_idx]
-        y1 = max_y[best_idx]
-        y2 = min_y[best_idx]
-        r = rotations[best_idx]
-
-        rval = np.zeros((4, 2))
-        rval[0] = np.dot([x1, y2], r)
-        rval[1] = np.dot([x2, y2], r)
-        rval[2] = np.dot([x2, y1], r)
-        rval[3] = np.dot([x1, y1], r)
-
-        return rval
 
 
 if __name__ == "__main__":
