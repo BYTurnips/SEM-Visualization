@@ -30,6 +30,10 @@ class RegionFinder:
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
         self.warpcenters = self.findWarpedCenters()
+        xs = [x[1] for x in self.warpcenters]
+        ys = [x[0] for x in self.warpcenters]
+        self.axes[0].scatter(xs, ys, s=10)
+
         self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
         xs = [x[1] for x in self.ideal]
         ys = [x[0] for x in self.ideal]
@@ -58,7 +62,7 @@ class RegionFinder:
             avg_area += k.area
         avg_area /= len(properties)
 
-        image_label_overlay = ski.color.label2rgb(labeled_init, image=init)
+        # image_label_overlay = ski.color.label2rgb(labeled_init, image=init)
 
         self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
         self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
@@ -151,7 +155,7 @@ class RegionFinder:
         return lutx, luty
 
     def convertPicture(self):
-        processed = ski.io.imread('Init_250.bmp', as_gray=True)
+        processed = ski.io.imread('whitesq.jpg', as_gray=True)
         for i in range(250):
             for j in range(250):
                 # print(processed[int(self.lutx(i, j))][int(self.lutx(i, j))])
@@ -159,9 +163,8 @@ class RegionFinder:
                 ny = j + int(self.luty(i, j))
                 if 0 <= nx < 250 and 0 <= ny < 250:
                     processed[nx][ny] = self.init[i][j]
-        # processed = ski.filters.gaussian(processed, sigma=2)
-        # processed = morph.erosion(processed)
-        self.axes[1].imshow(processed, interpolation='nearest')
+        processed = morph.erosion(processed)
+        self.axes[1].imshow(processed, cmap=plt.cm.gray)
         plt.show()
 
     def gridGradDesc(self):
