@@ -27,28 +27,25 @@ img_size = 250
 
 class RegionFinder:
     def __init__(self):
-        fig, self.axes = plt.subplots(1, 3, figsize=(8, 3), sharey=True)
+        fig, self.axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
         # fig, self.ergraph = plt.subplots(1, 1, figsize=(8, 3), sharey=True)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
         self.warpcenters = self.findWarpedCenters()
-        # self.warpcenters = self.getIdealGrid(30, 10, 27, 10, 15)
         xs = [x[1] for x in self.warpcenters]
         ys = [x[0] for x in self.warpcenters]
-        self.axes[1].scatter(xs, ys)
-        self.axes[2].scatter(xs, ys)
+        # self.axes[1].scatter(xs, ys)
+        # self.axes[1].scatter([x+125 for x in xs], [y+125 for y in ys], s=10)
 
         # self.ideal = self.findGrid()
         self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
-        # print(self.testGridLoss(35, 26, 10, 15, 15, 0))
+        print(self.testGridLoss(35, 26, 10, 15, 15, 0))
         xs = [x[1] for x in self.ideal]
         ys = [x[0] for x in self.ideal]
         self.axes[0].scatter(xs, ys, s=10)
 
         self.lutx, self.luty = self.generateMapping(self.warpcenters, self.ideal)
-        print(self.init[2][100])
-        plt.tight_layout()
-        plt.show()
+        self.convertPicture()
 
     def findWarpedCenters(self):
         init = self.init
@@ -71,7 +68,7 @@ class RegionFinder:
 
         self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
         self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
-        self.axes[1].imshow(image_label_overlay, interpolation='nearest')
+        # self.axes[1].imshow(image_label_overlay, interpolation='nearest')
 
         for k in properties:
             if 0.5 < k.area / avg_area < 1.5:
@@ -123,9 +120,6 @@ class RegionFinder:
         return sumofPE
 
     def generateMapping(self, warped, ideal):
-        # sorted(warped, key=self.distFromMiddle)
-        # middlept = warped[0]
-
         # might have to change the way the points are being mapped - currently
         # just a simple closest-neighbor method
         x, y, dx, dy = [], [], [], []
@@ -140,24 +134,37 @@ class RegionFinder:
             y.append(warp[1])
             dx.append(close[0] - warp[0])
             dy.append(close[1] - warp[1])
+
         x = np.asarray(x)
         y = np.asarray(y)
         dx = np.asarray(dx)
         dy = np.asarray(dy)
         coors = np.column_stack((x, y))
+
         rows = np.arange(0, 251, 25)
         cols = np.arange(0, 251, 25)
-        grid_x, grid_y = np.mgrid[0:250:11j, 0:250:11j]
-        tlutx = inter.griddata(coors, dx, (grid_x, grid_y))
-        tluty = inter.griddata(coors, dy, (grid_x, grid_y))
 
-        # print(rows, cols, tlutx)
+        grid_x, grid_y = np.mgrid[0:250:11j, 0:250:11j]
+
+        tlutx = inter.griddata(coors, dx, (grid_x, grid_y), fill_value=0)
+        tluty = inter.griddata(coors, dy, (grid_x, grid_y), fill_value=0)
+        self.fill(tlutx)
         lutx = inter.interp2d(rows, cols, tlutx)
         luty = inter.interp2d(rows, cols, tluty)
+        print(tlutx)
+
         return lutx, luty
 
     def convertPicture(self):
-        processed = qgui.QImage('grid.png')
+        processed = ski.io.imread('grid.png', as_gray=True)
+        for i in range(250):
+            for j in range(250):
+                # print(processed[int(self.lutx(i, j))][int(self.lutx(i, j))])
+                nx = 125 + i + int(self.lutx(i, j))
+                ny = 125 + j + int(self.luty(i, j))
+                processed[nx][ny] = self.init[i][j]
+        self.axes[1].imshow(processed, interpolation='nearest')
+        plt.show()
 
     def gridGradDesc(self):
         w = squarewidth + squaredist
@@ -208,6 +215,14 @@ class RegionFinder:
                              (i - float(numsquare - 1) / 2) * sqh * np.sin(ang) + tranY +
                              (j - float(numsquare - 1) / 2) * sqv * np.cos(ang) + img_size / 2])
         return cors
+
+    def fill(self, data, invalid=None):
+
+        if invalid is None:
+            invalid = np.isnan(data)
+
+        ind = ndi.distance_transform_edt(invalid, return_distances=False, return_indices=True)
+        return data[tuple(ind)]
 
 
 if __name__ == "__main__":
