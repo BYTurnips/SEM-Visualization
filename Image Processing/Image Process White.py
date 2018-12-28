@@ -29,21 +29,43 @@ class RegionFinder:
         fig, self.axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
+        self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
+
         self.warpcenters = self.findWarpedCenters()
         xs = [x[1] for x in self.warpcenters]
         ys = [x[0] for x in self.warpcenters]
         self.axes[0].scatter(xs, ys, s=10)
 
         self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
-        xs = [x[1] for x in self.ideal]
-        ys = [x[0] for x in self.ideal]
-        self.axes[0].scatter(xs, ys, s=10)
+        xss = [x[1] for x in self.ideal]
+        yss = [x[0] for x in self.ideal]
+        self.axes[0].scatter(xss, yss, s=10)
 
-        self.lutx, self.luty = self.generateMapping(self.warpcenters, self.ideal)
-        self.convertPicture()
+        # the axes get flipped because of weird coordinate shenanigans
+        self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
+        self.init = self.convertPicture()
+        # self.axes[1].imshow(ski.io.imread('whitesq.jpg', as_gray=True), cmap=plt.cm.gray)
+        self.axes[1].imshow(self.init, cmap=plt.cm.gray)
 
-    def straightenImage(self, img):
-        pass
+        xsss = []
+        ysss = []
+        for i in range(len(xs)):
+            xsss.append(xs[i] + self.lutx(xs[i], ys[i]))
+            ysss.append(ys[i] + self.luty(xs[i], ys[i]))
+
+        self.axes[1].scatter(xsss, ysss, s=10)
+
+        corx = 10
+        cory = 32
+
+        print(self.lutx(corx, cory), self.luty(corx, cory))
+
+        self.warpcenters = self.findWarpedCenters()
+        xs = [x[1] for x in self.warpcenters]
+        ys = [x[0] for x in self.warpcenters]
+        self.axes[1].scatter(xs, ys, s=10)
+
+        plt.show()
 
     def findWarpedCenters(self):
         init = self.init
@@ -64,8 +86,8 @@ class RegionFinder:
 
         # image_label_overlay = ski.color.label2rgb(labeled_init, image=init)
 
-        self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
-        self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
+        # self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
+        # self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
         # self.axes[1].imshow(image_label_overlay, interpolation='nearest')
 
         for k in properties:
@@ -114,7 +136,6 @@ class RegionFinder:
             for j in idealgrid:
                 d = np.sqrt(pow(i[0] - j[0], 2) + pow(i[1] - j[1], 2))
                 sumofPE += -10 * np.exp(-d / t)
-                # sumofPE += pow(d, 2)/5000
         return sumofPE
 
     def generateMapping(self, warped, ideal):
@@ -139,10 +160,12 @@ class RegionFinder:
         dy = np.asarray(dy)
         coors = np.column_stack((x, y))
 
-        rows = np.arange(0, 251, 25)
-        cols = np.arange(0, 251, 25)
+        res = 50
 
-        grid_x, grid_y = np.mgrid[0:250:11j, 0:250:11j]
+        rows = np.arange(0, 251, 250 / res)
+        cols = np.arange(0, 251, 250 / res)
+
+        grid_x, grid_y = np.mgrid[0:250:complex(0, res + 1), 0:250:complex(0, res + 1)]
 
         tlutx = inter.griddata(coors, dx, (grid_x, grid_y))
         tluty = inter.griddata(coors, dy, (grid_x, grid_y))
@@ -150,7 +173,6 @@ class RegionFinder:
         tluty = self.fill(tluty)
         lutx = inter.interp2d(rows, cols, tlutx)
         luty = inter.interp2d(rows, cols, tluty)
-        print(tlutx)
 
         return lutx, luty
 
@@ -164,8 +186,8 @@ class RegionFinder:
                 if 0 <= nx < 250 and 0 <= ny < 250:
                     processed[nx][ny] = self.init[i][j]
         processed = morph.erosion(processed)
-        self.axes[1].imshow(processed, cmap=plt.cm.gray)
-        plt.show()
+        # plt.show()
+        return processed
 
     def gridGradDesc(self):
         w = squarewidth + squaredist
