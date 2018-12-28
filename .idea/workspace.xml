@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Image Processing/grid.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
@@ -21,17 +20,18 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="blacksq.jpg" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Image Processing/blacksq.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+            <state relative-caret-position="357">
+              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
               <folding>
                 <element signature="e#702#720#0" expanded="true" />
-                <element signature="e#1622#3054#0" />
-                <element signature="e#3289#4123#0" />
-                <element signature="e#4211#4596#0" />
-                <element signature="e#6029#7217#0" />
               </folding>
             </state>
           </provider>
@@ -40,8 +40,8 @@
       <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+            <state relative-caret-position="442">
+              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -352,20 +352,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Got threading and signals to work with the thing">
-      <created>1532390167659</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1532390167659</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Created a really basic application in Testing.py that updates the scan area periodically until the user stops it">
-      <created>1532391285342</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1532391285342</updated>
     </task>
     <task id="LOCAL-00013" summary="successfully integrated QT Designer code into the thing. Added a QTimer for periodic scanning.">
       <created>1532468078131</created>
@@ -696,7 +682,21 @@
       <option name="project" value="LOCAL" />
       <updated>1545875977695</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="could not do simple interp2d because that function is a big lie&#10;&#10;&#10;so did griddata into interp2d instead.">
+      <created>1545949782416</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1545949782417</updated>
+    </task>
+    <task id="LOCAL-00061" summary="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping.">
+      <created>1545966827591</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1545966827591</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -709,7 +709,7 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.30208334" />
+      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.31966147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -758,8 +758,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added a function instead of LUT to test" />
-    <MESSAGE value="created inverse function to replace LUT" />
     <MESSAGE value="Experimental setup with a deque instead of a queue" />
     <MESSAGE value="quick diagnostic for drawing the entire area pixel by pixel" />
     <MESSAGE value="minor bug" />
@@ -783,29 +781,17 @@
     <MESSAGE value="even more starter code for findng rotated bounding rectangle or possibly doing a gradient descent algorithm, idk which route to take yet" />
     <MESSAGE value="starting off with a brute force search to maek sure this potential function actually works" />
     <MESSAGE value="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next" />
-    <option name="LAST_COMMIT_MESSAGE" value="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next" />
+    <MESSAGE value="could not do simple interp2d because that function is a big lie&#10;&#10;&#10;so did griddata into interp2d instead." />
+    <MESSAGE value="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping." />
+    <option name="LAST_COMMIT_MESSAGE" value="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/QTD_Window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="53" lean-forward="true" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scanArea.py" />
     <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1016,9 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1029,29 +1012,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/grid.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        <state relative-caret-position="442">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+        <state relative-caret-position="357">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding>
             <element signature="e#702#720#0" expanded="true" />
-            <element signature="e#1622#3054#0" />
-            <element signature="e#3289#4123#0" />
-            <element signature="e#4211#4596#0" />
-            <element signature="e#6029#7217#0" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/blacksq.jpg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">

@@ -14,9 +14,8 @@ import numpy as np
 import scipy.interpolate as inter
 from scipy import ndimage as ndi
 import skimage as ski
-from skimage import morphology
+import skimage.morphology as morph
 import matplotlib.pyplot as plt
-from PyQt5 import QtGui as qgui
 
 squarewidth = 20
 squaredist = 5
@@ -28,18 +27,10 @@ img_size = 250
 class RegionFinder:
     def __init__(self):
         fig, self.axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
-        # fig, self.ergraph = plt.subplots(1, 1, figsize=(8, 3), sharey=True)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
         self.warpcenters = self.findWarpedCenters()
-        xs = [x[1] for x in self.warpcenters]
-        ys = [x[0] for x in self.warpcenters]
-        # self.axes[1].scatter(xs, ys)
-        # self.axes[1].scatter([x+125 for x in xs], [y+125 for y in ys], s=10)
-
-        # self.ideal = self.findGrid()
         self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
-        print(self.testGridLoss(35, 26, 10, 15, 15, 0))
         xs = [x[1] for x in self.ideal]
         ys = [x[0] for x in self.ideal]
         self.axes[0].scatter(xs, ys, s=10)
@@ -47,13 +38,16 @@ class RegionFinder:
         self.lutx, self.luty = self.generateMapping(self.warpcenters, self.ideal)
         self.convertPicture()
 
+    def straightenImage(self, img):
+        pass
+
     def findWarpedCenters(self):
         init = self.init
         elevation_map = ski.filters.sobel(init)
         markers = np.zeros_like(init)
         markers[init < 0.1] = 1
         markers[init > 0.9] = 2
-        segmentation = morphology.watershed(elevation_map, markers)
+        segmentation = morph.watershed(elevation_map, markers)
         segmentation = ndi.binary_fill_holes(segmentation - 1)
         labeled_init, _ = ndi.label(segmentation)
 
@@ -120,8 +114,7 @@ class RegionFinder:
         return sumofPE
 
     def generateMapping(self, warped, ideal):
-        # might have to change the way the points are being mapped - currently
-        # just a simple closest-neighbor method
+        # currently closest-neighbor method mapping
         x, y, dx, dy = [], [], [], []
         for warp in warped:
             close = [1000, 1000]
@@ -130,6 +123,7 @@ class RegionFinder:
                 if self.distBWPts(ipt, warp) < curmin:
                     curmin = self.distBWPts(ipt, warp)
                     close = ipt
+            # dest =
             x.append(warp[0])
             y.append(warp[1])
             dx.append(close[0] - warp[0])
@@ -146,9 +140,10 @@ class RegionFinder:
 
         grid_x, grid_y = np.mgrid[0:250:11j, 0:250:11j]
 
-        tlutx = inter.griddata(coors, dx, (grid_x, grid_y), fill_value=0)
-        tluty = inter.griddata(coors, dy, (grid_x, grid_y), fill_value=0)
-        self.fill(tlutx)
+        tlutx = inter.griddata(coors, dx, (grid_x, grid_y))
+        tluty = inter.griddata(coors, dy, (grid_x, grid_y))
+        tlutx = self.fill(tlutx)
+        tluty = self.fill(tluty)
         lutx = inter.interp2d(rows, cols, tlutx)
         luty = inter.interp2d(rows, cols, tluty)
         print(tlutx)
@@ -156,13 +151,16 @@ class RegionFinder:
         return lutx, luty
 
     def convertPicture(self):
-        processed = ski.io.imread('grid.png', as_gray=True)
+        processed = ski.io.imread('Init_250.bmp', as_gray=True)
         for i in range(250):
             for j in range(250):
                 # print(processed[int(self.lutx(i, j))][int(self.lutx(i, j))])
-                nx = 125 + i + int(self.lutx(i, j))
-                ny = 125 + j + int(self.luty(i, j))
-                processed[nx][ny] = self.init[i][j]
+                nx = i + int(self.lutx(i, j))
+                ny = j + int(self.luty(i, j))
+                if 0 <= nx < 250 and 0 <= ny < 250:
+                    processed[nx][ny] = self.init[i][j]
+        # processed = ski.filters.gaussian(processed, sigma=2)
+        # processed = morph.erosion(processed)
         self.axes[1].imshow(processed, interpolation='nearest')
         plt.show()
 
