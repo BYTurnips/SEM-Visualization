@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Image Processing/Calibration_Vertical.bmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +26,8 @@
       <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="194" column="68" selection-start-line="194" selection-start-column="68" selection-end-line="194" selection-end-column="68" />
+            <state relative-caret-position="1584">
+              <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
               <folding>
                 <element signature="e#702#720#0" expanded="true" />
                 <element signature="e#1774#3020#0" />
@@ -368,13 +365,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
     </task>
-    <task id="LOCAL-00014" summary="Split up the application in separate files (main, scan display thread, gui thread, and data thread)">
-      <created>1532470498279</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1532470498279</updated>
-    </task>
     <task id="LOCAL-00015" summary="Successfully implemented the application with random noise as the input (might be a bit slow, but I have a few ideas for optimization)">
       <created>1532475682624</created>
       <option name="number" value="00015" />
@@ -711,7 +701,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545981080606</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="finally got the image straightened out">
+      <created>1546065358212</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1546065358212</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -784,7 +781,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="quick diagnostic for drawing the entire area pixel by pixel" />
     <MESSAGE value="minor bug" />
     <MESSAGE value="more diagnostic" />
     <MESSAGE value="changed color creation to LUT" />
@@ -809,7 +805,8 @@
     <MESSAGE value="could not do simple interp2d because that function is a big lie&#10;&#10;&#10;so did griddata into interp2d instead." />
     <MESSAGE value="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping." />
     <MESSAGE value="the LUT is mapping correctly based off the centroids. Therefore, some weaselly little scum bug is messing up the image conversion itself." />
-    <option name="LAST_COMMIT_MESSAGE" value="the LUT is mapping correctly based off the centroids. Therefore, some weaselly little scum bug is messing up the image conversion itself." />
+    <MESSAGE value="finally got the image straightened out" />
+    <option name="LAST_COMMIT_MESSAGE" value="finally got the image straightened out" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1036,8 +1033,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="194" column="68" selection-start-line="194" selection-start-column="68" selection-end-line="194" selection-end-column="68" />
+        <state relative-caret-position="1584">
+          <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
           <folding>
             <element signature="e#702#720#0" expanded="true" />
             <element signature="e#1774#3020#0" />
