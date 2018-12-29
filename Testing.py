@@ -1,29 +1,16 @@
-import numpy as np
-import scipy.interpolate as inter
-import scipy.ndimage as ndi
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from time import perf_counter
-from collections import deque
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+import skimage as ski
 
+pic = ski.io.imread('grid.png', as_gray=True)
 
-def fill(data, invalid=None):
-    if invalid is None:
-        invalid = np.isnan(data)
+fig, axes = plt.subplots(1, 1)
 
-    ind = ndi.distance_transform_edt(invalid, return_distances=False, return_indices=True)
-    print(ind)
-    return data[tuple(ind)]
+pic[250][250] = 0
 
+print(pic[250][251])
 
-grid = np.asarray([[np.NaN, np.NaN, 1], [1, 2, 1], [np.NaN, np.NaN, np.NaN]])
+pic[250][250] = pic[260][260]
 
-print(grid)
+axes.imshow(pic, cmap=plt.cm.gray)
 
-print("What goes in: ")
-print(np.isnan(grid))
-print()
-grid = fill(grid)
-
-print(grid)
+plt.show()

@@ -26,8 +26,9 @@ img_size = 250
 
 class RegionFinder:
     def __init__(self):
-        fig, self.axes = plt.subplots(1, 2, figsize=(8, 3), sharey=True)
+        fig, self.axes = plt.subplots(1, 3)
         self.init = ski.io.imread('Init_250.bmp', as_gray=True)
+        self.actinit = self.init
 
         self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
 
@@ -35,6 +36,7 @@ class RegionFinder:
         xs = [x[1] for x in self.warpcenters]
         ys = [x[0] for x in self.warpcenters]
         self.axes[0].scatter(xs, ys, s=10)
+        self.axes[2].scatter(xs, ys, s=10)
 
         self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
         xss = [x[1] for x in self.ideal]
@@ -49,21 +51,21 @@ class RegionFinder:
 
         xsss = []
         ysss = []
+        newb = []
         for i in range(len(xs)):
-            xsss.append(xs[i] + self.lutx(xs[i], ys[i]))
-            ysss.append(ys[i] + self.luty(xs[i], ys[i]))
+            xsss.append(int(xs[i] + self.lutx(xs[i], ys[i])))
+            ysss.append(int(ys[i] + self.luty(xs[i], ys[i])))
+            newb.append(int(self.actinit[int(xs[i]), int(ys[i])]))
 
         self.axes[1].scatter(xsss, ysss, s=10)
 
-        corx = 10
-        cory = 32
+        parray = np.column_stack((xs, ys, xsss, ysss, newb))
+        print(parray)
 
-        print(self.lutx(corx, cory), self.luty(corx, cory))
-
-        self.warpcenters = self.findWarpedCenters()
-        xs = [x[1] for x in self.warpcenters]
-        ys = [x[0] for x in self.warpcenters]
-        self.axes[1].scatter(xs, ys, s=10)
+        # self.warpcenters = self.findWarpedCenters()
+        # xs = [x[1] for x in self.warpcenters]
+        # ys = [x[0] for x in self.warpcenters]
+        # self.axes[1].scatter(xs, ys, s=10)
 
         plt.show()
 
@@ -177,16 +179,25 @@ class RegionFinder:
         return lutx, luty
 
     def convertPicture(self):
+        # pic = ski.io.imread('gradientgray.jpg', as_gray=True)
+        pic = self.init
         processed = ski.io.imread('whitesq.jpg', as_gray=True)
-        for i in range(250):
-            for j in range(250):
-                # print(processed[int(self.lutx(i, j))][int(self.lutx(i, j))])
-                nx = i + int(self.lutx(i, j))
-                ny = j + int(self.luty(i, j))
-                if 0 <= nx < 250 and 0 <= ny < 250:
-                    processed[nx][ny] = self.init[i][j]
-        processed = morph.erosion(processed)
-        # plt.show()
+        self.axes[2].imshow(pic, cmap=plt.cm.gray)
+        for i in range(0, 250, 1):
+            for j in range(0, 250, 1):
+                dx = int(self.lutx(i, j))
+                dy = int(self.luty(i, j))
+                ix = i - dx
+                iy = j - dy
+                if i == 14 and j == 79:
+                    print(ix, iy)
+                    self.axes[1].arrow(ix, iy, dx, dy, head_width=4)
+                    self.axes[2].arrow(ix, iy, dx, dy, head_width=4)
+                if 0 <= ix < 250 and 0 <= iy < 250:
+                    processed[j][i] = pic[iy][ix]
+                if i % 25 == 0 and j % 25 == 0:
+                    self.axes[1].arrow(ix, iy, dx, dy, head_width=4)
+                    self.axes[2].arrow(ix, iy, dx, dy, head_width=4)
         return processed
 
     def gridGradDesc(self):

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Image Processing/Calibration_Vertical.bmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
@@ -20,30 +21,43 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file leaf-file-name="blacksq.jpg" pinned="false" current-in-tab="true">
+      <file leaf-file-name="blacksq.jpg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Image Processing/blacksq.jpg">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Image Process White.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+            <state relative-caret-position="292">
+              <caret line="194" column="68" selection-start-line="194" selection-start-column="68" selection-end-line="194" selection-end-column="68" />
               <folding>
                 <element signature="e#702#720#0" expanded="true" />
+                <element signature="e#1774#3020#0" />
+                <element signature="e#3054#3888#0" />
+                <element signature="e#3968#4355#0" />
+                <element signature="e#4411#5535#0" />
+                <element signature="e#6060#7248#0" />
+                <element signature="e#7291#7352#0" />
+                <element signature="e#7432#7948#0" />
+                <element signature="e#7999#8183#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="gradientgray.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Image Processing/gradientgray.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
       <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+            <state relative-caret-position="187">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,6 +112,7 @@
       <find>width</find>
       <find>grid_size</find>
       <find>&gt;&gt;&gt;</find>
+      <find>20</find>
     </findStrings>
     <replaceStrings>
       <replace>quitb</replace>
@@ -180,12 +195,12 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
       <recent name="C:\Users\Brion\Documents\Extracurricular\Science Research" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -352,13 +367,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
-    </task>
-    <task id="LOCAL-00013" summary="successfully integrated QT Designer code into the thing. Added a QTimer for periodic scanning.">
-      <created>1532468078131</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1532468078131</updated>
     </task>
     <task id="LOCAL-00014" summary="Split up the application in separate files (main, scan display thread, gui thread, and data thread)">
       <created>1532470498279</created>
@@ -696,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545966827591</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="the LUT is mapping correctly based off the centroids. Therefore, some weaselly little scum bug is messing up the image conversion itself.">
+      <created>1545981080606</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1545981080606</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -705,43 +720,54 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
       <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Messages" order="6" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.31966147" />
+      <window_info active="true" anchor="right" x="663" y="67" width="287" height="731" id="Run" order="4" visible="true" weight="0.32747397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.31966147" />
       <window_info anchor="right" id="Data View" order="3" />
-      <window_info anchor="bottom" id="Messages" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="right" id="Run" order="4" weight="0.25694445" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32845744" />
-      <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -758,7 +784,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Experimental setup with a deque instead of a queue" />
     <MESSAGE value="quick diagnostic for drawing the entire area pixel by pixel" />
     <MESSAGE value="minor bug" />
     <MESSAGE value="more diagnostic" />
@@ -783,7 +808,8 @@
     <MESSAGE value="made own gradient descent function, came up with a weird looking graph that nevertheless might be correct. going to work on LUT next" />
     <MESSAGE value="could not do simple interp2d because that function is a big lie&#10;&#10;&#10;so did griddata into interp2d instead." />
     <MESSAGE value="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping." />
-    <option name="LAST_COMMIT_MESSAGE" value="first successful image-mapping.&#10;Issues: edges were not mapped, grid was not &quot;unstretched&quot; in the mapping." />
+    <MESSAGE value="the LUT is mapping correctly based off the centroids. Therefore, some weaselly little scum bug is messing up the image conversion itself." />
+    <option name="LAST_COMMIT_MESSAGE" value="the LUT is mapping correctly based off the centroids. Therefore, some weaselly little scum bug is messing up the image conversion itself." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -792,14 +818,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scanArea.py" />
-    <entry file="file://$PROJECT_DIR$/Data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/QTD_Window.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -939,9 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="27" column="23" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="23" />
-          <folding>
-            <element signature="e#60#70#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,26 +977,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/hough_tf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="40" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/hough_tf.py" />
     <entry file="file://$PROJECT_DIR$/Image Processing/Edit_250.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/plot_coins_segmentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#348#366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/plot_coins_segmentation.py" />
     <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -989,9 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,31 +1012,45 @@
     <entry file="file://$PROJECT_DIR$/Image Processing/grid.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Calibration_Vertical.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/blacksq.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        <state relative-caret-position="187">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
+    <entry file="file://$PROJECT_DIR$/Image Processing/gradientgray.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+        <state relative-caret-position="292">
+          <caret line="194" column="68" selection-start-line="194" selection-start-column="68" selection-end-line="194" selection-end-column="68" />
           <folding>
             <element signature="e#702#720#0" expanded="true" />
+            <element signature="e#1774#3020#0" />
+            <element signature="e#3054#3888#0" />
+            <element signature="e#3968#4355#0" />
+            <element signature="e#4411#5535#0" />
+            <element signature="e#6060#7248#0" />
+            <element signature="e#7291#7352#0" />
+            <element signature="e#7432#7948#0" />
+            <element signature="e#7999#8183#0" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/blacksq.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">
