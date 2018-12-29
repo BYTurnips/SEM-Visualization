@@ -64,7 +64,7 @@ class Display(QThread):
             # plotx = gen.TriaLUT(t % self.xdco, c.defw, self.xdco)
             plotx = gen.TriaLUT((t / self.ratsq) % self.xdco, c.defw, self.xdco)
             ploty = gen.SawtLUT((t * self.ratsq), c.defh, self.ydco)
-            print(plotx, ploty, t)
+            # print(plotx, ploty, t)
             # Plot the pixel at x and y with input intensity v
             self.scanA.setPixelColor(plotx, ploty % c.defh, self.ColorsLUT[v])
         print("Generating Image:", perf_counter() - testing)

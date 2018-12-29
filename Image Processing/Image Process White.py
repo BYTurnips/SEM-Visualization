@@ -10,6 +10,8 @@
 # This whole transform generates an LUT of each region's centroid, and
 # linear interpolation is used to transform the image for all future samples.
 
+# Note: doesn't work on MacOS for some reason, only Windows. Have not tested on Linux.
+
 import numpy as np
 import scipy.interpolate as inter
 from scipy import ndimage as ndi
