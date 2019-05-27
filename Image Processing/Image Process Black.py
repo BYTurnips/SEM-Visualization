@@ -8,18 +8,22 @@
 import numpy as np
 import scipy as sp
 import skimage as ski
+import skimage.morphology as morph
+import skimage.util as util
+import matplotlib.pyplot as plt
+from skimage.feature import canny
 from PyQt5.QtGui import *
-
-LUT = []
-
 
 class GridFinder:
     def __init__(self):
+        fig, self.axes = plt.subplots(1, 3)
         self.initImage = ski.io.imread('Init_250.bmp', as_gray=True)
-        # self.diagnoseLine(self.initImage)
-        self.out, self.angles, self.dists = ski.transform.hough_line(self.initImage)
-        print(self.angles)
-        print(self.dists)
+        inv = util.invert(self.initImage)
+        self.axes[0].imshow(inv, cmap=plt.cm.gray, interpolation='nearest')
+        inv = morph.erosion(inv, selem=np.ones((3, 3)))
+        self.axes[1].imshow(inv, cmap=plt.cm.gray, interpolation='nearest')
+        self.diagnoseLine(self.initImage)
+        plt.show()
 
     def diagnoseLine(self, img):
         self.out, self.angles, self.dists = ski.transform.hough_line(img)

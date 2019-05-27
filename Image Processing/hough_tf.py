@@ -2,20 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from skimage.transform import hough_line
-from skimage.draw import line
 from skimage.io import imread
+from skimage.util import invert
+from skimage import morphology as morph
+from skimage.feature import canny
 
-# img = np.zeros((100, 150), dtype=bool)
-# img[30, :] = 1
-# img[:, 65] = 1
-# img[35:45, 35:50] = 1
-# rr, cc = line(60, 130, 80, 10)
-# img[rr, cc] = 1
-# img += np.random.random(img.shape) > 0.95
+inv = imread('Init_250.bmp', as_gray=True)
+inv = invert(inv)
+inv = morph.erosion(inv, selem=np.ones((3, 3)))
+inv = canny(inv)
 
-# img = imread('Init_250.bmp', as_gray=True)
-
-img = imread('Edit2_250.bmp', as_gray=True)
+img = inv
 
 out, angles, d = hough_line(img)
 
@@ -26,7 +23,8 @@ axes[0].set_title('Input image')
 
 axes[1].imshow(
     out, cmap=plt.cm.bone,
-    extent=(np.rad2deg(angles[-1]), np.rad2deg(angles[0]), d[-1], d[0]))
+    extent=(np.rad2deg(angles[-1]),
+            np.rad2deg(angles[0]), d[-1], d[0]))
 axes[1].set_title('Hough transform')
 axes[1].set_xlabel('Angle (degree)')
 axes[1].set_ylabel('Distance (pixel)')
