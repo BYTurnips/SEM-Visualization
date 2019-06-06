@@ -7,7 +7,7 @@ from skimage.util import invert
 from skimage import morphology as morph
 from skimage.feature import canny
 
-inv = imread('Init_250.bmp', as_gray=True)
+inv = imread('Cap403.bmp', as_gray=True)
 inv = invert(inv)
 inv = morph.erosion(inv, selem=np.ones((3, 3)))
 inv = canny(inv)
@@ -16,7 +16,7 @@ img = inv
 
 out, angles, d = hough_line(img)
 
-fix, axes = plt.subplots(1, 2, figsize=(7, 4))
+fix, axes = plt.subplots(1, 3, figsize=(7, 4))
 
 axes[0].imshow(img, cmap=plt.cm.gray)
 axes[0].set_title('Input image')
@@ -28,6 +28,8 @@ axes[1].imshow(
 axes[1].set_title('Hough transform')
 axes[1].set_xlabel('Angle (degree)')
 axes[1].set_ylabel('Distance (pixel)')
+
+axes[2].imshow(inv, cmap=plt.cm.gray)
 
 plt.tight_layout()
 plt.show()

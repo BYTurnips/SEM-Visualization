@@ -14,6 +14,7 @@ import scipy.interpolate as inter
 from scipy import ndimage as ndi
 import skimage as ski
 import skimage.morphology as morph
+import skimage.feature as feat
 import matplotlib.pyplot as plt
 
 squarewidth = 20
@@ -26,8 +27,7 @@ img_size = 250
 class RegionFinder:
     def __init__(self):
         fig, self.axes = plt.subplots(1, 3)
-        self.init = ski.io.imread('Init_250.bmp', as_gray=True)
-        self.actinit = self.init
+        self.init = ski.io.imread('Cap403border.png', as_gray=True)
 
         self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
 
@@ -37,46 +37,49 @@ class RegionFinder:
         self.axes[0].scatter(xs, ys, s=10)
         self.axes[2].scatter(xs, ys, s=10)
 
+        # def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY)
+        self.ideal = self.getIdealGrid(28, 23, 12, 5, 0, -10)
         # self.ideal = self.findGrid()
-        self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
-        print(self.testGridLoss(35, 26, 10, 15, 15, 0))
+        print(self.testGridLoss(self.ideal))
         xss = [x[1] for x in self.ideal]
         yss = [x[0] for x in self.ideal]
         self.axes[0].scatter(xss, yss, s=10)
 
+        fig, tester = plt.subplots(1, 1)
+        tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
+        tester.scatter(xs, ys, s=10)
+        tester.scatter(xss, yss, s=10)
+
         # the axes get flipped because of weird coordinate shenanigans
         self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
         self.init = self.convertPicture()
-        # self.axes[1].imshow(ski.io.imread('whitesq.jpg', as_gray=True), cmap=plt.cm.gray)
+        self.axes[1].imshow(ski.io.imread('whitesq.jpg', as_gray=True), cmap=plt.cm.gray)
         self.axes[1].imshow(self.init, cmap=plt.cm.gray)
 
         xsss = []
         ysss = []
-        newb = []
         for i in range(len(xs)):
             xsss.append(int(xs[i] + self.lutx(xs[i], ys[i])))
             ysss.append(int(ys[i] + self.luty(xs[i], ys[i])))
-            newb.append(int(self.actinit[int(xs[i]), int(ys[i])]))
 
         self.axes[1].scatter(xsss, ysss, s=10)
 
-        fig, final = plt.subplots(1, 1)
-
-        final.imshow(self.init, cmap=plt.cm.gray)
+        # fig, final = plt.subplots(1, 1)
+        # final.imshow(self.init, cmap=plt.cm.gray)
 
         plt.show()
 
     def findWarpedCenters(self):
         init = self.init
-        elevation_map = ski.filters.sobel(init)
-        markers = np.zeros_like(init)
-        markers[init < 0.1] = 1
-        markers[init > 0.9] = 2
-        segmentation = morph.watershed(elevation_map, markers)
-        segmentation = ndi.binary_fill_holes(segmentation - 1)
-        labeled_init, _ = ndi.label(segmentation)
 
-        properties = ski.measure.regionprops(labeled_init)
+        edges = feat.canny(init, sigma=3.5)
+        edges = morph.dilation(edges)
+        filled = ndi.binary_fill_holes(edges)
+        filled = morph.erosion(filled)
+        filled = morph.remove_small_objects(filled, min_size=70)
+        labeled, _ = ndi.label(filled)
+
+        properties = ski.measure.regionprops(labeled)
         centers = []
         avg_area = 0
         for k in properties:
@@ -85,9 +88,9 @@ class RegionFinder:
 
         # image_label_overlay = ski.color.label2rgb(labeled_init, image=init)
 
-        # self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
+        self.axes[0].imshow(init, cmap=plt.cm.gray, interpolation='nearest')
         # self.axes[0].contour(segmentation, [0.5], linewidths=1.2, colors='y')
-        # self.axes[1].imshow(image_label_overlay, interpolation='nearest')
+        # self.axes[1].imshow(elevation_map, interpolation='nearest')
 
         for k in properties:
             if 0.5 < k.area / avg_area < 1.5:
@@ -116,7 +119,7 @@ class RegionFinder:
                     A = 90 * a / ares
                     X = w * x / tres
                     Y = w * y / tres
-                    sumofPE = self.testGridLoss(w, h, size, A, X, Y)
+                    sumofPE = self.testGridLoss(self.getIdealGrid(w, h, size, A, X, Y))
                     if sumofPE < curmin:
                         curmin = sumofPE
                         mina = a
@@ -127,9 +130,8 @@ class RegionFinder:
 
         return finalideal
 
-    def testGridLoss(self, sqh, sqv, numsquare, angle, tranX, tranY):
+    def testGridLoss(self, idealgrid):
         t = (squarewidth + squaredist) / 3
-        idealgrid = self.getIdealGrid(sqh, sqv, numsquare, angle, tranX, tranY)
         sumofPE = 0
         for i in self.warpcenters:
             for j in idealgrid:
@@ -188,7 +190,7 @@ class RegionFinder:
                     processed[j][i] = pic[iy][ix]
         return processed
 
-    #non-functional at the moment
+    # non-functional at the moment, but is supposed to do gradient descent
     def gridGradDesc(self):
         w = squarewidth + squaredist
         size = 10

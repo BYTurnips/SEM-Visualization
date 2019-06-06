@@ -7,8 +7,7 @@ from skimage import morphology
 from skimage.filters import sobel
 from scipy import ndimage as ndi
 
-
-coins = imread('Init_250.bmp', as_gray=True)
+coins = imread('Cap403.bmp', as_gray=True)
 hist, hist_centers = histogram(coins)
 
 fig, axes = plt.subplots(1, 2, figsize=(8, 3))
@@ -34,8 +33,8 @@ ax.axis('off')
 # parts of the histogram of gray values.
 
 markers = np.zeros_like(coins)
-markers[coins < 0.1] = 1
-markers[coins > 0.9] = 2
+markers[coins < 0.4] = 1
+markers[coins > 0.4] = 2
 
 fig, ax = plt.subplots(figsize=(4, 3))
 ax.imshow(markers, cmap=plt.cm.nipy_spectral, interpolation='nearest')
