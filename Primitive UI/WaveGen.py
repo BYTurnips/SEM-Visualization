@@ -3,8 +3,6 @@
 import numpy as np
 from scipy.interpolate import InterpolatedUnivariateSpline as UVS
 import time as time
-import Data as data
-from UniversalPiAPI import UZP
 import ProjectConstants as c
 
 
@@ -60,11 +58,11 @@ class UZPOut:
     def generateLUT(self):
         xcors = UZPOut.mTria(c.waveRes, c.defw)
         xtval = UZPOut.mSawt(c.waveRes, c.bill / c.XHz)
-        data.LUTX = UVS(xtval, xcors, None, [None, None], 1)
+        Data.LUTX = UVS(xtval, xcors, None, [None, None], 1)
 
         ycors = UZPOut.mSawt(c.waveRes, c.defh)
         ytval = UZPOut.mSawt(c.waveRes, c.bill / c.YHz)
-        data.LUTY = UVS(ytval, ycors, None, [None, None], 1)
+        Data.LUTY = UVS(ytval, ycors, None, [None, None], 1)
 
     # Returns a list of size numS that traces one period of a sine wave
     # (lowest pt at 0, highest pt at amp)

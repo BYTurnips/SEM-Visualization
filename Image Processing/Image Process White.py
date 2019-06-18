@@ -21,7 +21,6 @@ squarewidth = 20
 squaredist = 5
 img_size = 250
 
-
 # rotated, streched, offset grid parameters (close to ideal): (35, 26, 10, 15, 15, 0)
 
 class RegionFinder:
@@ -38,7 +37,7 @@ class RegionFinder:
         self.axes[2].scatter(xs, ys, s=10)
 
         # def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY)
-        self.ideal = self.getIdealGrid(28, 23, 12, 5, 0, -10)
+        self.ideal = self.getIdealGrid(28, 20, 12, 8, 5, -10)
         # self.ideal = self.findGrid()
         print(self.testGridLoss(self.ideal))
         xss = [x[1] for x in self.ideal]
@@ -104,6 +103,61 @@ class RegionFinder:
 
         return centers
 
+    def convertPicture(self):
+        pic = self.init
+        processed = ski.io.imread('whitesq.jpg', as_gray=True)
+        self.axes[2].imshow(pic, cmap=plt.cm.gray)
+        for i in range(0, 250, 1):
+            for j in range(0, 250, 1):
+                dx = int(self.lutx(i, j))
+                dy = int(self.luty(i, j))
+                ix = i - dx
+                iy = j - dy
+                if 0 <= ix < 250 and 0 <= iy < 250:
+                    processed[j][i] = pic[iy][ix]
+        return processed
+
+    def generateMapping(self, warped, ideal):
+        # currently closest-neighbor method mapping
+        x, y, dx, dy = [], [], [], []
+        for warp in warped:
+            close = [1000, 1000]
+            curmin = 100000000
+            for ipt in ideal:
+                if self.distBWPts(ipt, warp) < curmin:
+                    curmin = self.distBWPts(ipt, warp)
+                    close = ipt
+            x.append(warp[0])
+            y.append(warp[1])
+            dx.append(close[0] - warp[0])
+            dy.append(close[1] - warp[1])
+            # ideal.remove(close)
+
+        x = np.asarray(x)
+        y = np.asarray(y)
+        dx = np.asarray(dx)
+        dy = np.asarray(dy)
+        coors = np.column_stack((x, y))
+
+        res = 50
+
+        rows = np.arange(0, 251, 250 / res)
+        cols = np.arange(0, 251, 250 / res)
+
+        grid_x, grid_y = np.mgrid[0:250:complex(0, res + 1), 0:250:complex(0, res + 1)]
+
+        tlutx = inter.griddata(coors, dx, (grid_x, grid_y))
+        tluty = inter.griddata(coors, dy, (grid_x, grid_y))
+        tlutx = self.fill(tlutx)
+        tluty = self.fill(tluty)
+        lutx = inter.interp2d(rows, cols, tlutx)
+        luty = inter.interp2d(rows, cols, tluty)
+
+        return lutx, luty
+
+    def distBWPts(self, c1, c2):
+        return np.sqrt(pow(c2[0] - c1[0], 2) + pow(c2[1] - c1[1], 2))
+
     def findGrid(self):
         w = squarewidth + squaredist
         h = squarewidth + squaredist
@@ -139,106 +193,15 @@ class RegionFinder:
                 sumofPE += -10 * np.exp(-d / t)
         return sumofPE
 
-    def generateMapping(self, warped, ideal):
-        # currently closest-neighbor method mapping
-        x, y, dx, dy = [], [], [], []
-        for warp in warped:
-            close = [1000, 1000]
-            curmin = 100000000
-            for ipt in ideal:
-                if self.distBWPts(ipt, warp) < curmin:
-                    curmin = self.distBWPts(ipt, warp)
-                    close = ipt
-            x.append(warp[0])
-            y.append(warp[1])
-            dx.append(close[0] - warp[0])
-            dy.append(close[1] - warp[1])
-
-        x = np.asarray(x)
-        y = np.asarray(y)
-        dx = np.asarray(dx)
-        dy = np.asarray(dy)
-        coors = np.column_stack((x, y))
-
-        res = 50
-
-        rows = np.arange(0, 251, 250 / res)
-        cols = np.arange(0, 251, 250 / res)
-
-        grid_x, grid_y = np.mgrid[0:250:complex(0, res + 1), 0:250:complex(0, res + 1)]
-
-        tlutx = inter.griddata(coors, dx, (grid_x, grid_y))
-        tluty = inter.griddata(coors, dy, (grid_x, grid_y))
-        tlutx = self.fill(tlutx)
-        tluty = self.fill(tluty)
-        lutx = inter.interp2d(rows, cols, tlutx)
-        luty = inter.interp2d(rows, cols, tluty)
-
-        return lutx, luty
-
-    def convertPicture(self):
-        pic = self.init
-        processed = ski.io.imread('whitesq.jpg', as_gray=True)
-        self.axes[2].imshow(pic, cmap=plt.cm.gray)
-        for i in range(0, 250, 1):
-            for j in range(0, 250, 1):
-                dx = int(self.lutx(i, j))
-                dy = int(self.luty(i, j))
-                ix = i - dx
-                iy = j - dy
-                if 0 <= ix < 250 and 0 <= iy < 250:
-                    processed[j][i] = pic[iy][ix]
-        return processed
-
-    # non-functional at the moment, but is supposed to do gradient descent
-    def gridGradDesc(self):
-        w = squarewidth + squaredist
-        size = 10
-        A = 0
-        X = 0
-        Y = 0
-        alearn = 0.01
-        xylearn = 0.01
-
-        for cycle in range(100):
-            # Finding the initial loss
-            init_loss = self.testGridLoss(w, size, A, X, Y)
-            self.ergraph.scatter(cycle, init_loss, s=10)
-            # Finding the partial derivatives aka the gradient
-            dA = (self.testGridLoss(w, size, A + 0.000001, X, Y) - init_loss) / 0.000001
-            dX = (self.testGridLoss(w, size, A, X + 0.000001, Y) - init_loss) / 0.000001
-            dY = (self.testGridLoss(w, size, A, X, Y + 0.000001) - init_loss) / 0.000001
-
-            print(round(A, 3), round(X, 3), round(Y, 3), round(init_loss, 3), "D/DL",
-                  round(dA, 3), round(dX, 3), round(dY, 3))
-
-            A -= alearn * dA
-            X -= xylearn * dX
-            Y -= xylearn * dY
-
-        finalideal = self.getIdealGrid(w, size, A, X, Y)
-        xs = [x[1] for x in finalideal]
-        ys = [x[0] for x in finalideal]
-        self.axes[0].scatter(xs, ys, s=10)
-        self.axes[2].scatter(xs, ys, s=10)
-
-        plt.tight_layout()
-        plt.show()
-
-        return finalideal
-
-    def distBWPts(self, c1, c2):
-        return np.sqrt(pow(c2[0] - c1[0], 2) + pow(c2[1] - c1[1], 2))
-
     def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY):
         cors = []
         for i in range(numsquare):
             for j in range(numsquare):
                 ang = np.deg2rad(angle)
-                cors.append([(i - float(numsquare - 1) / 2) * sqh * np.cos(ang) + tranX -
+                cors.append(((i - float(numsquare - 1) / 2) * sqh * np.cos(ang) + tranX -
                              (j - float(numsquare - 1) / 2) * sqv * np.sin(ang) + img_size / 2,
                              (i - float(numsquare - 1) / 2) * sqh * np.sin(ang) + tranY +
-                             (j - float(numsquare - 1) / 2) * sqv * np.cos(ang) + img_size / 2])
+                             (j - float(numsquare - 1) / 2) * sqv * np.cos(ang) + img_size / 2))
         return cors
 
     def fill(self, data, invalid=None):

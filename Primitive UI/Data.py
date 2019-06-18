@@ -2,7 +2,6 @@
 
 import threading as pyth
 from collections import deque
-from UniversalPiAPI import UZP
 import ProjectConstants as c
 
 # implement SPI interface with the Universal Pi Board and do I/O

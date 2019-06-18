@@ -1,11 +1,5 @@
-import sys
-from PyQt5.QtWidgets import *
 import numpy as np
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-import Data as data
-import Display as display
-import Gui as gui
 from WaveGen import UZPOut as gen
 from scipy.interpolate import InterpolatedUnivariateSpline as uvs
 import ProjectConstants as c
@@ -21,7 +15,7 @@ if __name__ == "__main__":
     scanA = QImage()
     p = QPainter()
     p.begin(scanA)
-    cl = data.TestData()
+    cl = Data.TestData()
     time = perf_counter()
     for i in range(100):
         cl.sample()
@@ -29,7 +23,7 @@ if __name__ == "__main__":
     time = perf_counter()
     print("Displaying")
     for i in range(c.PIX_PER_UPDATE):
-        tsvalue = data.sampleData.popleft()
+        tsvalue = Data.sampleData.popleft()
         t = tsvalue[1]
         v = tsvalue[0]
         p.setPen(QColor(v, v, v, 255))
@@ -43,7 +37,7 @@ if __name__ == "__main__":
     time = perf_counter()
 
     for i in range(c.PIX_PER_UPDATE):
-        tsvalue = data.sampleData.popleft()
+        tsvalue = Data.sampleData.popleft()
         t = tsvalue[1]
         v = tsvalue[0]
 

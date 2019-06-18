@@ -5,7 +5,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from QTD_Window import Ui_MainWindow
 import ProjectConstants as c
-from time import perf_counter
 
 
 # GUI Class:

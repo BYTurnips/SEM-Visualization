@@ -3,7 +3,6 @@
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ProjectConstants as c
-import Data as data
 from time import perf_counter
 from WaveGen import UZPOut as gen
 
@@ -48,13 +47,13 @@ class Display(QThread):
     # scanA image attribute.
     def run(self):
         print("Displaying")
-        print(len(data.sampleData))
+        print(len(Data.sampleData))
         testing = perf_counter()
 
         for i in range(c.PIX_PER_UPDATE):
             # If data queue is empty, break till next call
             try:
-                tsvalue = data.sampleData.popleft()
+                tsvalue = Data.sampleData.popleft()
             except:
                 break
             t = tsvalue[1]

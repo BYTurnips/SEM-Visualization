@@ -4,9 +4,6 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import Data as data
-import Display as display
-import Gui as gui
 from WaveGen import UZPOut as Gen
 import ProjectConstants as c
 
@@ -28,9 +25,9 @@ class Master(QObject):
     def __init__(self):
         super().__init__()
         self.app = QApplication(sys.argv)
-        self.window = gui.GUI()
-        self.displayTh = display.Display()
-        self.dataTh = data.TestData()
+        self.window = Gui.GUI()
+        self.displayTh = Display.Display()
+        self.dataTh = Data.TestData()
 
         self.gen = Gen()
 
