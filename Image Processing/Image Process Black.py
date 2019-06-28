@@ -12,6 +12,7 @@ import skimage as ski
 import skimage.morphology as morph
 import skimage.feature as feat
 import matplotlib.pyplot as plt
+import queue
 import copy
 
 squarewidth = 20
@@ -28,10 +29,13 @@ class RegionFinder:
 
         self.warpcenters = self.findWarpedCenters()
         self.latticecenters = self.labelCenters()
+
         xs = [x[1] for x in self.warpcenters]
         ys = [x[0] for x in self.warpcenters]
         self.axes[0].scatter(xs, ys, s=10)
         self.axes[2].scatter(xs, ys, s=10)
+
+        self.axes[0].text(125, 125, "HIIIIIIIIII")
 
         self.ideal = self.getIdealGrid(28, 20, 12, 8, 5, -10)
         # self.ideal = self.findGrid()
@@ -42,7 +46,9 @@ class RegionFinder:
         fig, tester = plt.subplots(1, 1)
         tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
         tester.scatter(xs, ys, s=10)
-        tester.scatter(xss, yss, s=10)
+
+        for pt in self.latticecenters:
+            tester.text(pt[0][1], pt[0][0], pt[1].__repr__())
 
         # the axes get flipped because of weird coordinate shenanigans
         self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
@@ -93,41 +99,83 @@ class RegionFinder:
         return centers
 
     def labelCenters(self):
-        warp = copy.deepcopy(self.warpcenters)
         latticecenters = []
-        # find a point close to the center, known as initpt
-        origin = [1000, 1000]
+        oorigin = [1000, 1000]
         curmin = 100000000
-        for pt in warp:
+        for pt in self.warpcenters:
             if self.distBWPts((125, 125), pt) < curmin:
                 curmin = self.distBWPts((125, 125), pt)
-                origin = pt
-        warp.remove(origin)
+                oorigin = pt
+
+        self.getNeighbors(oorigin)
+        initpt = (oorigin, (0, 0))
+        visited = {}
+        BFS = queue.Queue()
+        BFS.put(initpt)
+        count = 0
+        # BFS to fill up all the points
+        while BFS.empty() is not True:
+            pt = BFS.get()
+            count += 1
+            if count % 1 is 0:
+                print(BFS.qsize(), "!", pt[1], "!", end=" ")
+            if pt[1] in visited:
+                print("repeat")
+                continue
+            else:
+                print("add to dict")
+                latticecenters.append(pt)
+                visited[pt[1]] = True
+            neighbors = self.getNeighbors(pt[0])
+            coords = ((0, 1), (-1, 0), (0, -1), (1, 0))
+            for i in range(4):
+                newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
+                if type(neighbors[i]) is not int:
+                    BFS.put((neighbors[i][1], newcor))
+        return latticecenters
+
+    def getNeighbors(self, origin):
         # find the 4 closest points to initpt. replace with quickselect alg later
+        warp = copy.deepcopy(self.warpcenters)
         closepts = []
-        for _ in range(4):
+        # print(origin)
+        for i in range(5):
             curmin = 100000000
             betpt = [1000, 1000]
             for pt in warp:
                 if self.distBWPts(origin, pt) < curmin:
                     curmin = self.distBWPts(origin, pt)
                     betpt = pt
-            closepts.append(betpt)
             warp.remove(betpt)
-        print("hi")
-        print(origin, closepts)
-        neworderedpts = self.finddirs(closepts, origin)
-        print(neworderedpts)
-        return None
+            if i is 0:
+                continue
+            closepts.append(betpt)
 
-    def finddirs(self, pts, origin):
-        sortpts = []
-        for pt in pts:
+        sortedpts = []
+        data = []
+        for pt in closepts:
             ang = np.arctan2(pt[1] - origin[1], pt[0] - origin[0])
             x = ((ang * 180 / np.pi + 315) % 360, pt)
-            sortpts.append(x)
-        sortpts.sort()
-        return sortpts
+            data.append(x)
+
+        # print(data)
+
+        tryar = [0, 90, 180, 270, 360]
+        for i in range(4):
+            exist = False
+            for pt in data:
+                if tryar[i] <= pt[0] <= tryar[i + 1]:
+                    exist = True
+                    sortedpts.append(pt)
+                    break
+            if not exist:
+                sortedpts.append(-1)
+
+        # print(origin, sortedpts)
+        return sortedpts
+
+    def distBWPts(self, c1, c2):
+        return np.sqrt(pow(c2[0] - c1[0], 2) + pow(c2[1] - c1[1], 2))
 
     def convertPicture(self):
         pic = self.init
@@ -157,7 +205,6 @@ class RegionFinder:
             y.append(warp[1])
             dx.append(close[0] - warp[0])
             dy.append(close[1] - warp[1])
-            # ideal.remove(close)
 
         x = np.asarray(x)
         y = np.asarray(y)
@@ -180,9 +227,6 @@ class RegionFinder:
         luty = inter.interp2d(rows, cols, tluty)
 
         return lutx, luty
-
-    def distBWPts(self, c1, c2):
-        return np.sqrt(pow(c2[0] - c1[0], 2) + pow(c2[1] - c1[1], 2))
 
     def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY):
         cors = []

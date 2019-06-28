@@ -3,25 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Display.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Display.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Image Processing/Image Process Black.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process Black.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process White.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Init_250.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Init_250.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/ProjectConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QTD_Driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/QTD_Driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QTD_Window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/QTD_Window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Static_BG.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Static_BG.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Testing2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UniversalPiAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/UniversalPiAPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Useful Setup Commands" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Useful Setup Commands" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaveGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/WaveGen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yellow_BG.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/Yellow_BG.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grid.png" beforeDir="false" afterPath="$PROJECT_DIR$/Primitive UI/grid.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,17 +17,10 @@
       <file leaf-file-name="Image Process Black.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="137" column="77" selection-start-line="137" selection-start-column="77" selection-end-line="137" selection-end-column="77" />
+            <state relative-caret-position="289">
+              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
               <folding>
                 <element signature="e#527#545#0" expanded="true" />
-                <element signature="e#846#2436#0" />
-                <element signature="e#2479#3355#0" />
-                <element signature="e#4343#4813#0" />
-                <element signature="e#4869#6049#0" />
-                <element signature="e#6092#6153#0" />
-                <element signature="e#6233#6749#0" />
-                <element signature="e#6800#6984#0" />
               </folding>
             </state>
           </provider>
@@ -121,6 +96,7 @@
       <find>20</find>
       <find>bmp</find>
       <find>print</find>
+      <find>warp</find>
     </findStrings>
     <replaceStrings>
       <replace>quitb</replace>
@@ -183,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,6 +175,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -402,13 +378,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528167353265</updated>
-    </task>
-    <task id="LOCAL-00017" summary="minor misc changes">
-      <created>1532537262582</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1532537262582</updated>
     </task>
     <task id="LOCAL-00018" summary="Different strategy for updating the image; the data thread also periodically updates the display so it can target only the changed pixels">
       <created>1532539824105</created>
@@ -746,7 +715,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559849685174</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Added beginning of line tracking (find origin, find close points, order points clockwise.">
+      <created>1560837147385</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1560837147386</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -776,23 +752,23 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.296875" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.296875" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -809,7 +785,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed color creation to LUT" />
     <MESSAGE value="diagnostic with setPixelColor and performance in the actual app" />
     <MESSAGE value="new approach with setpixel instead of drawpoint" />
     <MESSAGE value="added debug statement to gui" />
@@ -834,12 +809,13 @@
     <MESSAGE value="finally got the image straightened out" />
     <MESSAGE value="added a more recent image" />
     <MESSAGE value="changed square detection (image processing white) from using morphology.watershed to feature.canny; it seems to be more robust against the smearing issue.&#10;Also added all the most recent captures from the lab." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed square detection (image processing white) from using morphology.watershed to feature.canny; it seems to be more robust against the smearing issue.&#10;Also added all the most recent captures from the lab." />
+    <MESSAGE value="Added beginning of line tracking (find origin, find close points, order points clockwise." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added beginning of line tracking (find origin, find close points, order points clockwise." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -944,9 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="27" column="23" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="23" />
-          <folding>
-            <element signature="e#60#70#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,9 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,17 +1006,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="137" column="77" selection-start-line="137" selection-start-column="77" selection-end-line="137" selection-end-column="77" />
+        <state relative-caret-position="289">
+          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
           <folding>
             <element signature="e#527#545#0" expanded="true" />
-            <element signature="e#846#2436#0" />
-            <element signature="e#2479#3355#0" />
-            <element signature="e#4343#4813#0" />
-            <element signature="e#4869#6049#0" />
-            <element signature="e#6092#6153#0" />
-            <element signature="e#6233#6749#0" />
-            <element signature="e#6800#6984#0" />
           </folding>
         </state>
       </provider>
