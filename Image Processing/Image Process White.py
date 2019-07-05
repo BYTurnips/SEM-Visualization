@@ -26,7 +26,7 @@ img_size = 250
 class RegionFinder:
     def __init__(self):
         fig, self.axes = plt.subplots(1, 3)
-        self.init = ski.io.imread('Cap403border.png', as_gray=True)
+        self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
         self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
 
@@ -37,17 +37,14 @@ class RegionFinder:
         self.axes[2].scatter(xs, ys, s=10)
 
         # def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY)
-        self.ideal = self.getIdealGrid(28, 20, 12, 8, 5, -10)
+        self.ideal = self.getIdealGrid(35, 26, 10, 15, 15, 0)
         # self.ideal = self.findGrid()
         print(self.testGridLoss(self.ideal))
         xss = [x[1] for x in self.ideal]
         yss = [x[0] for x in self.ideal]
         self.axes[0].scatter(xss, yss, s=10)
 
-        fig, tester = plt.subplots(1, 1)
-        tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
-        tester.scatter(xs, ys, s=10)
-        tester.scatter(xss, yss, s=10)
+
 
         # the axes get flipped because of weird coordinate shenanigans
         self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
@@ -62,6 +59,11 @@ class RegionFinder:
             ysss.append(int(ys[i] + self.luty(xs[i], ys[i])))
 
         self.axes[1].scatter(xsss, ysss, s=10)
+
+        fig, tester = plt.subplots(1, 1)
+        tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
+        tester.scatter(xs, ys, s=10)
+        tester.scatter(xss, yss, s=10)
 
         # fig, final = plt.subplots(1, 1)
         # final.imshow(self.init, cmap=plt.cm.gray)

@@ -23,7 +23,7 @@ img_size = 250
 class RegionFinder:
     def __init__(self):
         fig, self.axes = plt.subplots(1, 3)
-        self.init = ski.io.imread('Cap403border.png', as_gray=True)
+        self.init = ski.io.imread('Cap403.bmp', as_gray=True)
 
         self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
 
@@ -35,8 +35,6 @@ class RegionFinder:
         self.axes[0].scatter(xs, ys, s=10)
         self.axes[2].scatter(xs, ys, s=10)
 
-        self.axes[0].text(125, 125, "HIIIIIIIIII")
-
         self.ideal = self.getIdealGrid(28, 20, 12, 8, 5, -10)
         # self.ideal = self.findGrid()
         xss = [x[1] for x in self.ideal]
@@ -47,8 +45,8 @@ class RegionFinder:
         tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
         tester.scatter(xs, ys, s=10)
 
-        for pt in self.latticecenters:
-            tester.text(pt[0][1], pt[0][0], pt[1].__repr__())
+        # for pt in self.latticecenters:
+        #     tester.text(pt[0][1], pt[0][0], pt[1].__repr__(), color='white')
 
         # the axes get flipped because of weird coordinate shenanigans
         self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
@@ -107,31 +105,29 @@ class RegionFinder:
                 curmin = self.distBWPts((125, 125), pt)
                 oorigin = pt
 
-        self.getNeighbors(oorigin)
+        print(self.getNeighbors((64, 174)))
         initpt = (oorigin, (0, 0))
         visited = {}
         BFS = queue.Queue()
         BFS.put(initpt)
         count = 0
         # BFS to fill up all the points
-        while BFS.empty() is not True:
-            pt = BFS.get()
-            count += 1
-            if count % 1 is 0:
-                print(BFS.qsize(), "!", pt[1], "!", end=" ")
-            if pt[1] in visited:
-                print("repeat")
-                continue
-            else:
-                print("add to dict")
-                latticecenters.append(pt)
-                visited[pt[1]] = True
-            neighbors = self.getNeighbors(pt[0])
-            coords = ((0, 1), (-1, 0), (0, -1), (1, 0))
-            for i in range(4):
-                newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
-                if type(neighbors[i]) is not int:
-                    BFS.put((neighbors[i][1], newcor))
+        # while BFS.empty() is not True:
+        #     pt = BFS.get()
+        #     count += 1
+        #     # if count % 1 is 0:
+        #     #     print(BFS.qsize(), "!", pt[1], "!", end=" ")
+        #     if pt[1] in visited:
+        #         continue
+        #     else:
+        #         latticecenters.append(pt)
+        #         visited[pt[1]] = True
+        #     neighbors = self.getNeighbors(pt[0])
+        #     coords = ((0, 1), (-1, 0), (0, -1), (1, 0))
+        #     for i in range(4):
+        #         newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
+        #         if type(neighbors[i]) is not int:
+        #             BFS.put((neighbors[i][1], newcor))
         return latticecenters
 
     def getNeighbors(self, origin):
@@ -150,15 +146,13 @@ class RegionFinder:
             if i is 0:
                 continue
             closepts.append(betpt)
-
+        # 2-cos(angle)
         sortedpts = []
         data = []
         for pt in closepts:
             ang = np.arctan2(pt[1] - origin[1], pt[0] - origin[0])
             x = ((ang * 180 / np.pi + 315) % 360, pt)
             data.append(x)
-
-        # print(data)
 
         tryar = [0, 90, 180, 270, 360]
         for i in range(4):
@@ -170,8 +164,6 @@ class RegionFinder:
                     break
             if not exist:
                 sortedpts.append(-1)
-
-        # print(origin, sortedpts)
         return sortedpts
 
     def distBWPts(self, c1, c2):
