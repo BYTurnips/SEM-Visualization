@@ -128,13 +128,15 @@ class RegionFinder:
                 newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
                 if type(neighbors[i]) is not int:
                     BFS.put((neighbors[i][1], newcor))
+                else:
+                    print(pt[1], (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1]))
         return latticecenters
 
     def getNeighbors(self, origin):
+        narrow_amt = (np.pi / 180) * 30
         # find the 4 closest points to initpt. replace with quickselect alg later
         warp = copy.deepcopy(self.warpcenters)
         closepts = []
-        # print(origin)
         for i in range(9):
             curmin = 100000000
             betpt = [1000, 1000]
@@ -160,26 +162,17 @@ class RegionFinder:
             curmin = 100000000
             betpt = [-1, -1]
             for pt in data:
-                # score = abs(pt[0]-tryar[i])
                 multiplier = pow((2 - np.cos(pt[0] - tryar[i])), 2)
                 score = self.distBWPts(origin, pt[1]) * multiplier
-                # print(score, self.distBWPts(origin, pt[1]), pt)
-                # print(score, pt)
                 if score < curmin:
                     curmin = score
                     betpt = pt
-            # print("Winner: ", betpt)
-            if tryar[i] <= betpt[0] <= tryar[i + 1]:
+            # it's possible that it should be more complex than betpt[0]+np.pi/4
+            # it's possible that this thing doesn't wrap around at 360 deg
+            if tryar[i] + narrow_amt <= betpt[0] + np.pi / 4 <= tryar[i + 1] - narrow_amt:
                 sortedpts.append(betpt)
             else:
-                # print(betpt[0], " failed the test between ",
-                #       tryar[i], " and ", tryar[i+1])
                 sortedpts.append(-1)
-        # for pt in data:
-        #     pt[0] = (pt[0] * 180 / np.pi + 315) % 360
-        # print(origin)
-        # print(closepts)
-        # print(data)
         return sortedpts
 
     def distBWPts(self, c1, c2):
