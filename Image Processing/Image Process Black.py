@@ -45,8 +45,8 @@ class RegionFinder:
         tester.imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
         tester.scatter(xs, ys, s=10)
 
-        # for pt in self.latticecenters:
-        #     tester.text(pt[0][1], pt[0][0], pt[1].__repr__(), color='white')
+        for pt in self.latticecenters:
+            tester.text(pt[0][1], pt[0][0], pt[1].__repr__(), color='white')
 
         # the axes get flipped because of weird coordinate shenanigans
         self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
@@ -105,29 +105,29 @@ class RegionFinder:
                 curmin = self.distBWPts((125, 125), pt)
                 oorigin = pt
 
-        print(self.getNeighbors((64, 174)))
+        # print(self.getNeighbors((64, 174)))
         initpt = (oorigin, (0, 0))
         visited = {}
         BFS = queue.Queue()
         BFS.put(initpt)
         count = 0
         # BFS to fill up all the points
-        # while BFS.empty() is not True:
-        #     pt = BFS.get()
-        #     count += 1
-        #     # if count % 1 is 0:
-        #     #     print(BFS.qsize(), "!", pt[1], "!", end=" ")
-        #     if pt[1] in visited:
-        #         continue
-        #     else:
-        #         latticecenters.append(pt)
-        #         visited[pt[1]] = True
-        #     neighbors = self.getNeighbors(pt[0])
-        #     coords = ((0, 1), (-1, 0), (0, -1), (1, 0))
-        #     for i in range(4):
-        #         newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
-        #         if type(neighbors[i]) is not int:
-        #             BFS.put((neighbors[i][1], newcor))
+        while BFS.empty() is not True:
+            pt = BFS.get()
+            count += 1
+            # if count % 1 is 0:
+            #     print(BFS.qsize(), "!", pt[1], "!", end=" ")
+            if pt[1] in visited:
+                continue
+            else:
+                latticecenters.append(pt)
+                visited[pt[1]] = True
+            neighbors = self.getNeighbors(pt[0])
+            coords = ((0, 1), (-1, 0), (0, -1), (1, 0))
+            for i in range(4):
+                newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
+                if type(neighbors[i]) is not int:
+                    BFS.put((neighbors[i][1], newcor))
         return latticecenters
 
     def getNeighbors(self, origin):
@@ -135,7 +135,7 @@ class RegionFinder:
         warp = copy.deepcopy(self.warpcenters)
         closepts = []
         # print(origin)
-        for i in range(5):
+        for i in range(9):
             curmin = 100000000
             betpt = [1000, 1000]
             for pt in warp:
@@ -146,24 +146,40 @@ class RegionFinder:
             if i is 0:
                 continue
             closepts.append(betpt)
-        # 2-cos(angle)
-        sortedpts = []
+
         data = []
         for pt in closepts:
-            ang = np.arctan2(pt[1] - origin[1], pt[0] - origin[0])
-            x = ((ang * 180 / np.pi + 315) % 360, pt)
+            # more coordinate shenanigans
+            ang = np.arctan2(origin[0] - pt[0], pt[1] - origin[1])
+            x = [(ang + 2 * np.pi) % (2 * np.pi), pt]
             data.append(x)
 
-        tryar = [0, 90, 180, 270, 360]
+        sortedpts = []
+        tryar = [0, np.pi / 2, np.pi, 3 * np.pi / 2, 2 * np.pi]
         for i in range(4):
-            exist = False
+            curmin = 100000000
+            betpt = [-1, -1]
             for pt in data:
-                if tryar[i] <= pt[0] <= tryar[i + 1]:
-                    exist = True
-                    sortedpts.append(pt)
-                    break
-            if not exist:
+                # score = abs(pt[0]-tryar[i])
+                multiplier = pow((2 - np.cos(pt[0] - tryar[i])), 2)
+                score = self.distBWPts(origin, pt[1]) * multiplier
+                # print(score, self.distBWPts(origin, pt[1]), pt)
+                # print(score, pt)
+                if score < curmin:
+                    curmin = score
+                    betpt = pt
+            # print("Winner: ", betpt)
+            if tryar[i] <= betpt[0] <= tryar[i + 1]:
+                sortedpts.append(betpt)
+            else:
+                # print(betpt[0], " failed the test between ",
+                #       tryar[i], " and ", tryar[i+1])
                 sortedpts.append(-1)
+        # for pt in data:
+        #     pt[0] = (pt[0] * 180 / np.pi + 315) % 360
+        # print(origin)
+        # print(closepts)
+        # print(data)
         return sortedpts
 
     def distBWPts(self, c1, c2):
