@@ -22,23 +22,29 @@ img_size = 250
 
 class RegionFinder:
     def __init__(self):
+        # Grid Properties (actual size is 11 x 8)
+        self.ysize = 16
+        self.xsize = 16
+        self.vsize = 25
+        self.wsize = 25
+
         fig, self.axes = plt.subplots(1, 3)
-        self.init = ski.io.imread('Cap403.bmp', as_gray=True)
+        self.init = ski.io.imread('Init_250.bmp', as_gray=True)
 
         self.axes[0].imshow(self.init, cmap=plt.cm.gray, interpolation='nearest')
 
         self.warpcenters = self.findWarpedCenters()
         self.latticecenters = self.labelCenters()
+        print(self.latticecenters)
 
         xs = [x[1] for x in self.warpcenters]
         ys = [x[0] for x in self.warpcenters]
         self.axes[0].scatter(xs, ys, s=10)
         self.axes[2].scatter(xs, ys, s=10)
 
-        self.ideal = self.getIdealGrid(28, 20, 12, 8, 5, -10)
-        # self.ideal = self.findGrid()
-        xss = [x[1] for x in self.ideal]
-        yss = [x[0] for x in self.ideal]
+        self.ideal = self.getIdealGrid(self.vsize, self.wsize, self.xsize, self.ysize, 0, 0, 0)
+        xss = [x[1] for x in self.ideal.values()]
+        yss = [x[0] for x in self.ideal.values()]
         self.axes[0].scatter(xss, yss, s=10)
 
         fig, tester = plt.subplots(1, 1)
@@ -49,7 +55,7 @@ class RegionFinder:
             tester.text(pt[0][1], pt[0][0], pt[1].__repr__(), color='white')
 
         # the axes get flipped because of weird coordinate shenanigans
-        self.luty, self.lutx = self.generateMapping(self.warpcenters, self.ideal)
+        self.luty, self.lutx = self.generateMapping(self.latticecenters, self.ideal)
         self.init = self.convertPicture()
         self.axes[1].imshow(ski.io.imread('whitesq.jpg', as_gray=True), cmap=plt.cm.gray)
         self.axes[1].imshow(self.init, cmap=plt.cm.gray)
@@ -105,7 +111,6 @@ class RegionFinder:
                 curmin = self.distBWPts((125, 125), pt)
                 oorigin = pt
 
-        # print(self.getNeighbors((64, 174)))
         initpt = (oorigin, (0, 0))
         visited = {}
         BFS = queue.Queue()
@@ -115,8 +120,6 @@ class RegionFinder:
         while BFS.empty() is not True:
             pt = BFS.get()
             count += 1
-            # if count % 1 is 0:
-            #     print(BFS.qsize(), "!", pt[1], "!", end=" ")
             if pt[1] in visited:
                 continue
             else:
@@ -128,8 +131,6 @@ class RegionFinder:
                 newcor = (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1])
                 if type(neighbors[i]) is not int:
                     BFS.put((neighbors[i][1], newcor))
-                else:
-                    print(pt[1], (pt[1][0] + coords[i][0], pt[1][1] + coords[i][1]))
         return latticecenters
 
     def getNeighbors(self, origin):
@@ -196,22 +197,18 @@ class RegionFinder:
         # currently closest-neighbor method mapping
         x, y, dx, dy = [], [], [], []
         for warp in warped:
-            close = [1000, 1000]
-            curmin = 100000000
-            for ipt in ideal:
-                if self.distBWPts(ipt, warp) < curmin:
-                    curmin = self.distBWPts(ipt, warp)
-                    close = ipt
-            x.append(warp[0])
-            y.append(warp[1])
-            dx.append(close[0] - warp[0])
-            dy.append(close[1] - warp[1])
+            x.append(warp[0][0])
+            y.append(warp[0][1])
+            print(ideal)
+            dx.append(ideal[(warp[1][0], warp[1][1])][0] - warp[0][0])
+            dy.append(ideal[(warp[1][0], warp[1][1])][1] - warp[0][1])
 
         x = np.asarray(x)
         y = np.asarray(y)
+        coors = np.column_stack((x, y))
         dx = np.asarray(dx)
         dy = np.asarray(dy)
-        coors = np.column_stack((x, y))
+
 
         res = 50
 
@@ -229,15 +226,16 @@ class RegionFinder:
 
         return lutx, luty
 
-    def getIdealGrid(self, sqh, sqv, numsquare, angle, tranX, tranY):
-        cors = []
-        for i in range(numsquare):
-            for j in range(numsquare):
+    def getIdealGrid(self, sqh, sqv, numwsquare, numhsquare, angle, tranX, tranY):
+        cors = {}
+        for i in range(numwsquare):
+            for j in range(numhsquare):
                 ang = np.deg2rad(angle)
-                cors.append(((i - float(numsquare - 1) / 2) * sqh * np.cos(ang) + tranX -
-                             (j - float(numsquare - 1) / 2) * sqv * np.sin(ang) + img_size / 2,
-                             (i - float(numsquare - 1) / 2) * sqh * np.sin(ang) + tranY +
-                             (j - float(numsquare - 1) / 2) * sqv * np.cos(ang) + img_size / 2))
+                cors[(i - numwsquare / 2, j - numhsquare / 2)] = \
+                    (((i - float(numwsquare - 1) / 2) * sqh * np.cos(ang) + tranX -
+                      (j - float(numhsquare - 1) / 2) * sqv * np.sin(ang) + img_size / 2,
+                      (i - float(numwsquare - 1) / 2) * sqh * np.sin(ang) + tranY +
+                      (j - float(numhsquare - 1) / 2) * sqv * np.cos(ang) + img_size / 2))
         return cors
 
     def fill(self, data, invalid=None):
