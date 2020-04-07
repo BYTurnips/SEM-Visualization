@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c84ca1-e159-460a-a000-f030a979213c" name="Default" comment="changed the metric for finding the neighbors so there will be no more irregularities in the middle of the grid">
+      <change afterPath="$PROJECT_DIR$/Image Processing/Constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Image Processing/Gridalyzer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Image Processing/Scratch/Testing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Image Processing/Statics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Pease SEM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pease SEM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process Black.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Image Process Black.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/Cap403.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Misc Images/Cap403.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process Black.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/Image Process White.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Scratch/Image Process White.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/Technique Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Scratch/Technique Testing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/hough_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Scratch/hough_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/hough_tf.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Scratch/hough_tf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image Processing/Scratch/plot_coins_segmentation.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,13 +26,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
+      <file leaf-file-name="Constants.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Image Processing/Constants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="170" column="39" lean-forward="true" selection-start-line="170" selection-start-column="39" selection-end-line="170" selection-end-column="39" />
+            <state relative-caret-position="102">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Statics.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Image Processing/Statics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
-                <element signature="e#527#545#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Image Processing/Main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+              <folding>
+                <element signature="e#526#544#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gridalyzer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Image Processing/Gridalyzer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,20 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>qbtn</find>
-      <find>quitb</find>
-      <find>image</find>
-      <find>scanArea</find>
-      <find>refreshRate</find>
-      <find>refresh</find>
-      <find>label_2</find>
-      <find>QtCore.</find>
-      <find>QtWidgets.</find>
-      <find>compute</find>
-      <find>defh</find>
-      <find>data.defw</find>
-      <find>adcreaddata</find>
-      <find>sample</find>
       <find>FREQ_OF_SAMPLE</find>
       <find>Slider</find>
       <find>defw</find>
@@ -64,8 +96,22 @@
       <find>&gt;&gt;&gt;</find>
       <find>20</find>
       <find>bmp</find>
-      <find>print</find>
       <find>warp</find>
+      <find>}</find>
+      <find>xs</find>
+      <find>ys</find>
+      <find>xss</find>
+      <find>xsss</find>
+      <find>ysss</find>
+      <find>xwarpcor</find>
+      <find>cmap=plt.cm.gray</find>
+      <find>125</find>
+      <find>ndi</find>
+      <find>distBWPts</find>
+      <find>self.distBWPts</find>
+      <find>0))</find>
+      <find>self.axes</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>quitb</replace>
@@ -112,14 +158,19 @@
         <option value="$PROJECT_DIR$/Image Processing/hough_2.py" />
         <option value="$PROJECT_DIR$/Image Processing/Technique Testing.py" />
         <option value="$PROJECT_DIR$/Image Processing/Image Process White.py" />
+        <option value="$PROJECT_DIR$/Image Processing/Testing.py" />
         <option value="$PROJECT_DIR$/Image Processing/Image Process Black.py" />
+        <option value="$PROJECT_DIR$/Image Processing/Gridalyzer.py" />
+        <option value="$PROJECT_DIR$/Image Processing/Constants.py" />
+        <option value="$PROJECT_DIR$/Image Processing/Main.py" />
+        <option value="$PROJECT_DIR$/Image Processing/Statics.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="20" />
     <option name="width" value="1440" />
-    <option name="height" value="811" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -148,19 +199,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Image Processing" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Primitive UI" />
-      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
-      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Misc Images" />
-      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Calibration Images" />
-      <recent name="C:\Users\Brion\Documents\Extracurricular\Science Research" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
       <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Good for Import" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Misc Images" />
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Scratch" />
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Primitive UI" />
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing" />
+      <recent name="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Calibration Images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -183,19 +234,16 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\brion\AppData\Local\Programs\Python\Python36-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Image Processing" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/Image Process Black.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/Main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="Image Process White" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -209,14 +257,11 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/Image Process White.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Scratch\Image Process White.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="Refined App" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -235,9 +280,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="Technique Testing" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -251,14 +293,11 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/Technique Testing.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Scratch\Technique Testing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="Testing" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -277,9 +316,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -298,9 +334,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="hough_2" type="PythonConfigurationType" factoryName="Python">
       <module name="Pease SEM" />
@@ -314,14 +347,11 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/hough_2.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Scratch\hough_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="plot_coins_segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Pease SEM" />
@@ -335,14 +365,11 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\brion\Documents\Extracurricular\Science Research\Pease_AweSEM\SEM-Visualization\Image Processing\Scratch\plot_coins_segmentation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Python.Testing" />
@@ -718,49 +745,48 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="811" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1509299" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14583333" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
-      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="right" id="Run" order="4" weight="0.27734375" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Data View" order="3" />
-      <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.36051503" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838542" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
-      <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Data View" order="3" />
+      <window_info anchor="bottom" id="TODO" order="5" />
       <window_info active="true" anchor="right" id="Run" order="4" visible="true" weight="0.296875" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831737" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32968536" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -773,21 +799,8 @@
       </list>
     </option>
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new approach with setpixel instead of drawpoint" />
@@ -818,10 +831,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="changed the metric for finding the neighbors so there will be no more irregularities in the middle of the grid" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Pease SEM/Application.py" />
-    <entry file="file://$USER_HOME$/Traffic Simulator/simulator/traffic_grid.py" />
-    <entry file="file://$USER_HOME$/Pease SEM/Data.py" />
     <entry file="file://$PROJECT_DIR$/scanArea.py" />
     <entry file="file://$USER_HOME$/OneDrive/Documents/Science Research/Pease_SEM_App/sem_app.py" />
     <entry file="file://$PROJECT_DIR$/Testing3.py" />
@@ -908,13 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Primitive UI/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Good for Import/Image Process White.py" />
     <entry file="file://$PROJECT_DIR$/Image Processing/Misc Images/250250grid.png">
       <provider selected="true" editor-type-id="images" />
@@ -945,59 +953,100 @@
     <entry file="file://$PROJECT_DIR$/Image Processing/Misc Images/blacksq.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/hough_tf.py">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/hough_tf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/plot_coins_segmentation.py">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/plot_coins_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="33" lean-forward="true" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Cap403.bmp">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Misc Images/Cap403.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/hough_2.py">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/hough_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Technique Testing.py">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/Technique Testing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Image Process White.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-926">
-          <caret line="78" column="38" lean-forward="true" selection-start-line="78" selection-start-column="38" selection-end-line="78" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Image Processing/Cap403border.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image Processing/Image Process Black.py">
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/Image Process White.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="170" column="39" lean-forward="true" selection-start-line="170" selection-start-column="39" selection-end-line="170" selection-end-column="39" />
+        <state relative-caret-position="357">
+          <caret line="110" column="10" lean-forward="true" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Scratch/Testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/fewsquares.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Primitive UI/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Init_250.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Gridalyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding>
-            <element signature="e#527#545#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Statics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image Processing/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="e#526#544#0" expanded="true" />
           </folding>
         </state>
       </provider>
